@@ -1,0 +1,17 @@
+.menu{
+    font-family: "Fibra",sans-serif;
+    border-radius: 2em;
+    width: 75%;
+    margin: auto;
+    background-color: #0000004d;
+}
+
+.fundo{
+    background-image: url("../../Images/fundo.webp");
+    width: 100vw;
+    height: 100vw;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}

@@ -1,25 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react'
+import { Container } from 'react-bootstrap';
+import Topbar from './Components/TopBar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  <>
+ <Topbar/>
+  <Container className="d-flex flex-column align-items-center justify-content-center mt-3"> 
+  
+  <h1 className="titulo mb-0">LinkUp</h1>
+  <h6 className="titulo mt-0">teste de subtitulo</h6>
+  </Container>
+  </>);
 }
 
 export default App;
