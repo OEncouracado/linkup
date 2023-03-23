@@ -1,0 +1,25 @@
+.titulo{
+    font-family: Fibra, serif;
+  }
+  
+  .subtitulo{
+    font-family: Fibra, serif;
+  }
+  .primeiraDiv{
+    position:absolute;
+    top: 50%;
+    margin:auto;
+    width: 100vw;
+    background-color: white;
+    height: 30em;
+    
+  }
+  .msociais{
+    height: 80%;
+    width: 100%;
+  }
+  .msociaisImg{
+    object-fit: contain;
+    object-position: left;
+    overflow: hidden;
+  }
