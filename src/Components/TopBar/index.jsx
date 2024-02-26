@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container, Nav, Navbar } from 'react-bootstrap'
+import React from 'react';// eslint-disable-next-line
+import { Nav, Navbar } from 'react-bootstrap';
 import "./style.css"
 
 function Topbar() {
