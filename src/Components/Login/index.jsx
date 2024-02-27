@@ -43,7 +43,7 @@ function Login() {
                                 onClick={handleEye}
                                 style={{
                                     cursor: 'pointer',
-                                    backgroundColor: 'white', // remove o fundo
+                                    backgroundColor: 'white',
                                 }}
                             >
                                 {mostrarSenha ? <Eye /> : <EyeSlash />}
