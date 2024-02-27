@@ -2,7 +2,26 @@
   font-family:'Fibra';
   src: local('Fibra'), url(./Font/fibra/Fibra-Light.otf) format(OpenType);
 }
+.backG {
+  width: 100vw;
+  height: 100vh;
+}
 
+.contlogin {
+  width: fit-content !important;
+  background-color: whitesmoke;
+  background-size: cover;
+  background-blend-mode: overlay;
+}
+
+.viewpass {
+  float: right;
+  margin-left: -25px;
+  margin-top: -26px;
+  position: relative;
+  font-size: large;
+  z-index: 2;
+}
 
 body {
   margin: 0;
