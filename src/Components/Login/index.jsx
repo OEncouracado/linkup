@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import { Alert, Button, Container, Form, InputGroup } from 'react-bootstrap';
+import React, { useState } from 'react' // eslint-disable-next-line
+import { Alert, Button, Col, Container, Form, Image, InputGroup, Row } from 'react-bootstrap';
 import { Eye, EyeSlash } from 'react-bootstrap-icons';
+import tempLogo from '../../Images/linkuplogotemporariosfundo.png';
 
 function Login() {
     const [nome, setNome] = useState('');
@@ -16,12 +17,16 @@ function Login() {
 
     return (
         <div className="backG d-flex flex-column align-items-center justify-content-center">
-            <Container className='contlogin border rounded border-dark' >
-                <Form className="d-flex flex-column align-items-center m-3" onSubmit={""}>
-                    <Form.Group>
+            <Container className='contlogin mx-auto mb-2'>
+                <Row className="rowint d-flex flex-column align-items-center justify-content-center m-3">
+                    <Col xs={12} md={10}>
+                        <Image className='logoimg' src={tempLogo}></Image>
+                    </Col>
+                    <Col xs={12} md={10}>
+                        <Form onSubmit={""}>
+                            <Form.Group>
                         <Form.Label>Usuário</Form.Label>
-                        <Form.Control
-                            className="mb-2"
+                                <Form.Control
                             type="text"
                             placeholder="Usuário"
                             value={nome}
@@ -29,9 +34,9 @@ function Login() {
                             required
                         />
                     </Form.Group>
-                    <Form.Group>
+                            <Form.Group className='my-2'>
                         <Form.Label>Senha</Form.Label>
-                        <InputGroup className="mb-2">
+                                <InputGroup>
                             <Form.Control
                                 type={mostrarSenha ? 'text' : 'password'}
                                 placeholder="Senha"
@@ -50,11 +55,15 @@ function Login() {
                             </InputGroup.Text>
                         </InputGroup>
                     </Form.Group>
-                    <Button type="submit" >Entrar</Button>
+                            <Button type="submit">Entrar</Button>
                 </Form>
+                    </Col>
+
+                </Row>
             </Container>
             {/* <Alert className='alertaLogin' show={showMensagem} variant={tipoMensagem}><p>{mensagem}</p></Alert> */}
         </div>
+
     )
 }
 

@@ -3,11 +3,10 @@
     border-radius: 2em;
     width: 75%;
     margin: auto;
-    background-color: #0000004d;
+    background-color: #000000;
 }
 
-.fundo{
-    background-image: url();
+.fundo {
     width: 100vw;
     height: 100vw;
     background-attachment: fixed;
@@ -18,4 +17,7 @@
     top:0;
     right: 0;
     left: 0;
+}
+.logoimgtopbar {
+    width: 20%;
 }
