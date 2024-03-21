@@ -1,3 +1,4 @@
+
 @font-face{
   font-family:'Fibra';
   src: local('Fibra'), url(./Font/fibra/Fibra-Light.otf) format(OpenType);
@@ -7,7 +8,50 @@
   height: 100vh;
   background-color: #0c0c0c;
 }
+.backFormupin {
+  width: calc(100vw - 40%);
+  height: 100vh;
+}
 
+.logologinup {
+  position: absolute;
+  filter: invert();
+  width: 12%;
+}
+
+.botaoCriar {
+  background-color: purple !important;
+  border-color: purple !important;
+}
+
+.botaoCriar:disabled {
+  pointer-events: all !important;
+  cursor: not-allowed;
+  background-color: grey !important;
+  border-color: grey !important;
+}
+
+.fundoImgSingUp {
+  background-image: url(https://static1.minhavida.com.br/diseases/12/8a/ab/d2/mulher-mexendo-no-celular-orig-1.jpg);
+  overflow: hidden;
+  height: 100vh;
+  width: calc(100vw - 60%);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+  background-color: lavender;
+
+}
+
+.dashboardFundo {
+  width: 100vw;
+  height: 100vh;
+}
+
+.fundoSinup {
+  width: 100vw;
+  height: 100vh;
+}
 .contlogin {
   width: fit-content !important;
   background-color: #0c0c0c;
