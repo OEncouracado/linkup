@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { fb } from './../shared/service/firebase';
+import { fb } from './../shared/service';
 
 export const useAuth = () => {
   const [isAuthed, setIsAuthed] = useState();

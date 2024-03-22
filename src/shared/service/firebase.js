@@ -20,6 +20,6 @@ try {
 }
 
 export const fb = {
-    firebase: firebase.firestore(),
+    firestore: firebase.firestore(),
     auth: firebase.auth(),
 };

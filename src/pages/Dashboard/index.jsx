@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
-import { usePages } from './../../hook';
-import { useAuth } from './../../hook';
+import { usePages, useAuth  } from './../../hook';
 
 function Dashboard() {
     const { authUser } = useAuth();
-    const pages = usePages(authUser?.uid);
+    const id = authUser?.uid;
+    const pages = usePages(id);
 
     useEffect(() => {
+        console.log(id);
         console.log(pages);
-    }, [pages]);
+    }, [pages, authUser, id]);
 
 
     return (
