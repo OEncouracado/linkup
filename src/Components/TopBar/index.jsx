@@ -5,8 +5,7 @@ import tempLogo from '../../Images/linkuplogotemporariosfundo.png';
 
 function Topbar() {
   return (
-    <div className='fundo justify-content-center d-flex'>
-        <Navbar variant='dark' className='menu mt-5 px-5'>
+    <Navbar variant='dark' className='d-flex menu mt-2 px-5'>
             <Navbar.Brand href='/'>
                 <i class="fa fa-link me-2" aria-hidden="true"/>
                   <Image className='logoimgtopbar' src={tempLogo}></Image>
@@ -20,8 +19,7 @@ function Topbar() {
                     <Nav.Link href='#'>Teste</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
-        </Navbar>
-    </div>
+    </Navbar>
   )
 }
 

@@ -42,12 +42,38 @@
   background-color: lavender;
 
 }
-
-.dashboardFundo {
-  width: 100vw;
-  height: 100vh;
+.barwarper {
+  width: 100%;
 }
 
+.bar {
+  border: ridge medium black;
+  height: 100%;
+  width: 80%;
+}
+
+.dashboardImagePerfil {
+  border: solid medium black;
+  background-color: aquamarine;
+  height: 150px;
+  width: 150px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.dashboardFundo {
+  margin-top: 1em;
+    height: 100%;
+}
+
+.dashboardLinks {
+  width: 60%;
+  height: 100%;
+}
+
+.dashboardFundoLink {
+  height: 8em;
+  border-radius: 1.6em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 .fundoSinup {
   width: 100vw;
   height: 100vh;
