@@ -52,7 +52,7 @@
   width: 80%;
 }
 .frameOption{
-  width: 10%;
+  width: 5%;
 }
 .dashboardMolduraPerfil {
   position: absolute;
@@ -74,19 +74,36 @@
 }
 
 .dashboardLinks {
-  width: 60%;
+  width: calc(100vw - 40%);
   height: 100%;
 }
-
+.dashboardtituloLinks{
+  text-align: center;
+  border-radius: 1.6em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 .dashboardFundoLink {
   height: 8em;
   border-radius: 1.6em;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.linksList{
+  width: 80%;
+}
 .fundoSinup {
   width: 100vw;
   height: 100vh;
 }
+
+.previewFundo{
+  width: calc(100vw - 60%) !important;
+  
+}
+
+.smartPhone{
+  width: 50%;
+}
+
 .contlogin {
   width: fit-content !important;
   background-color: #0c0c0c;

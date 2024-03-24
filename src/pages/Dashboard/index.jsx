@@ -6,12 +6,14 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import perfil from "../../Images/perfil/mavsleo.png";
 import moldura from "../../Images/molduras/moldura.png";
 import moldurabronze from "../../Images/molduras/moldurabronze.png";
+import phone from "../../Images/smartphone.png";
 
 
 function Dashboard() {
     const { authUser } = useAuth();
     const id = authUser?.uid;
     const pages = usePages(id);
+    const level = 5;
 
     const [frames, setFrames] = useState([]);
     const [selectedFrame, setSelectedFrame] = useState(null);
@@ -39,27 +41,27 @@ function Dashboard() {
     return (
         <>
             <Topbar />
-            <div className='dashboardFundo d-flex flex-column'>
+            <div className='dashboardFundo d-flex'>
                 <div className='dashboardLinks py-5 d-flex flex-column justify-content-center align-items-center'>
-                    <div className='perfilsuperiorwarp d-flex flex-column justify-content-center'>
+                    <div className='perfilsuperiorwarp  d-flex flex-column justify-content-center'>
                         <div className='frameepefilwarp d-flex justify-content-center align-items-center'>
                             {selectedFrame && (<img src={selectedFrame.src} alt={selectedFrame.nome} className='dashboardMolduraPerfil' />)}
                             <img src={perfil} alt="imagem de perfil" srcSet="" className='dashboardImagePerfil' />
                         </div>
-                        <div className='d-flex mt-5 mb-2'>
+                        <div className=' d-flex justify-content-center align-items-center mt-5 mb-2'>
                         {frames.map(frame => (
                                 <img
                                     key={frame.id}
                                     src={frame.src}
                                     alt={`moldura ${frame.id}`}
-                                    className='frameOption'
+                                    className='mx-2 frameOption'
                                     onClick={() => handleSelectFrame(frame)}
                                 />
                             ))}
                             </div>
                     </div>
                     <div className='d-flex flex-column align-items-center w-25'>
-                        <h6>Minha XP</h6>
+                        <h6>Nível <span className='text-success'>{level}</span></h6>
                         <div className='barwarper d-flex justify-content-between'>
                             <ProgressBar
                                 className='bar xp-bar'
@@ -71,10 +73,10 @@ function Dashboard() {
                             <i className="fa fa-question-circle" aria-hidden="true" />
                         </div>
                     </div>
-                </div>
+                
 
-                <div className='dashboardLinks  p-5'>
-                    <p>Links</p>
+                <div className='linksList pt-4'>
+                    <p className='dashboardtituloLinks'>Links</p>
                     <div className='d-flex flex-column'>
                         {pages?.map(p => (
                             (p.Links.map((l, index) => (
@@ -91,6 +93,12 @@ function Dashboard() {
                         ))}
                     </div>
                 </div>
+            </div>
+            <Container className='previewFundo'>
+                <div className='d-flex justify-content-center pt-4'>
+                    <img className='smartPhone' src={phone} alt="" srcset="" />
+                </div>
+            </Container>
             </div>
         </>
     );
