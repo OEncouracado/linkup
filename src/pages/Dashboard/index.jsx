@@ -6,6 +6,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import perfil from "../../Images/perfil/mavsleo.png";
 import moldura from "../../Images/molduras/moldura.png";
 import moldurabronze from "../../Images/molduras/moldurabronze.png";
+import semMoldura from "../../Images/vazio.png";
 import phone from "../../Images/smartphone.png";
 
 
@@ -23,6 +24,7 @@ function Dashboard() {
         // Aqui você pode fazer uma solicitação para recuperar os dados das molduras de onde quer que estejam armazenadas
         // Por enquanto, vamos apenas simular alguns dados de molduras
         const fakeFramesData = [
+            { id: 0, src: semMoldura, nome: "Sem Moldura"},
             { id: 1, src: moldura, nome: "Moldura 1" },
             { id: 2, src: moldurabronze, nome: "Elo Bronze" },
             // Adicione mais molduras conforme necessário
@@ -31,7 +33,11 @@ function Dashboard() {
     }, []);
 
     const handleSelectFrame = (frame) => {
-        setSelectedFrame(frame);
+        if (frame.id === 0) {
+            setSelectedFrame(null); // Define o estado selectedFrame como null
+        } else {
+            setSelectedFrame(frame); // Define o estado selectedFrame como a moldura selecionada
+        }
     };
 
     useEffect(() => {
@@ -94,11 +100,31 @@ function Dashboard() {
                     </div>
                 </div>
             </div>
-            <Container className='previewFundo'>
-                <div className='d-flex justify-content-center pt-4'>
-                    <img className='smartPhone' src={phone} alt="" srcset="" />
+            <div className='previewFundo'>
+                <div className='bg-danger d-flex justify-content-center align-items-center'>
+                    <div className='previewTela d-flex bg-warning justify-content-center align-items-start'>
+                        <img className='smartPhone' src={phone} alt="" srcset="" />
+                        <div className='previewPerfilTop d-flex flex-column justify-content-center align-items-center'>
+                            <div className='previewframeepefilwarp d-flex flex-column justify-content-center align-items-center'>
+                                {selectedFrame && (<img src={selectedFrame.src} alt={selectedFrame.nome} className='previewMolduraPerfil' />)}
+                                <img src={perfil} alt="imagem de perfil" srcSet="" className='previewImagePerfil' />
+                            </div>
+                            <div className='d-flex flex-column align-items-center w-100 mt-2'>
+                                <h6>Nível <span className='text-success'>{level}</span></h6>
+                                <div className='previewbarwarper d-flex justify-content-between'>
+                                    <ProgressBar
+                                        className='previewbar preview-xp-bar'
+                                        striped
+                                        animated
+                                        variant='success'
+                                        now={45}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
-            </Container>
+            </div>
             </div>
         </>
     );
