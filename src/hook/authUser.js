@@ -16,8 +16,8 @@ export const useAuth = () => {
         }
     });
     return unsubscribe;
-  }, []);
-
+  }, [authUser]);
+  console.log(authUser);
   return {
     isAuthed,
     authUser,

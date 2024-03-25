@@ -14,12 +14,13 @@ try {
         appId: process.env.REACT_APP_FIREBASE_APP_ID,
         measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
     });
-    console.log('Firebase inicializado com sucesso!');
+    console.log('Firebase inicializado com sucesso!',firebase);
 } catch (error) {
     console.error('Erro ao inicializar o Firebase:', error);
 }
-
+console.log(firebase);
 export const fb = {
     firestore: firebase.firestore(),
     auth: firebase.auth(),
+    
 };

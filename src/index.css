@@ -147,6 +147,7 @@ code {
 /* Molduras */
 .frameOption {
   width: 5%;
+  cursor: pointer;
 }
 
 .dashboardMolduraPerfil {
@@ -155,12 +156,12 @@ code {
   height: 200px; /* Ajuste conforme necessário */
   z-index: 2;
 }
-
-.previewframeepefilwarp{
- 
+.configLinksIcons i {
+  cursor: pointer;
 }
 
 .dashboardImagePerfil {
+  filter: opacity();
   position: relative;
   z-index: 1;
   width: 150px;

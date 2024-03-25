@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { usePages, useAuth } from '../../hook';
+import { usePages, useAuth } from '../../hook/index';
 import Topbar from '../../Components/TopBar/index';
 import { Container } from 'react-bootstrap';
 import ProgressBar from 'react-bootstrap/ProgressBar';
@@ -61,7 +61,10 @@ function Dashboard() {
                                     src={frame.src}
                                     alt={`moldura ${frame.id}`}
                                     className='mx-2 frameOption'
-                                    onClick={() => handleSelectFrame(frame)}
+                                    onClick={() => {
+                                        console.log("Frame selecionado:", frame);
+                                        handleSelectFrame(frame);
+                                    }}
                                 />
                             ))}
                         </div>
@@ -85,14 +88,14 @@ function Dashboard() {
                         <p className='dashboardtituloLinks'>Links</p>
                         <div className='d-flex flex-column'>
                             {pages?.map(p => (
-                                (p.Links.map((l, index) => (
+                                (p.Links.map((link, index) => (
                                     <div key={index}>
                                         <a
                                             className='dashboardFundoLink bg-light d-flex justify-content-center align-items-center my-2'
-                                            href={"https://" + l}
+                                            href={"https://" + link}
                                             target="_blank"
                                             rel="noopener noreferrer">
-                                            <Container className='d-flex justify-content-center'>{l}</Container>
+                                            <Container className='d-flex justify-content-center'>{link}</Container>
                                         </a>
                                     </div>
                                 )))
