@@ -5,13 +5,14 @@ import Signup from './Components/Signup/Signup';
 import Login from './Components/Login';
 import { useAuth } from './hook/authUser';
 import Dashboard from './pages/Dashboard';
+import Inventario from './Components/Inventario';
 
 function App() {
 
   const {isAuthed} = useAuth ();
 
   return (<>
-    {isAuthed ? <Dashboard/>:<Login/>}
+    {isAuthed ? <Inventario/>:<Login/>}
   </>);
 }
 

@@ -4,7 +4,7 @@ import Topbar from './../../Components/TopBar/index';
 import DashboardPerfil from '../../Components/Dashboard/DashboardPerfil';
 import DashboardMoldura from '../../Components/Dashboard/DashboardMoldura';
 import DashboardLinkList from '../../Components/Dashboard/DashboardLinkList';
-import Preview from '../../Components/Preview'; // Você mencionou que o componente de preview está em uma estrutura de pastas diferente
+import Preview from '../../Components/preview'; // Você mencionou que o componente de preview está em uma estrutura de pastas diferente
 import { usePages, useAuth } from '../../hook';
 import moldura from "../../Images/molduras/moldura.png";
 import moldurabronze from "../../Images/molduras/moldurabronze.png";
@@ -34,7 +34,7 @@ function Dashboard() {
             {
                 id: 3,
                 src: semMoldura,
-                nome: "Moldura 3"
+                nome: "Remover Molduras"
             }
         ];
         setFrames(fakeFramesData);

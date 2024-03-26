@@ -156,8 +156,18 @@ code {
   height: 200px; /* Ajuste conforme necessário */
   z-index: 2;
 }
-.configLinksIcons i {
+.configLinksIcons i, .addLink{
   cursor: pointer;
+  font-size: 2em;
+}
+
+.arrastarLink{
+  cursor: grab;
+  font-size: xx-large;
+}
+
+.arrastarLink:active{
+  cursor: grabbing;
 }
 
 .dashboardImagePerfil {
