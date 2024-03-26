@@ -18,8 +18,8 @@ try {
 } catch (error) {
     console.error('Erro ao inicializar o Firebase:', error);
 }
-console.log(firebase);
 export const fb = {
+    database: firebase.database(),
     firestore: firebase.firestore(),
     auth: firebase.auth(),
     
