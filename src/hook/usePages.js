@@ -19,9 +19,10 @@ export const usePages = userId => {
               });
             });
             setPages(_pages);
+            console.log(_pages);
           })
       : undefined;
-
+          
     return unsubscribe;
   }, [userId]);
 

@@ -3,9 +3,9 @@ import { ProgressBar } from 'react-bootstrap';
 import Topbar from './../../Components/TopBar/index';
 import DashboardPerfil from '../../Components/Dashboard/DashboardPerfil';
 import DashboardMoldura from '../../Components/Dashboard/DashboardMoldura';
-import DashboardLinkList from '../../Components/Dashboard/DashboardLinkList';
+// import DashboardLinkList from '../../Components/Dashboard/DashboardLinkList';
 import Preview from '../../Components/Preview'; // Você mencionou que o componente de preview está em uma estrutura de pastas diferente
-import { usePages, useAuth, UserInfo } from '../../hook';
+import { useAuth, UserInfo, usePages } from '../../hook';
 import moldura from "../../Images/molduras/moldura.png";
 import moldurabronze from "../../Images/molduras/moldurabronze.png";
 import semMoldura from "../../Images/vazio.png";
@@ -13,14 +13,13 @@ import semMoldura from "../../Images/vazio.png";
 function Dashboard() {
     const { authUser } = useAuth();
     const id = authUser?.uid;
-    const pages = usePages(id);
-    const userStats = UserInfo(id);
-    const stats = userStats[0];
-    // console.log("Status", userStats);
-    // console.log("Status do Usuário", stats);
+    console.log(id);
+    const pagesArray = usePages(id);
+    console.log("paginas", pagesArray)
+    const pages = pagesArray[0];
+    console.log("paginas", pages.Links)
     const [frames, setFrames] = useState([]);
     const [selectedFrame, setSelectedFrame] = useState(null);
-    console.log(pages);
     useEffect(() => {
         // Simulação de busca de molduras e páginas
         const fakeFramesData = [
@@ -61,10 +60,9 @@ function Dashboard() {
                         <DashboardPerfil selectedFrame={selectedFrame} />
                         <DashboardMoldura frames={frames} handleSelectFrame={handleSelectFrame} />
                         <div className='d-flex flex-column align-items-center w-25'>
-                            <h6>Nível <span className='text-success'>{stats.nivelUser}</span></h6>
-                            <ProgressBar className='bar xp-bar' striped animated variant='success' now={stats.xp} max={stats.maxXp} />
+                            <h6>Nível <span className='text-success'>{5}</span></h6>
+                            <ProgressBar className='bar xp-bar' striped animated variant='success' now={50} max={100} />
                         </div>
-                        {pages && <DashboardLinkList pages={pages} />}
                     </div>
                 )}
                 <div className='previewFundo bg-primary'>
