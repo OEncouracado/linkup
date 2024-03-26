@@ -4,18 +4,22 @@ import { Container } from 'react-bootstrap';
 
 function DashboardLink({ link }) {
     return (<>
-        <a
-            className='dashboardFundoLink bg-light d-flex justify-content-around align-items-center my-2'
+    <Container className='dashboardFundoLink bg-light d-flex justify-content-between align-items-center my-2'>
+        <div className='w-25'>
+            <i className="arrastarLink fa fa-ellipsis-v" aria-hidden="true"></i>
+        </div>
+        <a  
+            className='w-50'
             href={"https://" + link}
             target="_blank"
             rel="noopener noreferrer">
-            <Container className='d-flex justify-content-center bg-danger'>{link}</Container>
-            <div className='configLinksIcons bg-dark d-flex justify-content-center'>
-                <i class="fa fa-plus-square ms-3" aria-hidden="true"></i>
+            <Container>{link}</Container>
+        </a>
+        <Container className='configLinksIcons w-25 d-flex justify-content-end me-3'>
                 <i class="fa fa-pencil-square mx-1" aria-hidden="true"></i>
                 <i class="fa fa-minus-square" aria-hidden="true"></i>
-            </div>
-        </a>
+            </Container>
+    </Container>
     </>
     );
 }
