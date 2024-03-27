@@ -1,7 +1,7 @@
 import React from 'react';
-import perfil from "../../../Images/perfil/mavsleo.png"; // Importe a imagem do perfil aqui
+// import perfil from "../../../Images/perfil/mavsleo.png";
 
-function DashboardPerfil({ selectedFrame }) {
+function DashboardPerfil({ perfil, selectedFrame }) {
     console.log(selectedFrame)
 
     return (

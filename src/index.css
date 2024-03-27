@@ -211,3 +211,21 @@ code {
 .previewbar {
   border: ridge medium black;
 }
+
+.linkENome{
+  width: 80%;
+  overflow: hidden;
+}
+
+.linkUrl{
+
+  overflow-x: scroll;
+}
+
+.linkUrl::-webkit-scrollbar {
+  display: none;
+}
+
+.arrastarWarp{
+  width: 10%;
+}
