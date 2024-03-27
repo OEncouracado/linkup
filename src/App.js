@@ -6,12 +6,24 @@ import Login from './Components/Login';
 import { useAuth } from './hook/authUser'; // eslint-disable-next-line
 import Dashboard from './pages/Dashboard'; // eslint-disable-next-line
 import Inventario from './Components/Inventario';
+import { TelaLoading } from './Components/Loading';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Pagina from './pages/Pagina';
 
 function App() {
-  const {isAuthed} = useAuth ();
-
+  const {isAuthed, authUser} = useAuth ();
+  // authUser === undefined ? <TelaLoading /> : 
   return (<>
-    {isAuthed ? <Dashboard/>:<Login/>}
+    {
+      authUser === undefined ? <TelaLoading/> : isAuthed ? (
+        <Router>
+          <Routes>
+            <Route path='/' element={<Dashboard />}/>
+            <Route path='/pagina' element={<Pagina />}/>
+          </Routes>
+        </Router>
+      ):(<Login/>)
+    }
   </>);
 }
 

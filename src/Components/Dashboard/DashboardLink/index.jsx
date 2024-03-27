@@ -3,6 +3,17 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 
 function DashboardLink({ url, nome }) {
+    const editPage = () => { console.log(url, nome) };
+    const delPage = () => {
+        if (
+            window.confirm(
+                'Tem certeza que deseja deletar ' + nome + '?',
+            )
+        ) {
+
+        }
+    };
+
     return (<>
     <Container className='dashboardFundoLink bg-light d-flex justify-content-between align-items-center my-2'>
         <div className='arrastarWarp'>
@@ -17,8 +28,14 @@ function DashboardLink({ url, nome }) {
             </Container>
         </div>
         <Container className='configLinksIcons w-25 d-flex justify-content-end me-3'>
-                <i class="fa fa-pencil-square mx-1" aria-hidden="true"></i>
-                <i class="fa fa-minus-square" aria-hidden="true"></i>
+                <i
+                    class="fa fa-pencil-square mx-1"
+                    aria-hidden="true"
+                    onClick={editPage}></i>
+                <i
+                    class="fa fa-minus-square"
+                    aria-hidden="true"
+                    onClick={delPage}></i>
             </Container>
     </Container>
     </>

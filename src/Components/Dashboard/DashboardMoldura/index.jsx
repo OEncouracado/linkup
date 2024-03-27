@@ -11,7 +11,7 @@ function DashboardMoldura({ frames, handleSelectFrame }) {
 
     return (
 
-        <div className='d-flex justify-content-center align-items-center mt-5 mb-2'>
+        <div className='d-flex justify-content-center align-items-center my-3'>
             {frames?.map(frame => (
                 <OverlayTrigger placement="top"
                     delay={{ show: 250, hide: 400 }}
