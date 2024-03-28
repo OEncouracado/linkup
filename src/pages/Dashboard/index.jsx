@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 // eslint-disable-next-line
 import { useAuth, UserInfo, usePages, useStorage } from '../../hook';
 import Topbar from './../../Components/TopBar/index';
@@ -10,7 +10,8 @@ import Preview from '../../Components/preview';
 import moldura from "../../Images/molduras/moldura.png";
 import moldurabronze from "../../Images/molduras/moldurabronze.png";
 import semMoldura from "../../Images/vazio.png";
-
+import { Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 function Dashboard() {
     const { authUser } = useAuth();
     const id = authUser?.uid;
@@ -20,9 +21,17 @@ function Dashboard() {
     const stats = userArray && userArray[0];
     const imgPerfil = stats?.imagemPerfil;
     const userName = stats?.username;
+    const molduraAtual = stats?.moldura;
+    const userMoldura = useMemo(() => ({
+        id: 5000,
+        src: molduraAtual,
+        nome: "Moldura Atual",
+    }), [molduraAtual]);
     const [frames, setFrames] = useState([]);
-    const [selectedFrame, setSelectedFrame] = useState(null);
-    // console.log(pageArray);
+    const [selectedFrame, setSelectedFrame] = useState(userMoldura);
+    console.log("moldurabd", molduraAtual);
+    console.log("moldura", selectedFrame);
+    console.log("moldura usuario", userMoldura.src);
     // console.log(userArray);
     // console.log("Status", stats.imagemPerfil);
     // const imgPerfil = null;
@@ -31,6 +40,9 @@ function Dashboard() {
     // console.log("imagem", perfil);
 
 
+    useEffect(() => {
+        setSelectedFrame(userMoldura);
+    }, [userMoldura]);
     useEffect(() => {
         // Simulação de busca de molduras e páginas
         const fakeFramesData = [
@@ -67,13 +79,14 @@ function Dashboard() {
             <div className='dashboardFundo d-flex'>
                 {authUser && (
                     <div className='dashboardLinks py-5 d-flex flex-column justify-content-center align-items-center'>
+                        <Alert variant='info' className='mb-5'>Sua página já está disponível aqui: <Link to={'/pagina'}>{userName}</Link>.</Alert>
                         <DashboardPerfil perfil={imgPerfil} selectedFrame={selectedFrame} username={userName} />
                         <DashboardNivel nivel={stats?.nivelUser} xp={stats?.xp} maxxp={stats?.maxXp} />
                         <DashboardMoldura frames={frames} handleSelectFrame={handleSelectFrame} />
                         <DashboardLinkList pages={pages && (pages)} />
                     </div>
                 )}
-                <div className="previewFundo bg-primary py-5">
+                <div className="previewFundo pt-3">
                     <Preview />
                 </div>
             </div>

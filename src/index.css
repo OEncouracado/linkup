@@ -65,7 +65,7 @@ code {
   color: white;
   border: 0.2rem solid #fff;
   border-radius: 2rem;
-  padding: 0.4em;
+  padding: 0.4rem;
   box-shadow: 0 0 .2rem #fff, 0 0 .2rem #fff, 0 0 2rem #bc13fe, 0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
 }
 
@@ -91,7 +91,7 @@ code {
   animation: pulsate 1.5s infinite alternate;
   border: 0.2rem solid #fff;
   border-radius: 2rem;
-  padding: 0.4em;
+  padding: 0.4rem;
   box-shadow: 0 0 .2rem #fff, 0 0 .2rem #fff, 0 0 2rem #bc13fe, 0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
 }
 
@@ -106,7 +106,7 @@ code {
 
 /* Dashboard */
 .dashboardFundo {
-  margin-top: 1em;
+  margin-top: 1rem;
   height: 100%;
 }
 
@@ -117,13 +117,13 @@ code {
 
 .dashboardtituloLinks {
   text-align: center;
-  border-radius: 1.6em;
+  border-radius: 1.6rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .dashboardFundoLink {
-  height: 8em;
-  border-radius: 1.6em;
+  height: 8rem;
+    border-radius: 1.6rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -158,7 +158,7 @@ code {
 }
 .configLinksIcons i, .addLink{
   cursor: pointer;
-  font-size: 2em;
+  font-size: 2rem;
 }
 
 .arrastarLink{
@@ -181,38 +181,16 @@ code {
 
 .previewFundo{
   width: calc(100vw - 60%);
+  display: flex;
+    align-items: flex-start;
 }
-
-.previewPerfilTop{
-  margin-top: 9em;
+.previewFrame {
+  /* margin: auto; */
+  margin-left: auto;
+  margin-right: auto;
+  border: solid .5em black;
+  border-radius: 2rem;
 }
-
-.previewImagePerfil{
-  position: relative;
-  width: 70px; /* Ajuste conforme necessário */
-  height: 70px; /* Ajuste conforme necessário */
-  z-index: 1;
-}
-
-.previewMolduraPerfil {
-  position: absolute;
-  width: 94px; /* Ajuste conforme necessário */
-  height: 94px; /* Ajuste conforme necessário */
-  z-index: 2;
-}
-
-.smartPhone{
-  position: absolute;
-}
-
-.previewbarwarper {
-  width: 100%;
-}
-
-.previewbar {
-  border: ridge medium black;
-}
-
 .linkENome{
   width: 80%;
   overflow: hidden;
@@ -239,40 +217,79 @@ code {
 }
 
 .usernamePefilWarp {
-  margin-top: 2em;
+  margin-top: 2rem;
   padding: 2%;
-  border-radius: 1.6em;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 1.6rem;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
 }
 
 .paginaFundo{
-  margin: auto;
-  width: 80vw;
-  height: 100vh;
+  /* background-image: url('https://i.pinimg.com/originals/1d/a3/66/1da3663ce1d7d0f6098a31a667e862b4.gif'); */
+    /* background-image: url('https://e1.pxfuel.com/desktop-wallpaper/186/581/desktop-wallpaper-1125x2436-kaisa-league-of-legends-artwork-iphone-xs-iphone-10-iphone-x-backgrounds-and-kaisa-iphone.jpg'); */
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/linkup-4b9cf.appspot.com/o/airi_golden_sakura_fubuki.jpg?alt=media&token=ec6223a8-26b3-47a4-a014-f3e5b72693d1');
+    background-position: 65%;
+    /* background-position: center; */
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+  /* background-color: beige; */
 
 }
 
 .paginaLinksList{
-  width: 100%;
+  width: 100vw;
+    max-width: 50rem;
 }
 
 .paginaLink{
-  margin: 1em;
+  color: #000;
+    text-decoration: none;
+    margin: 1rem;
   width: 80%;
-  height: 2.5em;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2%;
-  border-radius: 1.6em;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  transition: ease-in-out;
+  border-radius: 1.6rem;
+    background-color: #bc13fe;
+    box-shadow: rgba(156, 0, 135, 0.815) 0px 5px 15px;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 }
 
 .paginaLink:hover{
+  transition: ease-in-out .2s;
+    color: #000;
   box-shadow: rgba(0, 0, 0, 0.35) 15px;
+  text-decoration: none;
 }
 
 .linkPage{
   
+}
+.paginaWarper {
+  max-width: 50rem;
+}
+
+.iframeWarp {
+  width: 50%;
+  background-color: red;
+}
+
+.frameepefilwarp {}
+
+.paginaImagePerfil {
+  filter: opacity();
+  position: relative;
+  z-index: 1;
+  width: 10rem;
+  /* object-fit: cover; */
+}
+
+.paginaMolduraPerfil {
+  position: absolute;
+  width: 13.3rem;
+  /* Ajuste conforme necessário */
+  /* Ajuste conforme necessário */
+  z-index: 2;
 }

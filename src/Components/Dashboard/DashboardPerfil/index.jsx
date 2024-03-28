@@ -1,8 +1,9 @@
 import React from 'react';
 import perfilNull from "../../../Images/perfil/perfil.jpg";
 
+
 function DashboardPerfil({ username, perfil, selectedFrame }) {
-    console.log(perfil, selectedFrame)
+    console.log("informações de perfil", perfil, selectedFrame)
 
     return (
         <div className='perfilsuperiorwarp d-flex flex-column justify-content-center'>
