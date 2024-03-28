@@ -232,7 +232,7 @@ code {
 }
 .loadingFundo {
   width: 100vw;
-  height: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -243,4 +243,36 @@ code {
   padding: 2%;
   border-radius: 1.6em;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.paginaFundo{
+  margin: auto;
+  width: 80vw;
+  height: 100vh;
+
+}
+
+.paginaLinksList{
+  width: 100%;
+}
+
+.paginaLink{
+  margin: 1em;
+  width: 80%;
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+  border-radius: 1.6em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: ease-in-out;
+}
+
+.paginaLink:hover{
+  box-shadow: rgba(0, 0, 0, 0.35) 15px;
+}
+
+.linkPage{
+  
 }
