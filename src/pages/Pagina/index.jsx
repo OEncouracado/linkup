@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAuth, UserInfo, usePages, UserCss } from './../../hook';
 import PaginaLinkList from '../../Components/Pagina/PaginaLinkList';
 import PaginaPerfil from '../../Components/Pagina/PaginaPerfil';
 import PaginaNivel from './../../Components/Pagina/PaginaNivel/index';
+import { useLocation, useParams } from 'react-router-dom';
 
 
 function Pagina() {
@@ -18,6 +19,13 @@ function Pagina() {
     const userName = stats?.username;
     const moldura = stats?.moldura;
     console.log('Estilos personalizados', styleArray);
+    const userNameLink ={};
+    const location = useLocation();
+    const params = useParams();
+
+    useEffect(()=>{
+        console.log("localização", params)
+    },[params]);
     return (
         <div className='paginaFundo pt-5'>
             <div className='paginaWarper m-auto d-flex flex-column align-items-center'>

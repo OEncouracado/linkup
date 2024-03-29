@@ -12,19 +12,14 @@ import Pagina from './pages/Pagina';
 
 function App() {
   const {isAuthed, authUser} = useAuth ();
-  // authUser === undefined ? <TelaLoading /> : 
-  return (<>
-    {
-      authUser === undefined ? <TelaLoading/> : isAuthed ? (
-        <Router>
-          <Routes>
-            <Route path='/' element={<Dashboard />}/>
-            <Route path='/pagina' element={<Pagina />}/>
-          </Routes>
-        </Router>
-      ):(<Login/>)
-    }
-  </>);
-}
+  return (
+  <>
+    <Router>
+      <Routes>
+        <Route path='/' element={authUser === undefined ? <TelaLoading/> : isAuthed ? (<Dashboard/>):(<Login/>)}/>
+        <Route path='/:id' element={<Pagina />}/>
+      </Routes>
+    </Router>
+  </>);}
 
 export default App;
