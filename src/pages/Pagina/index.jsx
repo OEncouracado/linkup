@@ -1,41 +1,47 @@
-import React, { useEffect } from 'react'
-import { useAuth, UserInfo, usePages, UserCss } from './../../hook';
-import PaginaLinkList from '../../Components/Pagina/PaginaLinkList';
-import PaginaPerfil from '../../Components/Pagina/PaginaPerfil';
-import PaginaNivel from './../../Components/Pagina/PaginaNivel/index';
-import { useLocation, useParams } from 'react-router-dom';
-
+import React from "react";
+import { useParams } from "react-router-dom";
+import { useLinkPages, UseLinkCss, UseLinkInfo } from "./../../hook";
+import PaginaPerfil from "./../../Components/Pagina/PaginaPerfil/index";
+import PaginaNivel from "./../../Components/Pagina/PaginaNivel/index";
+import PaginaLinkList from "./../../Components/Pagina/PaginaLinkList/index";
 
 function Pagina() {
-    const { authUser } = useAuth();
-    const id = authUser?.uid;
-    const userArray = UserInfo(id);
-    const pageArray = usePages(id);
-    const styleArray = UserCss(id);
-    const pages = pageArray && pageArray[0];
-    const stats = userArray && userArray[0];
-    const estilo = styleArray && styleArray[0];
-    const imgPerfil = stats?.imagemPerfil;
-    const userName = stats?.username;
-    const moldura = stats?.moldura;
-    console.log('Estilos personalizados', styleArray);
-    const userNameLink ={};
-    const location = useLocation();
-    const params = useParams();
+  const { usuario } = useParams();
+  console.log("localização", usuario);
+  const pagesArray = useLinkPages(usuario);
+  const cssArray = UseLinkCss(usuario);
+  const infoArray = UseLinkInfo(usuario);
+  const pages = pagesArray && pagesArray[0];
+  const css = cssArray && cssArray[0];
+  const stats = infoArray && infoArray[0];
 
-    useEffect(()=>{
-        console.log("localização", params)
-    },[params]);
-    return (
-        <div className='paginaFundo pt-5'>
-            <div className='paginaWarper m-auto d-flex flex-column align-items-center'>
-                <PaginaPerfil perfil={imgPerfil} username={userName} selectedFrame={moldura} userStyle={estilo} />
-                <PaginaNivel nivel={stats?.nivelUser} xp={stats?.xp} maxxp={stats?.maxXp} userStyle={estilo} />
-                <PaginaLinkList pages={pages && (pages)} userStyle={estilo} />
-            </div>
+  console.log("definição das páginas", pages, stats);
+  console.log("css", cssArray);
+  const estilo = {
+    backgroundImage: `url(${stats?.userBackGround})`,
+  };
 
+  return (
+    <div className="paginaFundoWarp">
+      <div className="paginaFundo pt-5" style={estilo}>
+        <div className="paginaWarper m-auto d-flex flex-column align-items-center">
+          <PaginaPerfil
+            perfil={stats?.imagemPerfil}
+            username={stats?.username}
+            selectedFrame={stats?.moldura}
+            userStyle={css}
+          />
+          <PaginaNivel
+            nivel={stats?.nivelUser}
+            xp={stats?.xp}
+            maxxp={stats?.maxXp}
+            userStyle={css}
+          />
+          <PaginaLinkList pages={pages && pages} userStyle={css} />
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default Pagina
+export default Pagina;
