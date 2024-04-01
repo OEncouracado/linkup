@@ -11,7 +11,6 @@ function Preview({ username }) {
       <iframe
         width="317"
         height="667"
-        sandbox="allow-scripts allow-same-origin"
         className="previewFrame"
         src={`/${username}`}
         title="preview"

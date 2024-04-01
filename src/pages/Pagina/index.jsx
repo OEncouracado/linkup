@@ -4,6 +4,7 @@ import { useLinkPages, UseLinkCss, UseLinkInfo } from "./../../hook";
 import PaginaPerfil from "./../../Components/Pagina/PaginaPerfil/index";
 import PaginaNivel from "./../../Components/Pagina/PaginaNivel/index";
 import PaginaLinkList from "./../../Components/Pagina/PaginaLinkList/index";
+import { Helmet } from 'react-helmet';
 
 function Pagina() {
   const { usuario } = useParams();
@@ -21,7 +22,10 @@ function Pagina() {
     backgroundImage: `url(${stats?.userBackGround})`,
   };
 
-  return (
+  return (<>
+    <Helmet>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </Helmet>
     <div className="paginaFundoWarp">
       <div className="paginaFundo pt-5" style={estilo}>
         <div className="paginaWarper m-auto d-flex flex-column align-items-center">
@@ -41,7 +45,7 @@ function Pagina() {
         </div>
       </div>
     </div>
-  );
+  </>);
 }
 
 export default Pagina;
