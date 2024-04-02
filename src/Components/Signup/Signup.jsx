@@ -4,6 +4,8 @@ import { Eye, EyeSlash } from 'react-bootstrap-icons';
 import logo from "../../Images/linkuplogotemporario.png"
 import { emailRegex } from '../Constants'
 import { fb } from '../../shared/service';
+import 'firebase/compat/auth';
+
 
 function Signup() {
     const [email, setEmail] = useState('');
@@ -25,10 +27,47 @@ function Signup() {
         }
     };
 
+    // Verifica se o nome de usuário já existe na coleção 'UserNames'
+    const verificarUsername = async (username) => {
+        try {
+            const snapshot = await fb.firestore.collection('UserNames').where("username", "==", username).get();
+
+            if (!snapshot.empty) {
+                // O username já existe no documento desta coleção
+                setUsernameValido(false);
+            } else {
+                // O username não existe no documento desta coleção
+                setUsernameValido(true);
+            }
+        } catch (error) {
+            console.error('Erro ao verificar username:', error);
+            // Trate o erro conforme necessário
+        }
+    };
+
+    // Função para verificar se um e-mail já está cadastrado como usuário
+    const verificarEmailCadastrado = async (email) => {
+        try {
+            const signInMethods = await fb.auth.fetchSignInMethodsForEmail(email);
+            if (signInMethods.length > 0) {
+                // O e-mail já está cadastrado como usuário
+                console.log('O e-mail já está cadastrado como usuário');
+                setEmailJaCadastrado(true);
+            } else {
+                // O e-mail não está cadastrado como usuário
+                console.log('O e-mail não está cadastrado como usuário');
+                setEmailJaCadastrado(false);
+            }
+        } catch (error) {
+            console.error('Erro ao verificar o e-mail:', error);
+        }
+    };
+
+
     // Função para verificar se o botão deve ser habilitado
     const verificarHabilitacaoBotao = () => {
         // Verifique se todos os campos obrigatórios estão preenchidos
-        if (email && emailRegex.test(email) && senha && confirSenha && senha === confirSenha && usernameValido) {
+        if (email && emailRegex.test(email) && !emailJaCadastrado && senha && confirSenha && senha === confirSenha) {
             // Outras verificações necessárias, se houver
 
             // Habilitar o botão se todas as condições forem atendidas
@@ -47,6 +86,8 @@ function Signup() {
     }, [email, senha, confirSenha, emailJaCadastrado]);
 
     // Chamada da função de verificação sempre que houver uma mudança no campo de e-mail
+
+
 
 
     const handleSignup = () => {
@@ -83,47 +124,7 @@ function Signup() {
         }
     };
 
-    // Verifica se o nome de usuário já existe na coleção 'UserNames'
-    const verificarUsername = (username) => {
-        fb.collection('UserNames').doc('FhD7GGxd24OzH9iH2HzS').get()
-            .then((doc) => {
-                if (doc.exists) {
-                    const data = doc.data();
-                    if (data.hasOwnProperty(username)) {
-                        // O nome de usuário já existe
-                        setUsernameValido(false);
-                    } else {
-                        // O nome de usuário está disponível
-                        setUsernameValido(true);
-                    }
-                } else {
-                    console.error("Documento 'FhD7GGxd24OzH9iH2HzS' não encontrado.");
-                }
-            })
-            .catch((error) => {
-                console.error("Erro ao verificar o nome de usuário:", error);
-            });
-    };
 
-    // Função para verificar se um e-mail já está cadastrado como usuário
-    const verificarEmailCadastrado = (email) => {
-        fb.auth()
-            .fetchSignInMethodsForEmail(email)
-            .then((signInMethods) => {
-                if (signInMethods.length > 0) {
-                    // O e-mail já está cadastrado como usuário
-                    console.log('O e-mail já está cadastrado como usuário');
-                    setEmailJaCadastrado(true);
-                } else {
-                    // O e-mail não está cadastrado como usuário
-                    console.log('O e-mail não está cadastrado como usuário');
-                    setEmailJaCadastrado(false);
-                }
-            })
-            .catch((error) => {
-                console.error('Erro ao verificar o e-mail:', error);
-            });
-    };
 
 
     return (
@@ -152,17 +153,26 @@ function Signup() {
                 <h1>Junte-se a Nós</h1>
                 <p class="text-concrete text-md ">Venha conosco nessa jornada, e de
                     <span className='text-black text-uppercase font-weight-bold'> graça</span>!</p>
-                <Form.Group className="mb-3" controlId='emailSingup'>
+                        <Form.Group className="" controlId='emailSingup'>
                     <Form.Label>Entre com seu E-mail:</Form.Label>
-                    <Form.Control
-                        type='email'
-                        placeholder='seuemail@seuprovedor.com.br'
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                            {emailJaCadastrado && <Form.Text className="text-danger">Este e-mail já está cadastrado.</Form.Text>}
+                            <Form.Control
+                                type='email'
+                                placeholder=''
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                isInvalid={emailJaCadastrado}
+                                isValid={!emailJaCadastrado && emailRegex.test(email)}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                E-mail já Cadastrado.
+                            </Form.Control.Feedback>
+                            <Form.Control.Feedback type="valid" />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId='senhaSingup'>
+                        {/* {emailJaCadastrado ?
+                            (<Form.Text className="text-danger mt-0">
+                                Este e-mail já está cadastrado.
+                            </Form.Text>) : (<></>)} */}
+                        <Form.Group className="my-3" controlId='senhaSingup'>
                     <Form.Label>Entre com uma Senha:</Form.Label>
                     <InputGroup>
                         <Form.Control

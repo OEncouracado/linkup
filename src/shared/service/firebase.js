@@ -3,6 +3,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/database';
 
+
 try {
     firebase.initializeApp ({
         apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

@@ -21,6 +21,7 @@ function DashboardPerfil({ username, perfil, selectedFrame }) {
       </div>
       <div className="usernamePefilWarp d-flex justify-content-center align-items-center">
         <p className="mb-0 fw-bold">{username}</p>
+        <i class="fa fa-pencil ms-3" aria-hidden="true" />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import 'react-device-emulator/lib/styles/style.css';
 // eslint-disable-next-line
 import { useAuth, UserInfo, usePages, useStorage } from "../../hook";
 import Topbar from "./../../Components/TopBar/index";
@@ -15,13 +16,14 @@ import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 function Dashboard() {
   const { authUser } = useAuth();
+  console.log("usuário ", authUser);
   const id = authUser?.uid;
   const userArray = UserInfo(id);
   const pageArray = usePages(id);
   const pages = pageArray && pageArray[0];
   const stats = userArray && userArray[0];
   const imgPerfil = stats?.imagemPerfil;
-  const userName = stats?.username;
+  const userName = authUser?.displayName;
   const molduraAtual = stats?.moldura;
   const userMoldura = useMemo(
     () => ({
