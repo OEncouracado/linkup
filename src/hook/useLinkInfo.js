@@ -2,7 +2,6 @@ import { fb } from "../shared/service";
 import { useEffect, useState } from "react";
 
 export const UseLinkInfo = (usuario) => {
-  console.log(usuario);
   const [useLinkStats, setUseLinkStats] = useState();
 
   useEffect(() => {

@@ -9,14 +9,10 @@ import DashboardMoldura from "../../Components/Dashboard/DashboardMoldura";
 import DashboardLinkList from "../../Components/Dashboard/DashboardLinkList";
 import DashboardNivel from "../../Components/Dashboard/DashboardNivel";
 import Preview from "../../Components/preview";
-import moldura from "../../Images/molduras/moldura.png";
-import moldurabronze from "../../Images/molduras/moldurabronze.png";
-import semMoldura from "../../Images/vazio.png";
 import { Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 function Dashboard() {
   const { authUser } = useAuth();
-  console.log("usuário ", authUser);
   const id = authUser?.uid;
   const userArray = UserInfo(id);
   const pageArray = usePages(id);
@@ -33,6 +29,8 @@ function Dashboard() {
     }),
     [molduraAtual]
   );
+
+  console.log(userMoldura.src)
   // eslint-disable-next-line
   const [frames, setFrames] = useState([]);
   const [selectedFrame, setSelectedFrame] = useState(userMoldura);
@@ -40,35 +38,7 @@ function Dashboard() {
   useEffect(() => {
     setSelectedFrame(userMoldura);
   }, [userMoldura]);
-  useEffect(() => {
-    // Simulação de busca de molduras e páginas
-    const fakeFramesData = [
-      {
-        id: 0,
-        src: semMoldura,
-        nome: "Remover Molduras",
-      },
-      {
-        id: 1,
-        src: moldurabronze,
-        nome: "Moldura Bronze",
-      },
-      {
-        id: 2,
-        src: moldura,
-        nome: "Moldura 1",
-      },
-    ];
-    setFrames(fakeFramesData);
-  }, []);
-  // eslint-disable-next-line
-  const handleSelectFrame = (frame) => {
-    if (frame.id === 0) {
-      setSelectedFrame(null); // Define o estado selectedFrame como null
-    } else {
-      setSelectedFrame(frame); // Define o estado selectedFrame como a moldura selecionada
-    }
-  };
+
 
   return (
     <>

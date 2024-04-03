@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useLinkPages, UseLinkCss, UseLinkInfo } from "./../../hook";
+import { useLinkPages, UseLinkCss, UseLinkInfo, useAuth } from "./../../hook";
 import PaginaPerfil from "./../../Components/Pagina/PaginaPerfil/index";
 import PaginaNivel from "./../../Components/Pagina/PaginaNivel/index";
 import PaginaLinkList from "./../../Components/Pagina/PaginaLinkList/index";
@@ -8,16 +8,14 @@ import { Helmet } from 'react-helmet';
 
 function Pagina() {
   const { usuario } = useParams();
-  console.log("localização", usuario);
+  const { authUser } = useAuth();
+  const username = authUser?.displayName;
   const pagesArray = useLinkPages(usuario);
   const cssArray = UseLinkCss(usuario);
   const infoArray = UseLinkInfo(usuario);
   const pages = pagesArray && pagesArray[0];
   const css = cssArray && cssArray[0];
   const stats = infoArray && infoArray[0];
-
-  console.log("definição das páginas", pages, stats);
-  console.log("css", cssArray);
   const estilo = {
     backgroundImage: `url(${stats?.userBackGround})`,
   };
@@ -31,7 +29,7 @@ function Pagina() {
         <div className="paginaWarper m-auto d-flex flex-column align-items-center">
           <PaginaPerfil
             perfil={stats?.imagemPerfil}
-            username={stats?.username}
+            username={username}
             selectedFrame={stats?.moldura}
             userStyle={css}
           />

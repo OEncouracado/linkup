@@ -12,7 +12,6 @@ function Topbar() {
   const userArray = UserInfo(id);
   const stats = userArray && userArray[0];
   const imgPerfil = stats?.imagemPerfil;
-  console.log(imgPerfil);
   const handleLogout = () => {
     if (window.confirm("Desconectar-se?")) {
       fb.auth

@@ -2,7 +2,6 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 function Preview({ username }) {
-  console.log(username);
   return (
     <>
       <Helmet>

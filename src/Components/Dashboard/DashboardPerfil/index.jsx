@@ -5,7 +5,7 @@ function DashboardPerfil({ username, perfil, selectedFrame }) {
   return (
     <div className="perfilsuperiorwarp d-flex flex-column justify-content-center">
       <div className="frameepefilwarp d-flex justify-content-center align-items-center">
-        {selectedFrame && (
+        {selectedFrame.src && (
           <img
             src={selectedFrame.src}
             alt={selectedFrame.nome}

@@ -2,7 +2,6 @@ import { fb } from '../shared/service';
 import { useEffect, useState } from 'react';
 
 export const UserCss = userId => {
-  console.log(userId);
   const [userstyle, setUserstyle] = useState();
 
   useEffect(() => {

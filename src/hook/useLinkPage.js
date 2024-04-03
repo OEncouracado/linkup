@@ -2,7 +2,6 @@ import { fb } from "../shared/service";
 import { useEffect, useState } from "react";
 
 export const useLinkPages = (usuario) => {
-  console.log(usuario);
   const [linkPages, setlinkPages] = useState();
 
   useEffect(() => {
@@ -19,7 +18,6 @@ export const useLinkPages = (usuario) => {
               });
             });
             setlinkPages(_linkpages);
-            console.log(_linkpages);
           })
       : undefined;
 

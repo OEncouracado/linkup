@@ -30,7 +30,7 @@ function Signup() {
     // Verifica se o nome de usuário já existe na coleção 'UserNames'
     const verificarUsername = async (username) => {
         try {
-            const snapshot = await fb.firestore.collection('UserNames').where("username", "==", username).get();
+            const snapshot = await fb?.firestore.collection('UserNames').where("username", "==", username).get();
 
             if (!snapshot.empty) {
                 // O username já existe no documento desta coleção
@@ -90,37 +90,68 @@ function Signup() {
 
 
 
-    const handleSignup = () => {
+    const handleSignup = async () => {
         if (confirBotao) {
-            // Cria o usuário no Firebase Authentication
-            fb.auth.createUserWithEmailAndPassword(email, senha)
-                .then((userCredential) => {
-                    // User signed up successfully
-                    const user = userCredential.user;
+            try {
+                // Cria o usuário no Firebase Authentication
+                const userCredential = await fb.auth.createUserWithEmailAndPassword(email, senha);
+                const newuser = userCredential.user;
 
-                    // Cria um documento na coleção 'UserStats' com os campos necessários
-                    fb.collection('UserStats').doc(user.uid).set({
-                        imagemPerfil: "", // Você pode definir um valor padrão aqui se necessário
-                        maxXp: 0,
-                        moldura: "", // Pode ser definido um valor padrão também
-                        nivelUser: 1,
-                        userBackGround: "", // Valor padrão
-                        userId: user.uid,
-                        username: username, // Usando o nome de usuário fornecido pelo usuário
-                        xp: 0
-                    });
-
-                    // Adiciona o username à coleção 'UserNames'
-                    fb.collection('UserNames').doc('FhD7GGxd24OzH9iH2HzS').update({
-                        [username]: user.uid
-                    });
-
-                    console.log("Sucesso!");
-                })
-                .catch((error) => {
-                    // Handle errors here
-                    console.error("Erro ao criar usuário:", error);
+                // Cria um documento na coleção 'UserStats' com os campos necessários
+                await fb?.firestore.collection('UserStats').doc(newuser.uid).set({
+                    imagemPerfil: "", // Você pode definir um valor padrão aqui se necessário
+                    maxXp: 0,
+                    moldura: "", // Pode ser definido um valor padrão também
+                    nivelUser: 1,
+                    userBackGround: "", // Valor padrão
+                    userId: newuser.uid,
+                    username: username, // Usando o nome de usuário fornecido pelo usuário
+                    xp: 0
                 });
+
+                console.log("Documento 'UserStats' criado com sucesso");
+
+                // Cria um documento na coleção 'UserCss'
+                await fb?.firestore.collection('UserCss').doc(newuser.uid).set({
+                    corBotao: "#fff",
+                    corSombraBotao: "#000",
+                    corSombraUserName: "#000",
+                    corTextoBotao: "#000",
+                    corTextoNivel: "#000",
+                    corTextoUserName: "#000",
+                    fundoUserName: "#fff",
+                    userId: newuser.uid,
+                    username: username,
+                });
+
+                console.log("Documento 'UserCss' criado com sucesso");
+
+                // Cria um documento na coleção 'linkPages'
+                await fb?.firestore.collection('linkPages').doc(newuser.uid).set({
+                    Links: [],
+                    userId: newuser.uid,
+                    username: username,
+                });
+                // Atualiza o displayName com o username fornecido
+                console.log("Documento 'linkPages' criado com sucesso");
+                await newuser?.updateProfile({
+                    displayName: username
+                });
+                console.log("DisplayName atualizado com sucesso para:", username);
+                // Adiciona o username à coleção 'UserNames'
+                await fb?.firestore.collection('UserNames').doc('FhD7GGxd24OzH9iH2HzS').update({
+                    usernames: fb.firestore.FieldValue.arrayUnion(username)
+                });
+
+                console.log("Username adicionado à coleção 'UserNames'");
+
+                // Realiza o login do usuário automaticamente
+                await fb.auth.signInWithEmailAndPassword(email, senha);
+
+                console.log("Login realizado automaticamente com sucesso!");
+            } catch (error) {
+                console.error("Erro durante o processo de criação do usuário:", error);
+            }
         }
     };
 
