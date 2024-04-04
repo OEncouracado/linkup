@@ -326,6 +326,7 @@ code {
 
 .perfilImgHomePage{
   width: 2rem;
+  border-radius: 50%;
 }
 
 .navLinksTop{
