@@ -8,19 +8,18 @@ export const usePages = userId => {
     const unsubscribe = userId
       ? fb.firestore
           .collection('linkPages')
-          .where('userId', "==" , userId)
-          .onSnapshot(snap => {
-            const _pages = [];
-            snap.forEach(s => {
-              _pages.push({
-                ...s.data(),
-                id: s.id,
-              });
-            });
-            setPages(_pages);
+          .doc(userId) // Acessa diretamente o documento com o nome do userId
+          .onSnapshot(doc => {
+            if (doc.exists) {
+              // Se o documento existir, define as páginas com base nos dados do documento
+              setPages({ id: doc.id, ...doc.data() });
+            } else {
+              // Se o documento não existir, define as páginas como null
+              setPages(null);
+            }
           })
       : undefined;
-          
+      
     return unsubscribe;
   }, [userId]);
 

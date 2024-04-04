@@ -15,12 +15,14 @@ function Dashboard() {
   const { authUser } = useAuth();
   const id = authUser?.uid;
   const userArray = UserInfo(id);
-  const pageArray = usePages(id);
-  const pages = pageArray && pageArray[0];
+  const pageInfo = usePages(id);
+  const pages = pageInfo?.Links;
   const stats = userArray && userArray[0];
   const imgPerfil = stats?.imagemPerfil;
   const userName = authUser?.displayName;
   const molduraAtual = stats?.moldura;
+  console.log("array de paginas", pageInfo);
+  console.log("const pages", pages)
   const userMoldura = useMemo(
     () => ({
       id: 5000,
@@ -67,7 +69,7 @@ function Dashboard() {
               frames={frames}
               handleSelectFrame={handleSelectFrame}
             /> */}
-            <DashboardLinkList pages={pages && pages} />
+            <DashboardLinkList pages={pages && pages} userId={id} />
           </div>
         )}
         <div className="previewFundo pt-3">

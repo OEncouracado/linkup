@@ -30,18 +30,19 @@ function Signup() {
     // Verifica se o nome de usuário já existe na coleção 'UserNames'
     const verificarUsername = async (username) => {
         try {
-            const snapshot = await fb?.firestore.collection('UserNames').where("username", "==", username).get();
+            const userNamesRef = fb.firestore.collection('UserNames');
+            const snapshot = await userNamesRef.where('usernames', 'array-contains', username).get();
 
-            if (!snapshot.empty) {
-                // O username já existe no documento desta coleção
-                setUsernameValido(false);
-            } else {
-                // O username não existe no documento desta coleção
+            if (snapshot.empty) {
+                // O displayName não está em uso
                 setUsernameValido(true);
+            } else {
+            // O displayName já está em uso
+                setUsernameValido(false);
             }
         } catch (error) {
-            console.error('Erro ao verificar username:', error);
-            // Trate o erro conforme necessário
+            console.error("Erro ao verificar o displayName:", error);
+            throw error; // Você pode tratar o erro de acordo com sua lógica de tratamento de erros
         }
     };
 
@@ -139,9 +140,15 @@ function Signup() {
                 });
                 console.log("DisplayName atualizado com sucesso para:", username);
                 // Adiciona o username à coleção 'UserNames'
-                await fb?.firestore.collection('UserNames').doc('FhD7GGxd24OzH9iH2HzS').update({
-                    usernames: fb.firestore.FieldValue.arrayUnion(username)
-                });
+                try {
+                    await fb?.firestore.collection('UserNames').doc('FhD7GGxd24OzH9iH2HzS').update({
+                        usernames: fb.arrayUnion(username)
+                    });
+                    console.log("Nome de usuário adicionado com sucesso à coleção 'UserNames'");
+                } catch (error) {
+                    console.error("Erro ao adicionar nome de usuário à coleção 'UserNames':", error);
+                }
+
 
                 console.log("Username adicionado à coleção 'UserNames'");
 
@@ -177,9 +184,18 @@ function Signup() {
                                 setUsername(e.target.value);
                                 verificarUsername(e.target.value);
                             }}
+                            isInvalid={!usernameValido || !username}
+                            isValid={usernameValido}
+                            required
                         />
+                        {username ? (<Form.Control.Feedback type="invalid">
+                            Esse Usuário já está Cadastrado.
+                        </Form.Control.Feedback>) : (<Form.Control.Feedback type="invalid">
+                            Digite um usuário.
+                        </Form.Control.Feedback>)}
+                        <Form.Control.Feedback type="valid" />
                     </Form.Group>
-                    <Form.Group className="d-grid gap-2 my-3"><Button onClick={handleSignup} disabled={!usernameValido} size='lg' className='botaoCriar rounded-pill' >Criar Conta</Button></Form.Group>
+                    <Form.Group className="d-grid gap-2 my-3"><Button onClick={handleSignup} disabled={!usernameValido || !username} size='lg' className='botaoCriar rounded-pill' >Criar Conta</Button></Form.Group>
                 </Form>) : (<Form className='mx-auto p-3 text-dark'>
                 <h1>Junte-se a Nós</h1>
                 <p class="text-concrete text-md ">Venha conosco nessa jornada, e de
@@ -191,18 +207,15 @@ function Signup() {
                                 placeholder=''
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
-                                isInvalid={emailJaCadastrado}
+                                isInvalid={emailJaCadastrado || !emailRegex.test(email)}
                                 isValid={!emailJaCadastrado && emailRegex.test(email)}
+                                required
                             />
                             <Form.Control.Feedback type="invalid">
                                 E-mail já Cadastrado.
                             </Form.Control.Feedback>
                             <Form.Control.Feedback type="valid" />
-                </Form.Group>
-                        {/* {emailJaCadastrado ?
-                            (<Form.Text className="text-danger mt-0">
-                                Este e-mail já está cadastrado.
-                            </Form.Text>) : (<></>)} */}
+                        </Form.Group>
                         <Form.Group className="my-3" controlId='senhaSingup'>
                     <Form.Label>Entre com uma Senha:</Form.Label>
                     <InputGroup>

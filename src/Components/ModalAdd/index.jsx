@@ -3,11 +3,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { fb } from "../../shared/service";
 
-function ModalAdd({ show, setShow }) {
-  // Corrigido para receber corretamente show e setShow
+
+function ModalAdd({ show, setShow, userId }) {
+
   const handleClose = () => {
     setShow(false);
-    // Limpar os campos do formulário
     setNomeLink("");
     setUrlLink("");
   };
@@ -17,23 +17,37 @@ function ModalAdd({ show, setShow }) {
     const linkPagesRef = fb.firestore.collection("linkPages");
 
     try {
-      const linkPagesSnapshot = await linkPagesRef.get();
+      // Verifique se o usuário está autenticado antes de adicionar o link
+      if (userId) {
+        const userLinkPagesRef = linkPagesRef.doc(userId); // Referência ao documento do usuário
 
-      linkPagesSnapshot.forEach(async (doc) => {
-        const linksArray = doc.data().Links;
+        // Obtém o documento do usuário
+        const userLinkPagesDoc = await userLinkPagesRef.get();
 
-        const newLink = { nome: nomeLink, url: urlLink };
+        // Verifica se o documento do usuário já existe
+        if (userLinkPagesDoc.exists) {
+          const linksArray = userLinkPagesDoc.data().Links || [];
 
-        const updatedLinksArray = [...linksArray, newLink];
+          const newLink = { nome: nomeLink, url: urlLink };
 
-        await linkPagesRef.doc(doc.id).update({ Links: updatedLinksArray });
+          const updatedLinksArray = [...linksArray, newLink];
+
+          await userLinkPagesRef.update({ Links: updatedLinksArray });
+        } else {
+          // Se o documento do usuário não existir, cria um novo com o ID do usuário como nome do documento
+          await userLinkPagesRef.set({ Links: [{ nome: nomeLink, url: urlLink }] });
+        }
+
         handleClose(true);
-        console.log("Novo mapa adicionado com sucesso!");
-      });
+        console.log("Novo link adicionado com sucesso!");
+      } else {
+        console.error("Usuário não autenticado. Não é possível adicionar link.");
+      }
     } catch (error) {
-      console.error("Erro ao adicionar novo mapa:", error);
+      console.error("Erro ao adicionar novo link:", error);
     }
   };
+
   return (
     <>
       <Modal
@@ -44,7 +58,7 @@ function ModalAdd({ show, setShow }) {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>Adcionar Novo Link</Modal.Title>
+          <Modal.Title>Adicionar Novo Link</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="my-1 d-flex flex-column">

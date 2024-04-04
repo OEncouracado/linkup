@@ -3,7 +3,7 @@ import DashboardLink from "../DashboardLink";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import ModalAdd from "../../ModalAdd";
 
-function DashboardLinkList({ pages }) {
+function DashboardLinkList({ pages, userId }) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const renderTooltip = (props) => (
@@ -27,7 +27,7 @@ function DashboardLinkList({ pages }) {
         ></i>
       </OverlayTrigger>
       <div className="d-flex flex-column">
-        {pages?.Links.map((link, index) => (
+        {pages?.map((link, index) => (
           <DashboardLink
             key={index}
             url={link.url}
@@ -36,7 +36,7 @@ function DashboardLinkList({ pages }) {
           />
         ))}
       </div>
-      <ModalAdd show={show} setShow={setShow} />{" "}
+      <ModalAdd show={show} setShow={setShow} userId={userId} />{" "}
       {/* Passando corretamente show e setShow */}
     </div>
   );

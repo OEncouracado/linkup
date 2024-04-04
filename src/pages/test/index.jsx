@@ -45,7 +45,7 @@ function Teste() {
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    placeholder={username}
+                    placeholder={usernameAtual}
                 />
                 <button type="submit">Atualizar Nome de Usuário</button>
             </Form>

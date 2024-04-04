@@ -23,5 +23,7 @@ export const fb = {
     database: firebase.database(),
     firestore: firebase.firestore(),
     auth: firebase.auth(),
+    googleProvider: new firebase.auth.GoogleAuthProvider(),
+    arrayUnion: firebase.firestore.FieldValue.arrayUnion,
     
 };
