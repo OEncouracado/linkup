@@ -115,6 +115,7 @@ function Signup() {
                 // Cria um documento na coleção 'UserCss'
                 await fb?.firestore.collection('UserCss').doc(newuser.uid).set({
                     corBotao: "#fff",
+                    corFundo: "#fff",
                     corSombraBotao: "#000",
                     corSombraUserName: "#000",
                     corTextoBotao: "#000",

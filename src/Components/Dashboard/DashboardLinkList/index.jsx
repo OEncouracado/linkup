@@ -14,7 +14,7 @@ function DashboardLinkList({ pages, userId }) {
 
   return (
     <div className="linksList pt-4">
-      <p className="dashboardtituloLinks">Links</p>
+      <p className="dashboardtituloLinks bg-light">Links</p>
       <OverlayTrigger
         placement="right"
         delay={{ show: 250, hide: 400 }}
@@ -33,6 +33,7 @@ function DashboardLinkList({ pages, userId }) {
             url={link.url}
             nomeLink={link.nome}
             idPage={pages?.id}
+            iduser={userId}
           />
         ))}
       </div>

@@ -14,7 +14,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import Pagina from "./pages/Pagina";
-import Teste from "./pages/test";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
@@ -42,10 +41,6 @@ function App() {
           <Route
             path="/Singup"
             element={isAuthed ? <Navigate to="/dashboard" /> : <Signup />}
-          />
-          <Route
-            path="/teste"
-            element={<Teste />}
           />
           <Route path="/:usuario" element={<Pagina />} />
         </Routes>

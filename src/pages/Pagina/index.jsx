@@ -18,6 +18,7 @@ function Pagina() {
   const stats = infoArray && infoArray[0];
   const estilo = {
     backgroundImage: `url(${stats?.userBackGround})`,
+    backgroundColor: css?.corFundo,
   };
 
   return (<>

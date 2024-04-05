@@ -3,20 +3,20 @@ import React, { useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { fb } from "../../../shared/service";
 
-function DashboardLink({ url: initialUrl, nomeLink: initialNomeLink, idPage }) {
+function DashboardLink({ url: initialUrl, nomeLink: initialNomeLink, idPage, iduser }) {
   const [nomeLink, setNomeLink] = useState(initialNomeLink);
   const [url, setUrl] = useState(initialUrl);
   const [isEdit, setIsEdit] = useState(false);
   const editPage = async () => {
     if (isEdit) {
-      const linkPagesRef = fb.firestore.collection("linkPages");
+      const linkPagesRef = fb.firestore.collection("linkPages").doc(iduser); // Filtrar pelo ID do usuário
 
       try {
-        const linkPagesSnapshot = await linkPagesRef.get();
-
-        linkPagesSnapshot.forEach(async (doc) => {
+        const doc = await linkPagesRef.get();
+        if (doc.exists) {
           const linksArray = doc.data().Links;
 
+          // Mapear o array de links para atualizar o mapa com o nome correspondente
           const updatedLinksArray = linksArray.map((link) => {
             if (link.nome === initialNomeLink) {
               return { nome: nomeLink, url: url };
@@ -24,15 +24,19 @@ function DashboardLink({ url: initialUrl, nomeLink: initialNomeLink, idPage }) {
             return link;
           });
 
-          await linkPagesRef.doc(doc.id).update({ Links: updatedLinksArray });
+          // Atualizar o documento para refletir o array de links atualizado
+          await linkPagesRef.update({ Links: updatedLinksArray });
           console.log("Link atualizado com sucesso!");
-        });
+        } else {
+          console.log("Documento não encontrado para o ID do usuário");
+        }
       } catch (error) {
         console.error("Erro ao atualizar link:", error);
       }
     }
     setIsEdit(!isEdit);
   };
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -45,27 +49,31 @@ function DashboardLink({ url: initialUrl, nomeLink: initialNomeLink, idPage }) {
 
   const delPage = async () => {
     if (window.confirm("Tem certeza que deseja deletar " + nomeLink + "?")) {
-      const linkPagesRef = fb.firestore.collection("linkPages");
+      const linkPagesRef = fb.firestore.collection("linkPages").doc(iduser); // Filtrar pelo ID do usuário
 
       try {
-        const linkPagesSnapshot = await linkPagesRef.get();
-
-        linkPagesSnapshot.forEach(async (doc) => {
+        const doc = await linkPagesRef.get();
+        if (doc.exists) {
           const linksArray = doc.data().Links;
 
+          // Filtrar o array de links para remover o mapa com o nome correspondente
           const updatedLinksArray = linksArray.filter(
             (link) => link.nome !== nomeLink
           );
 
-          await linkPagesRef.doc(doc.id).update({ Links: updatedLinksArray });
+          // Atualizar o documento para refletir o array de links filtrado
+          await linkPagesRef.update({ Links: updatedLinksArray });
           alert("Link excluido");
           console.log("Mapa deletado com sucesso!");
-        });
+        } else {
+          console.log("Documento não encontrado para o ID do usuário");
+        }
       } catch (error) {
         console.error("Erro ao deletar mapa:", error);
       }
     }
   };
+
   return (
     <>
       <Container className="dashboardFundoLink bg-light d-flex justify-content-between align-items-center my-2">

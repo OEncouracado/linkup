@@ -28,7 +28,7 @@ function PaginaPerfil({ username, perfil, selectedFrame, userStyle }) {
         className="usernamePefilWarp d-flex justify-content-center align-items-center"
         style={estilo}
       >
-        <p className="mb-0 fw-bold">{username}</p>
+        <p className="mb-0 fw-bold text-center">{username}</p>
       </div>
     </div>
   );

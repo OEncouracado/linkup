@@ -124,6 +124,7 @@ function Login() {
         });
         await fb?.firestore.collection('UserCss').doc(user.uid).set({
           corBotao: "#fff",
+          corFundo: "#fff", 
           corSombraBotao: "#000",
           corSombraUserName: "#000",
           corTextoBotao: "#000",
