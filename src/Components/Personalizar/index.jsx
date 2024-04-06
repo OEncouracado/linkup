@@ -8,6 +8,7 @@ import TrocaCorFundo from "./TrocaCorFundo/index";
 import TrocaCorLink from "./TrocarCorLink";
 import TrocaCorTextoBotao from "./TrocarCorTextoLink";
 import TrocaCorTextoNivel from "./TrocarCorTextoNivel";
+import TrocaCorSombraLink from "./TrocarCorSombraLink";
 
 function Personalizar() {
   const { authUser } = useAuth();
@@ -54,6 +55,7 @@ function Personalizar() {
           </Alert>
           <TrocaCorFundo userId={id} />
           <TrocaCorLink userId={id} />
+          <TrocaCorSombraLink userId={id} />
           <TrocaCorTextoBotao userId={id} />
           <TrocaCorTextoNivel userId={id} />
         </div>
