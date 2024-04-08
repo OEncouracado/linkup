@@ -1,6 +1,5 @@
 import React from "react"; // eslint-disable-next-line
 import { Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
-import "./style.css";
 import tempLogo from "../../Images/linkuplogotemporariosfundo.png";
 import { UserInfo, useAuth } from "../../hook";
 import { fb } from "../../shared/service";
@@ -26,8 +25,8 @@ function Topbar() {
     }
   };
 
-  return (
-    <Navbar variant="dark" className="d-flex menu mt-2 px-5">
+  return (<>
+    <Navbar variant="dark" className="menuTopBar mt-2 px-5">
       <Navbar.Brand href="/">
         <i class="fa fa-link me-2" aria-hidden="true" />
         <Image className="logoimgtopbar" src={tempLogo}></Image>
@@ -55,6 +54,7 @@ function Topbar() {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
+  </>
   );
 }
 

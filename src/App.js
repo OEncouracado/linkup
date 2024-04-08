@@ -18,7 +18,7 @@ import Pagina from "./pages/Pagina";
 function App() {
   const { isAuthed, authUser } = useAuth();
   return (
-    <>
+    <div >
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -45,7 +45,7 @@ function App() {
           <Route path="/:usuario" element={<Pagina />} />
         </Routes>
       </Router>
-    </>
+    </div>
   );
 }
 

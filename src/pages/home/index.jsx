@@ -4,7 +4,7 @@ import PrimDiv from "../../Components/primeiraDiv";
 
 function Homepage() {
   return (
-    <div>
+    <div className="bg-success">
       <Topbar />
       <PrimDiv />
     </div>
