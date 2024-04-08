@@ -2,13 +2,11 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
-import Topbar from '../TopBar';
 import { Container } from 'react-bootstrap';
 
 function Inventario() {
   return (<>
-  <Topbar />
-  <Container className='my-3'>
+    <Container className='my-3'>
     <h3>Inventário</h3>
   </Container>
   <Container className='my-3'>

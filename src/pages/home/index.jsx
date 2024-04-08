@@ -1,12 +1,13 @@
 import React from "react";
-import Topbar from "./../../Components/TopBar/index";
-import PrimDiv from "../../Components/primeiraDiv";
+import HomeTopbar from "../../Components/Home/HomeTopbar";
+import { Container } from 'react-bootstrap';
 
 function Homepage() {
   return (
-    <div className="bg-success">
-      <Topbar />
-      <PrimDiv />
+    <div className="pt-3 fundoHomePage">
+      <Container>
+        <HomeTopbar />
+      </Container>
     </div>
   );
 }
