@@ -30,9 +30,11 @@ function PrimeiraDiv() {
       <Row>
         <Col className="">
           <div className="HomePrimeiraDivBannerDireita">
-            <h3 className="mb-4 ">Prepare-se para sua nova jornada</h3>
-            <Form.Group className="">
-              <InputGroup>
+            <h1 className="mb-4 ">Seus Links juntos, de maneira <span className="text-primary">fácil</span> e <span style={{ color: "#FF8800" }}>divertida</span></h1>
+            <h3 className="mb-5 ">Prepare-se para sua nova jornada</h3>
+            <h5>Assegure seu nick e se torne uma lenda</h5>
+            <Form.Group className="bg-dark p-3 rounded" style={{ height: "5rem" }}>
+              <InputGroup >
                 <InputGroup.Text>linkup.app.br/</InputGroup.Text>
                 <Form.Control
                   type="text"
