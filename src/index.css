@@ -174,6 +174,7 @@ code {
   border-left: 2px solid #00000041;
   display: flex;
   align-items: flex-start;
+  overflow: hidden;
     
 }
 .previewFrame {
@@ -182,6 +183,7 @@ code {
   margin-right: auto;
   border: solid .5em black;
   border-radius: 2rem;
+  overflow: hidden;
 }
 .linkENome{
   width: 80%;
@@ -215,8 +217,8 @@ code {
     box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
 }
 .paginaFundoWarp{
-  height: 100vh;
-  width: 100vw;
+  overflow-x: hidden;
+  width: 100%;
   display: flex;
   justify-content: center;
   background-color: beige;
@@ -231,30 +233,11 @@ code {
     background-size: cover;
     width: 30rem;
     /* max-width: 40%; */
-    height: 100%;
+    min-height: 100vh;
   background-color: beige;
 
 }
-@media only screen and (max-width: 768px) {
-  /* Estilos específicos para dispositivos móveis */
-  .paginaFundo{
-    /* background-image: url('https://i.pinimg.com/originals/1d/a3/66/1da3663ce1d7d0f6098a31a667e862b4.gif'); */
-      /* background-image: url('https://e1.pxfuel.com/desktop-wallpaper/186/581/desktop-wallpaper-1125x2436-kaisa-league-of-legends-artwork-iphone-xs-iphone-10-iphone-x-backgrounds-and-kaisa-iphone.jpg'); */
-      /* background-image: url('https://firebasestorage.googleapis.com/v0/b/linkup-4b9cf.appspot.com/o/airi_golden_sakura_fubuki.jpg?alt=media&token=ec6223a8-26b3-47a4-a014-f3e5b72693d1'); */
-      background-position-x: 65%;
-      /* background-position: center; */
-      background-size: cover;
-      width: 100vw;
-      height: 100%;
-    background-color: beige;
-  }
-  .paginaFundoWarp{
-    height: 100vh;
-    width: 100vw;
-    display:block;
-    background: #000;
-  }
-}
+
 
 .paginaLinksList{
   width: 100vw;
@@ -333,6 +316,19 @@ code {
   border-radius: 50%;
 }
 
+.paginaFooter{
+  position: fixed;
+  bottom: 0;
+  width:100%;
+  text-decoration: none;
+  background: rgb(0,0,0);
+  background: -moz-linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+}
+
+
 .navLinksTop{
   align-items: center;
 }
@@ -348,10 +344,20 @@ code {
   margin: auto;
 }
 
-.fundoHomePage {
-  width: 100vw;
-  height: 100vh;
+.fundo1HomePage {
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+  width: 100%;
+  height: 100%;
   background-color: green;
+}
+
+.fundo2HomePage{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  width: 100%;
+  height: 100%;
+  background-color: indianred;
 }
 
 .ImgLogoHomeTopbar {
@@ -359,7 +365,6 @@ code {
   filter: invert();
 }
 .HomePrimeiraDiv {
-  background-color: green;
   color: antiquewhite;
   margin-left: auto;
   margin-right: auto;
@@ -369,6 +374,7 @@ code {
   font-style: normal;
 }
 
+
 .HomePrimeiraDivBannerDireita {
   margin: auto;
   margin-top: 3rem;
@@ -376,7 +382,6 @@ code {
 }
 
 .homesegundadiv{
-  background-color: indianred;
   color: antiquewhite;
   margin-left: auto;
   margin-right: auto;
@@ -384,4 +389,91 @@ code {
   font-family: "Press Start 2P", system-ui;
   font-weight: lighter;
   font-style: normal
+}
+
+.paginaFooterItem{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bn632-hover {
+  width: 15%;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.bn632-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.bn632-hover:focus {
+  outline: none;
+}
+
+.bn632-hover.bn22 {
+  background-image: linear-gradient(
+    to right,
+    #0ba360,
+    #3cba92,
+    #30dd8a,
+    #2bb673
+  );
+  box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 768px) {
+  /* Estilos específicos para dispositivos móveis */
+  .paginaFundo{
+    /* background-image: url('https://i.pinimg.com/originals/1d/a3/66/1da3663ce1d7d0f6098a31a667e862b4.gif'); */
+      /* background-image: url('https://e1.pxfuel.com/desktop-wallpaper/186/581/desktop-wallpaper-1125x2436-kaisa-league-of-legends-artwork-iphone-xs-iphone-10-iphone-x-backgrounds-and-kaisa-iphone.jpg'); */
+      /* background-image: url('https://firebasestorage.googleapis.com/v0/b/linkup-4b9cf.appspot.com/o/airi_golden_sakura_fubuki.jpg?alt=media&token=ec6223a8-26b3-47a4-a014-f3e5b72693d1'); */
+      background-position-x: 65%;
+      /* background-position: center; */
+      background-size: cover;
+      width: 100vw;
+    background-color: beige;
+  }
+  .paginaFundoWarp{
+    height: 100vh;
+    width: 100vw;
+    display:block;
+    background: #000;
+  }
+
+  .bn632-hover {
+    width: 50%;
+  }
 }

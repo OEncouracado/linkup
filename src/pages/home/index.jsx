@@ -6,13 +6,19 @@ import HomeSegundaDiv from "../../Components/Home/HomeSegundaDiv";
 
 function Homepage() {
   return (
-    <div className="py-3 fundoHomePage">
-      <Container className="">
+    <>
+      <div className="fundo1HomePage">
         <HomeTopbar />
-        <HomePrimeiraDiv />
-        <HomeSegundaDiv />
-      </Container>
-    </div>
+        <Container>
+          <HomePrimeiraDiv />
+        </Container>
+      </div>
+      <div className="fundo2HomePage">
+        <Container>
+          <HomeSegundaDiv />
+        </Container>
+      </div>
+    </>
   );
 }
 
