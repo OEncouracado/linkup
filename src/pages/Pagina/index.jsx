@@ -1,10 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";// eslint-disable-next-line
 import { useLinkPages, UseLinkCss, UseLinkInfo, useAuth } from "./../../hook";
 import PaginaPerfil from "./../../Components/Pagina/PaginaPerfil/index";
 import PaginaNivel from "./../../Components/Pagina/PaginaNivel/index";
 import PaginaLinkList from "./../../Components/Pagina/PaginaLinkList/index";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet";// eslint-disable-next-line
 import { Button, Container } from "react-bootstrap";
 
 function Pagina() {
