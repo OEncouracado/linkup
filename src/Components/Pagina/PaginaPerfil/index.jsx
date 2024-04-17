@@ -25,7 +25,7 @@ function PaginaPerfil({ username, perfil, selectedFrame, userStyle }) {
         />
       </div>
       <div
-        className="usernamePefilWarp d-flex justify-content-center align-items-center"
+        className="usernamePaginaWarp d-flex justify-content-center align-items-center"
         style={estilo}
       >
         <p className="paginaUsernamePerfil mb-0 fw-bold text-center">
