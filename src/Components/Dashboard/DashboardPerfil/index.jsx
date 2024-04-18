@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import perfilNull from "../../../Images/perfil/perfil.jpg";
 import TrocaUserName from "../../TrocaUsername";
+import { Modal , Button, Form } from "react-bootstrap";
 
 function DashboardPerfil({ username, perfil, selectedFrame }) {
-  const [showIcons, setShowIcons] = useState(false);
   const [show, setShow] = useState(false);
+  const [showIcons, setShowIcons] = useState(false);
+  const [showIgm, setShowImg] = useState(false);
+  const handleCloseImg = () => setShowImg(false);
+  const handleShowImg = () => setShowImg(true);
+
   const handleShowChange = (value) => {
     setShow(value);
   };
@@ -29,7 +34,7 @@ function DashboardPerfil({ username, perfil, selectedFrame }) {
           className="dashboardImagePerfil rounded-circle"
         />{showIcons && (
           <div className="iconContainer">
-            <i className="fa fa-pencil editIcon" aria-hidden="true" />
+            <i className="fa fa-pencil editIcon" onClick={handleShowImg} aria-hidden="true" />
             <i className="fa fa-trash deleteIcon" aria-hidden="true" />
           </div>
         )}
@@ -41,6 +46,24 @@ function DashboardPerfil({ username, perfil, selectedFrame }) {
         <TrocaUserName onShowChange={handleShowChange} />
         <i className="iconShowEditUsername fa fa-times" aria-hidden="true" onClick={() => setShow(false)} />
       </div>)}
+      <Modal basic show={showIgm} onHide={handleCloseImg} centered closeButton>
+        <Modal.Header closeButton>
+          <Modal.Title>Editar Imagem de Perfil</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Control type="file"/>
+          
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseImg}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleCloseImg}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     </div>
   );
 }
