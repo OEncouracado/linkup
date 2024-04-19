@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import "react-device-emulator/lib/styles/style.css";
 // eslint-disable-next-line
-import { Alert } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { UserInfo, useAuth, usePages } from "../../hook";
 import TrocaCorFundo from "./TrocaCorFundo/index";
@@ -9,6 +9,8 @@ import TrocaCorLink from "./TrocarCorLink";
 import TrocaCorTextoBotao from "./TrocarCorTextoLink";
 import TrocaCorTextoNivel from "./TrocarCorTextoNivel";
 import TrocaCorSombraLink from "./TrocarCorSombraLink";
+// eslint-disable-next-line
+import { fb } from "../../shared/service";
 
 function Personalizar() {
   const { authUser } = useAuth();
@@ -31,6 +33,21 @@ function Personalizar() {
     }),
     [molduraAtual]
   );
+
+  // const handleNovoCss = async () => {
+  //   fb?.firestore.collection('UserCss').doc(id).set({
+  //     corBotao: "#fff",
+  //     corFundo: "#fff",
+  //     corSombraBotao: "#000",
+  //     corSombraUserName: "#000",
+  //     corTextoBotao: "#000",
+  //     corTextoNivel: "#000",
+  //     corTextoUserName: "#000",
+  //     fundoUserName: "#fff",
+  //     userId: id,
+  //     username: userName,
+  //   });
+  // }
 
   console.log(userMoldura.src);
   // eslint-disable-next-line
@@ -58,7 +75,11 @@ function Personalizar() {
           <TrocaCorSombraLink userId={id} />
           <TrocaCorTextoBotao userId={id} />
           <TrocaCorTextoNivel userId={id} />
+          {/* <Button onClick={handleNovoCss}>
+            Novo Css
+          </Button> */}
         </div>
+
       )}
     </>
   );

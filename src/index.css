@@ -526,6 +526,18 @@ code {
   box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
 }
 
+.perfilImgZoomRange{
+  margin:auto;
+}
+
+.perfilImgZoomRangeLabel{
+  width: 10rem;
+}
+
+.AvatarEditorCss{
+  margin: auto;
+  
+}
 
 
 
@@ -566,3 +578,4 @@ code {
     width: 50%;
   }
 }
+
