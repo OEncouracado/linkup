@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import 'react-device-emulator/lib/styles/style.css';
+import "react-device-emulator/lib/styles/style.css";
 import { useAuth } from "../../hook";
 import Preview from "../../Components/preview";
 import DashboardLeft from "../../Components/Dashboard/DashboardLeft";
@@ -9,16 +9,20 @@ import DashboardTopBar from "../../Components/Dashboard/DasboardTopBar";
 function Dashboard() {
   const { authUser } = useAuth();
   const userName = authUser?.displayName;
-  const avatar = authUser?.photoURL
+  const avatar = authUser?.photoURL;
   const [aba, setAba] = useState("dashboard");
 
   const handleSetAba = (valorAba) => {
-    setAba(valorAba)
-  }
+    setAba(valorAba);
+  };
 
   return (
     <>
-      <DashboardTopBar handleSetAba={handleSetAba} photo={avatar} id={authUser?.id} />
+      <DashboardTopBar
+        handleSetAba={handleSetAba}
+        photo={avatar}
+        id={authUser?.id}
+      />
       <div className="dashboardFundo d-flex">
         {aba === "dashboard" && <DashboardLeft />}
         {aba === "personalizar" && <Personalizar />}

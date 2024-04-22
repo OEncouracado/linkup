@@ -6,8 +6,6 @@ import { emailRegex } from "../Constants";
 import { fb } from "../../shared/service";
 import { Link } from "react-router-dom";
 
-
-
 function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -23,7 +21,6 @@ function Login() {
     } else {
     }
   };
-
 
   // Função para verificar se o botão deve ser habilitado
   const verificarHabilitacaoBotao = () => {
@@ -58,7 +55,7 @@ function Login() {
   const handleLogin = () => {
     if (confirBotao) {
       setErro("");
-      fb.auth
+      fb?.auth
         .signInWithEmailAndPassword(email, senha)
         .then((res) => {
           if (!res.user) {
@@ -106,13 +103,22 @@ function Login() {
       const user = result.user;
 
       // Verifica se os documentos já existem antes de criar novos
-      const userStatsDoc = await fb?.firestore.collection('UserStats').doc(user.uid).get();
-      const userCssDoc = await fb?.firestore.collection('UserCss').doc(user.uid).get();
-      const linkPagesDoc = await fb?.firestore.collection('linkPages').doc(user.uid).get();
+      const userStatsDoc = await fb?.firestore
+        .collection("UserStats")
+        .doc(user.uid)
+        .get();
+      const userCssDoc = await fb?.firestore
+        .collection("UserCss")
+        .doc(user.uid)
+        .get();
+      const linkPagesDoc = await fb?.firestore
+        .collection("linkPages")
+        .doc(user.uid)
+        .get();
 
       if (!userStatsDoc.exists || !userCssDoc.exists || !linkPagesDoc.exists) {
         // Cria os documentos apenas se eles não existirem
-        await fb?.firestore.collection('UserStats').doc(user.uid).set({
+        await fb?.firestore.collection("UserStats").doc(user.uid).set({
           imagemPerfil: user.photoURL, // Você pode definir um valor padrão aqui se necessário
           maxXp: 0,
           moldura: "", // Pode ser definido um valor padrão também
@@ -120,11 +126,11 @@ function Login() {
           userBackGround: "", // Valor padrão
           userId: user.uid,
           username: user.displayName, // Usando o nome de usuário fornecido pelo usuário
-          xp: 0
+          xp: 0,
         });
-        await fb?.firestore.collection('UserCss').doc(user.uid).set({
+        await fb?.firestore.collection("UserCss").doc(user.uid).set({
           corBotao: "#fff",
-          corFundo: "#fff", 
+          corFundo: "#fff",
           corSombraBotao: "#000",
           corSombraUserName: "#000",
           corTextoBotao: "#000",
@@ -134,29 +140,37 @@ function Login() {
           userId: user.uid,
           username: user.displayName,
         });
-        await fb?.firestore.collection('linkPages').doc(user.uid).set({
+        await fb?.firestore.collection("linkPages").doc(user.uid).set({
           Links: [],
           userId: user.uid,
           username: user.displayName,
         });
         try {
-          await fb?.firestore.collection('UserNames').doc('FhD7GGxd24OzH9iH2HzS').update({
-            usernames: fb.arrayUnion(user.displayName)
-          });
-          console.log("Nome de usuário adicionado com sucesso à coleção 'UserNames'");
+          await fb?.firestore
+            .collection("UserNames")
+            .doc("FhD7GGxd24OzH9iH2HzS")
+            .update({
+              usernames: fb.arrayUnion(user.displayName),
+            });
+          console.log(
+            "Nome de usuário adicionado com sucesso à coleção 'UserNames'"
+          );
         } catch (error) {
-          console.error("Erro ao adicionar nome de usuário à coleção 'UserNames':", error);
+          console.error(
+            "Erro ao adicionar nome de usuário à coleção 'UserNames':",
+            error
+          );
         }
-
       }
 
-      console.log("Documentos criados (se necessário) com sucesso para o usuário:", user.displayName);
+      console.log(
+        "Documentos criados (se necessário) com sucesso para o usuário:",
+        user.displayName
+      );
     } catch (error) {
       console.error("Erro durante o login com o Google:", error);
     }
   };
-
-
 
   return (
     <div className="d-flex">
@@ -229,7 +243,8 @@ function Login() {
               src="https://linkme.bio/wp-content/themes/linkme/img/icon-google.svg"
               className="me-3"
               style={{ width: "1rem" }}
-              alt="Google logo" />
+              alt="Google logo"
+            />
             <span>Entrar com o Google</span>
           </div>
         </Button>
