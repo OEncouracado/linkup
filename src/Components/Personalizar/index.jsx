@@ -49,6 +49,19 @@ function Personalizar() {
   //   });
   // }
 
+  const handleNovoStats = async () => {
+    fb?.firestore.collection("UserStats").doc(id).set({
+      imagemPerfil: authUser?.photoURL, // Você pode definir um valor padrão aqui se necessário
+      maxXp: 3000,
+      moldura: "", // Pode ser definido um valor padrão também
+      nivelUser: 9,
+      userBackGround: "", // Valor padrão
+      userId: id,
+      username: "irocl4d", // Usando o nome de usuário fornecido pelo usuário
+      xp: 23,
+    });
+  };
+
   console.log(userMoldura.src);
   // eslint-disable-next-line
   const [frames, setFrames] = useState([]);
@@ -75,11 +88,8 @@ function Personalizar() {
           <TrocaCorSombraLink userId={id} />
           <TrocaCorTextoBotao userId={id} />
           <TrocaCorTextoNivel userId={id} />
-          {/* <Button onClick={handleNovoCss}>
-            Novo Css
-          </Button> */}
+          {/* <Button onClick={handleNovoStats}>Novo Stats</Button> */}
         </div>
-
       )}
     </>
   );
