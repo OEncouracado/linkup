@@ -7,7 +7,6 @@ import { useAuth } from "./../../../hook/authUser";
 function ModalEditarImgPerfil({ show, setShowImg, perfil }) {
   const { authUser } = useAuth();
   const id = authUser?.uid;
-  console.log("id :>> ", id);
   const handleCloseImg = () => {
     setShowImg(false);
     setPerfilImgNovo(null); // Limpar a imagem selecionada
@@ -23,12 +22,16 @@ function ModalEditarImgPerfil({ show, setShowImg, perfil }) {
   };
 
   // Função para enviar o arquivo para o Firebase Storage
-  const uploadFile = () => {
+  const uploadFile = async () => {
     if (perfilImgNovo) {
       const uid = id; // Substitua 'uid_do_usuario' pelo UID real do usuário
+      const storageRefDel = fb?.storage.ref(`images/usuarios/${uid}/perfil/`);
       const storageRef = fb?.storage.ref(
-        `images/usuarios/${uid}/${perfilImgNovo.name}`
+        `images/usuarios/${uid}/perfil/${perfilImgNovo.name}`
       );
+      // Limpar todas as imagens da pasta
+      await clearFolder(storageRefDel);
+
       const uploadTask = storageRef.put(perfilImgNovo); // Crie uma referência para o local onde deseja armazenar o arquivo no Firebase Storage
       uploadTask.on(
         "state_changed",
@@ -60,6 +63,15 @@ function ModalEditarImgPerfil({ show, setShowImg, perfil }) {
           handleCloseImg();
         }
       );
+    }
+  };
+
+  const clearFolder = async (storageRefDel) => {
+    try {
+      const items = await storageRefDel.listAll();
+      await Promise.all(items.items.map((item) => item.delete()));
+    } catch (error) {
+      console.error("Error clearing folder: ", error);
     }
   };
 

@@ -8,6 +8,7 @@ import DashboardTopBar from "../../Components/Dashboard/DasboardTopBar";
 
 function Dashboard() {
   const { authUser } = useAuth();
+  const id = authUser?.uid;
   const userName = authUser?.displayName;
   const avatar = authUser?.photoURL;
   const [aba, setAba] = useState("dashboard");
@@ -18,11 +19,7 @@ function Dashboard() {
 
   return (
     <>
-      <DashboardTopBar
-        handleSetAba={handleSetAba}
-        photo={avatar}
-        id={authUser?.id}
-      />
+      <DashboardTopBar handleSetAba={handleSetAba} photo={avatar} id={id} />
       <div className="dashboardFundo d-flex">
         {aba === "dashboard" && <DashboardLeft />}
         {aba === "personalizar" && <Personalizar />}
