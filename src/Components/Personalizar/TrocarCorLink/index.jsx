@@ -26,9 +26,9 @@ function TrocaCorLink({ userId }) {
 
   console.log("troca de cor de Botao ", corBotaoAtual);
   return (
-    <div className="w-75 my-1">
+    <div className="w-100 my-1">
       <Form className="">
-        <InputGroup className="w-75" style={{ margin: "auto" }}>
+        <InputGroup style={{ margin: "auto" }}>
           <InputGroup.Text className="w-50">Cor do Botao: </InputGroup.Text>
 
           <Form.Control

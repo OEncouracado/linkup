@@ -3,19 +3,19 @@ import { Form, InputGroup } from "react-bootstrap";
 import { UserCss } from "../../../hook";
 import { fb } from "../../../shared/service";
 
-function TrocaCorFundo({ userId }) {
+function TrocaFundoUserName({ userId }) {
   const cssArray = UserCss(userId);
   const css = cssArray && cssArray[0];
 
-  const corFundoAtual = css?.corFundo;
-  const [newCorFundo, setNewCorFundo] = useState("");
-  const handleTrocaCorFundo = async (e) => {
-    setNewCorFundo(e.target.value);
+  const fundoUserNameAtual = css?.fundoUserName;
+  const [newfundoUserName, setNewfundoUserName] = useState("");
+  const handleTrocafundoUserName = async (e) => {
+    setNewfundoUserName(e.target.value);
     try {
       await fb?.firestore
         .collection("UserCss")
         .doc(userId)
-        .update({ corFundo: newCorFundo });
+        .update({ fundoUserName: newfundoUserName });
     } catch (error) {
       console.error(
         "Erro ao atualizar a cor de fundo do usuário no servidor:",
@@ -24,19 +24,19 @@ function TrocaCorFundo({ userId }) {
     }
   };
 
-  console.log("troca de cor de fundo ", corFundoAtual);
+  console.log("troca de cor de fundo ", fundoUserNameAtual);
   return (
     <div className="w-100 my-1">
       <Form className="">
         <InputGroup style={{ margin: "auto" }}>
-          <InputGroup.Text className="w-50">Cor do Fundo: </InputGroup.Text>
+          <InputGroup.Text className="w-50">Cor de Fundo do Username: </InputGroup.Text>
 
           <Form.Control
             type="color"
-            id="corFundo"
-            value={corFundoAtual}
-            title={"Selecione a Cor de Fundo "}
-            onChange={handleTrocaCorFundo}
+            id="fundoUserName"
+            value={fundoUserNameAtual}
+            title={"Selecione a Cor de Fundo do Username"}
+            onChange={handleTrocafundoUserName}
           />
         </InputGroup>
       </Form>
@@ -44,4 +44,4 @@ function TrocaCorFundo({ userId }) {
   );
 }
 
-export default TrocaCorFundo;
+export default TrocaFundoUserName;

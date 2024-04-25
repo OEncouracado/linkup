@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import "react-device-emulator/lib/styles/style.css";
 // eslint-disable-next-line
-import { Alert, Button } from "react-bootstrap";
+import { Alert, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { UserInfo, useAuth, usePages } from "../../hook";
 import TrocaCorFundo from "./TrocaCorFundo/index";
@@ -11,6 +11,10 @@ import TrocaCorTextoNivel from "./TrocarCorTextoNivel";
 import TrocaCorSombraLink from "./TrocarCorSombraLink";
 // eslint-disable-next-line
 import { fb } from "../../shared/service";
+import TrocaCorTextoUserName from "./TrocarCorTextoUsername";
+import TrocaFundoUserName from "./TrocaFundoUserName";
+import TrocaCorSombraUserName from "./TrocarCorSombraUserName";
+import TrocarRaiodaBorda from './TrocarRaiodaBorda/index';
 
 function Personalizar() {
   const { authUser } = useAuth();
@@ -70,11 +74,21 @@ function Personalizar() {
             </Link>
             .
           </Alert>
-          <TrocaCorFundo userId={id} />
-          <TrocaCorLink userId={id} />
-          <TrocaCorSombraLink userId={id} />
-          <TrocaCorTextoBotao userId={id} />
-          <TrocaCorTextoNivel userId={id} />
+
+          <Container className="personalizarContainers editVariableNumber d-flex flex-column align-items-center py-2 px-3 w-75">
+            <TrocarRaiodaBorda userId={id} />
+          </Container>
+
+          <Container className="personalizarContainers editColorsWarp d-flex flex-column align-items-center py-2 px-3 w-75">
+            <TrocaCorFundo userId={id} />
+            <TrocaFundoUserName userId={id} />
+            <TrocaCorLink userId={id} />
+            <TrocaCorSombraLink userId={id} />
+            <TrocaCorSombraUserName userId={id} />
+            <TrocaCorTextoBotao userId={id} />
+            <TrocaCorTextoUserName userId={id} />
+            <TrocaCorTextoNivel userId={id} />
+          </Container>
           {/* <Button onClick={handleNovoCss}>
             Novo Css
           </Button> */}
