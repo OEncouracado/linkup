@@ -14,7 +14,12 @@ import { fb } from "../../shared/service";
 import TrocaCorTextoUserName from "./TrocarCorTextoUsername";
 import TrocaFundoUserName from "./TrocaFundoUserName";
 import TrocaCorSombraUserName from "./TrocarCorSombraUserName";
-import TrocarRaiodaBorda from './TrocarRaiodaBorda/index';
+import TrocarRaiodaBorda from "./TrocarRaiodaBorda/index";
+import TrocaruserBackGround from "./TrocarUserBackGround";
+import TrocarfundoImgBotao from "./TrocarfundoImgBotao";
+import TrocarborderWith from "./TrocarborderWith";
+import TrocaborderColor from "./TrocarborderColor";
+import TrocarborderStyle from "./TrocarborderStyle";
 
 function Personalizar() {
   const { authUser } = useAuth();
@@ -38,21 +43,6 @@ function Personalizar() {
     [molduraAtual]
   );
 
-  // const handleNovoCss = async () => {
-  //   fb?.firestore.collection('UserCss').doc(id).set({
-  //     corBotao: "#fff",
-  //     corFundo: "#fff",
-  //     corSombraBotao: "#000",
-  //     corSombraUserName: "#000",
-  //     corTextoBotao: "#000",
-  //     corTextoNivel: "#000",
-  //     corTextoUserName: "#000",
-  //     fundoUserName: "#fff",
-  //     userId: id,
-  //     username: userName,
-  //   });
-  // }
-
   console.log(userMoldura.src);
   // eslint-disable-next-line
   const [frames, setFrames] = useState([]);
@@ -74,24 +64,27 @@ function Personalizar() {
             </Link>
             .
           </Alert>
-
-          <Container className="personalizarContainers editVariableNumber d-flex flex-column align-items-center py-2 px-3 w-75">
-            <TrocarRaiodaBorda userId={id} />
-          </Container>
-
-          <Container className="personalizarContainers editColorsWarp d-flex flex-column align-items-center py-2 px-3 w-75">
+          <Container className="personalizarContainers editFundo d-flex flex-column align-items-center py-2 px-3 w-75">
             <TrocaCorFundo userId={id} />
-            <TrocaFundoUserName userId={id} />
+            <TrocaruserBackGround userId={id} />
+          </Container>
+          <Container className="personalizarContainers editLinks d-flex flex-column align-items-center py-2 px-3 w-75">
+            <TrocarRaiodaBorda userId={id} />
             <TrocaCorLink userId={id} />
             <TrocaCorSombraLink userId={id} />
-            <TrocaCorSombraUserName userId={id} />
             <TrocaCorTextoBotao userId={id} />
+            <TrocarfundoImgBotao userId={id} />
+            <TrocarborderWith userId={id} />
+            <TrocaborderColor userId={id} />
+            <TrocarborderStyle userId={id} />
+          </Container>
+
+          <Container className="personalizarContainers editPerfil d-flex flex-column align-items-center py-2 px-3 w-75">
+            <TrocaFundoUserName userId={id} />
+            <TrocaCorSombraUserName userId={id} />
             <TrocaCorTextoUserName userId={id} />
             <TrocaCorTextoNivel userId={id} />
           </Container>
-          {/* <Button onClick={handleNovoCss}>
-            Novo Css
-          </Button> */}
         </div>
       )}
     </>

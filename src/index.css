@@ -254,7 +254,7 @@ code {
   }
   
   .usernamePaginaWarp {
-    margin-top: 2rem;
+    margin-bottom:2rem;
     padding: 2%;
       border-radius: 1.6rem;
         box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
@@ -297,17 +297,17 @@ code {
 }
 .paginaLink{
   color: #000;
-    text-decoration: none;
-    margin: 1rem;
+  text-decoration: none;
+  margin: 1rem;
   width: 80%;
   height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2%;
-
-    background-color: #bc13fe;
-    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .paginaLink:hover{
@@ -344,7 +344,7 @@ code {
   outline-offset: 0.2rem;
 }
 .perfilsuperiorwarp {
-  margin-top: 2rem;
+  margin-top: 4rem;
   margin-bottom: 2rem;
   position: relative;
   display: flex;

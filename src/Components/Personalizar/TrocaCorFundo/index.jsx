@@ -30,7 +30,6 @@ function TrocaCorFundo({ userId }) {
       <Form className="">
         <InputGroup style={{ margin: "auto" }}>
           <InputGroup.Text className="w-50">Cor do Fundo: </InputGroup.Text>
-
           <Form.Control
             type="color"
             id="corFundo"

@@ -6,6 +6,10 @@ function PaginaLink({ url, nome, linkEstilo }) {
     color: linkEstilo?.corTextoBotao,
     boxShadow: `0px 5px 15px ${linkEstilo?.corSombraBotao}`,
     borderRadius: `${linkEstilo?.raiodaBorda}rem`,
+    backgroundImage: `URL(${linkEstilo?.fundoImgBotao})`,
+    borderWidth: `${linkEstilo?.borderWith}rem`,
+    borderStyle: linkEstilo?.borderStyle,
+    borderColor: linkEstilo?.borderColor,
   };
   return (
     <a

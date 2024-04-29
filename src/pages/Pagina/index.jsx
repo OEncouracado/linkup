@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";// eslint-disable-next-line
+import { useParams } from "react-router-dom"; // eslint-disable-next-line
 import { useLinkPages, UseLinkCss, UseLinkInfo, useAuth } from "./../../hook";
 import PaginaPerfil from "./../../Components/Pagina/PaginaPerfil/index";
 import PaginaNivel from "./../../Components/Pagina/PaginaNivel/index";
 import PaginaLinkList from "./../../Components/Pagina/PaginaLinkList/index";
-import { Helmet } from "react-helmet";// eslint-disable-next-line
+import { Helmet } from "react-helmet"; // eslint-disable-next-line
 import { Button, Container } from "react-bootstrap";
 
 function Pagina() {
@@ -26,7 +26,6 @@ function Pagina() {
     backgroundColor: css?.corFundo,
   };
 
-
   return (
     <>
       <Helmet>
@@ -39,6 +38,7 @@ function Pagina() {
               perfil={stats?.imagemPerfil}
               username={stats?.username}
               selectedFrame={stats?.moldura}
+              rank={stats?.rank}
               userStyle={css}
             />
             <PaginaNivel
@@ -50,28 +50,31 @@ function Pagina() {
             <PaginaLinkList pages={pages && pages} userStyle={css} />
           </div>
           <div className="botaoCrieSeuLink text-center pb-3">
-            <Button href="/Singup" className="mt-4">Crie seu Link</Button>
+            <Button href="/Singup" className="mt-4">
+              Crie seu Link
+            </Button>
           </div>
         </div>
-        {exibirA && (<>
-          <div
-            className="paginaFooter d-flex flex-column align-items-center"
-          >
-            <button
-              href="/Singup"
-              className="paginaFooterBnt bn632-hover bn22 text-white paginaFooterItem">
-              Linkgame.app/voce
-            </button>
-            <div className="d-flex">
-              <p className="text-white paginaFooterItem">
-                Junte-se a {stats?.username} e crie sua própria aventura.
-              </p>
-              <p className="fecharBtn text-white ms-4" onClick={handleClose}>
-                X
-              </p>
+        {exibirA && (
+          <>
+            <div className="paginaFooter d-flex flex-column align-items-center">
+              <button
+                href="/Singup"
+                className="paginaFooterBnt bn632-hover bn22 text-white paginaFooterItem"
+              >
+                Linkgame.app/voce
+              </button>
+              <div className="d-flex">
+                <p className="text-white paginaFooterItem">
+                  Junte-se a {stats?.username} e crie sua própria aventura.
+                </p>
+                <p className="fecharBtn text-white ms-4" onClick={handleClose}>
+                  X
+                </p>
+              </div>
             </div>
-          </div>
-        </>)}
+          </>
+        )}
         {/* <a
           href="/Singup"
           className="paginaFooter d-flex flex-column align-items-center"
