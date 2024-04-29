@@ -40,8 +40,10 @@ function PaginaPerfil({ username, perfil, selectedFrame, rank, userStyle }) {
       return "Ouro";
     } else if (rank >= 200) {
       return "Prata";
-    } else {
+    } else if (rank >= 0) {
       return "Bronze";
+    } else {
+      return null;
     }
   };
 

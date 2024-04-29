@@ -3,7 +3,7 @@ import "react-device-emulator/lib/styles/style.css";
 // eslint-disable-next-line
 import { Alert, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { UserInfo, useAuth, usePages } from "../../hook";
+import { UserCss, UserInfo, useAuth, usePages } from "../../hook";
 import TrocaCorFundo from "./TrocaCorFundo/index";
 import TrocaCorLink from "./TrocarCorLink";
 import TrocaCorTextoBotao from "./TrocarCorTextoLink";
@@ -20,12 +20,16 @@ import TrocarfundoImgBotao from "./TrocarfundoImgBotao";
 import TrocarborderWith from "./TrocarborderWith";
 import TrocaborderColor from "./TrocarborderColor";
 import TrocarborderStyle from "./TrocarborderStyle";
+import TrocarbgTipo from "./TrocarbgTipo";
+import TrocaCorFundo2 from "./TrocaCorFundo2";
 
 function Personalizar() {
   const { authUser } = useAuth();
   const id = authUser?.uid;
   const userArray = UserInfo(id);
   const pageInfo = usePages(id);
+  const cssArray = UserCss(id);
+  const css = cssArray && cssArray[0];
   const pages = pageInfo?.Links;
   const stats = userArray && userArray[0];
   // eslint-disable-next-line
@@ -65,15 +69,18 @@ function Personalizar() {
             .
           </Alert>
           <Container className="personalizarContainers editFundo d-flex flex-column align-items-center py-2 px-3 w-75">
-            <TrocaCorFundo userId={id} />
-            <TrocaruserBackGround userId={id} />
+            <TrocarbgTipo userId={id}/>
+            {css?.bgTipo === "corsolida" ? <><TrocaCorFundo userId={id} /></> : null }
+            {css?.bgTipo === "gradiente" ? <><TrocaCorFundo userId={id} /> <TrocaCorFundo2 userId={id} /></> : null }
+            {css?.bgTipo === "imagem" ? <><TrocaruserBackGround userId={id} /></> : null }
+            
           </Container>
           <Container className="personalizarContainers editLinks d-flex flex-column align-items-center py-2 px-3 w-75">
             <TrocarRaiodaBorda userId={id} />
             <TrocaCorLink userId={id} />
             <TrocaCorSombraLink userId={id} />
             <TrocaCorTextoBotao userId={id} />
-            <TrocarfundoImgBotao userId={id} />
+            {stats?.VIP ? <TrocarfundoImgBotao userId={id} /> : null}
             <TrocarborderWith userId={id} />
             <TrocaborderColor userId={id} />
             <TrocarborderStyle userId={id} />

@@ -21,10 +21,21 @@ function Pagina() {
     setExibirA(false);
   };
 
-  const estilo = {
+  let estiloLinearGr = {};
+
+if (stats?.VIP && stats?.userBackGround && css?.bgTipo === "imagem") {
+  estiloLinearGr = {
     backgroundImage: `url(${stats?.userBackGround})`,
+  };
+} else if (css?.bgTipo === "corsolida") {
+  estiloLinearGr = {
     backgroundColor: css?.corFundo,
   };
+} else if (css?.bgTipo === "gradiente") {
+  estiloLinearGr = {
+    background: `linear-gradient(180deg, ${css?.corFundo} 0%, ${css?.corFundo2} 100%)`,
+  };
+}
 
   return (
     <>
@@ -32,7 +43,7 @@ function Pagina() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Helmet>
       <div className="paginaFundoWarp">
-        <div className="paginaFundo pt-0" style={estilo}>
+        <div className="paginaFundo pt-0" style={estiloLinearGr}>
           <div className="paginaWarper mt-5 m-auto pb-5 d-flex flex-column align-items-center">
             <PaginaPerfil
               perfil={stats?.imagemPerfil}

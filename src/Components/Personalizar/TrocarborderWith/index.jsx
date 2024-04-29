@@ -34,11 +34,10 @@ function TrocarborderWith({ userId }) {
             margin: "auto",
             padding: ".6rem",
             backgroundColor: "#f8f8ff",
+            border: "0.1rem solid #DEE2E6", 
+            borderRadius: "0.4rem"
           }}
         >
-          {/* <InputGroup.Text className="w-50">
-                        Cor do TextoUserName:{" "}
-                    </InputGroup.Text> */}
           <Form.Label className="perfilImgZoomRangeLabel m-0 w-25">
             Espessura ({borderWithAtual}):
           </Form.Label>
