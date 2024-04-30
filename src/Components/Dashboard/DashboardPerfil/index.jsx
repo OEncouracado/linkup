@@ -89,7 +89,7 @@ function DashboardPerfil({ id, username, perfil, selectedFrame }) {
       </div>
       {!show ? (
         <div className="usernamePefilWarp bg-light d-flex justify-content-center align-items-center">
-          <p className="mb-0 fw-bold text-center">{username}</p>
+          <p className="username mb-0 fw-bold text-center">{username}</p>
           <i
             className="iconShowEditUsername fa fa-pencil ms-3"
             aria-hidden="true"
