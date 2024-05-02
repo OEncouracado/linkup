@@ -69,6 +69,7 @@ function Personalizar() {
             .
           </Alert>
           <Container className="personalizarContainers editFundo d-flex flex-column align-items-center py-2 px-3 w-75">
+            <input type="image" src="" alt="" />
             <TrocarbgTipo userId={id}/>
             {css?.bgTipo === "corsolida" ? <><TrocaCorFundo userId={id} /></> : null }
             {css?.bgTipo === "gradiente" ? <><TrocaCorFundo userId={id} /> <TrocaCorFundo2 userId={id} /></> : null }
