@@ -15,7 +15,7 @@ function DashboardLeft() {
   const pages = pageInfo?.Links;
   const stats = userArray && userArray[0];
   const imgPerfil = stats?.imagemPerfil;
-  const userName = authUser?.displayName;
+  const userName = stats?.linkUserName;
   const molduraAtual = stats?.moldura;
   console.log("array de paginas", pageInfo);
   console.log("const pages", pages);

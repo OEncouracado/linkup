@@ -58,6 +58,9 @@ function DashboardTopBar({ handleSetAba, photo }) {
             />
           }
         >
+          <NavDropdown.Item href="/perfil">
+            Perfil
+          </NavDropdown.Item>
           <NavDropdown.Item onClick={handleLogout}>
             <i class="fa fa-sign-out" aria-hidden="true" />
             Sair

@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import "react-device-emulator/lib/styles/style.css";
-import { useAuth } from "../../hook";
+import { UserInfo, useAuth } from "../../hook";
 import Preview from "../../Components/preview";
 import DashboardLeft from "../../Components/Dashboard/DashboardLeft";
 import Personalizar from "../../Components/Personalizar";
 import DashboardTopBar from "../../Components/Dashboard/DasboardTopBar";
+import Configuracoes from "../../Components/Configuracoes";
 
 function Dashboard() {
   const { authUser } = useAuth();
   const id = authUser?.uid;
-  const userName = authUser?.displayName;
+  const infoArray = UserInfo(id);
+  const stats = infoArray && infoArray[0];
+  const userName = stats?.linkUserName;
   const avatar = authUser?.photoURL;
   const [aba, setAba] = useState("dashboard");
 
@@ -24,7 +27,7 @@ function Dashboard() {
         {aba === "dashboard" && <DashboardLeft />}
         {aba === "personalizar" && <Personalizar />}
         {aba === "estatisticas" && <DashboardLeft />}
-        {aba === "configuracoes" && <DashboardLeft />}
+        {aba === "configuracoes" && <Configuracoes />}
         <div className="previewFundo pt-3">
           <Preview username={userName} />
         </div>

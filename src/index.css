@@ -169,9 +169,18 @@ code {
   object-fit: cover;
   transition: filter 0.3s;
   }
-  
-  
-  
+  .iconContainer2 {
+    position: absolute;
+    top: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 3;
+  }
+
   .iconContainer {
     position: absolute;
     top: 33%;
@@ -184,7 +193,7 @@ code {
     z-index: 3;
   }
   
-  .frameepefilwarp:hover .iconContainer {
+  .frameepefilwarp:hover .iconContainer .iconContainer2 {
     opacity: 1;
   }
   .frameepefilwarp:hover .dashboardImagePerfil {

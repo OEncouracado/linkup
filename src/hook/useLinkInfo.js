@@ -8,7 +8,7 @@ export const UseLinkInfo = (usuario) => {
     const unsubscribe = usuario
       ? fb.firestore
           .collection("UserStats")
-          .where("username", "==", usuario)
+          .where("linkUserName", "==", usuario)
           .onSnapshot((snap) => {
             const _linkstats = [];
             snap.forEach((s) => {

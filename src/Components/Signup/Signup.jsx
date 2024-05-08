@@ -101,6 +101,7 @@ function Signup() {
                 // Cria um documento na coleção 'UserStats' com os campos necessários
                 await fb?.firestore.collection('UserStats').doc(newuser.uid).set({
                     imagemPerfil: "", // Você pode definir um valor padrão aqui se necessário
+                    linkUserName: username,
                     maxXp: 0,
                     moldura: "", // Pode ser definido um valor padrão também
                     nivelUser: 1,
@@ -124,6 +125,7 @@ function Signup() {
                     fundoUserName: "#fff",
                     userId: newuser.uid,
                     username: username,
+                    linkUserName: username,
                 });
 
                 console.log("Documento 'UserCss' criado com sucesso");
@@ -133,6 +135,7 @@ function Signup() {
                     Links: [],
                     userId: newuser.uid,
                     username: username,
+                    linkUserName: username,
                 });
                 // Atualiza o displayName com o username fornecido
                 console.log("Documento 'linkPages' criado com sucesso");
@@ -140,6 +143,8 @@ function Signup() {
                     displayName: username
                 });
                 console.log("DisplayName atualizado com sucesso para:", username);
+
+
                 // Adiciona o username à coleção 'UserNames'
                 try {
                     await fb?.firestore.collection('UserNames').doc('FhD7GGxd24OzH9iH2HzS').update({
@@ -149,9 +154,22 @@ function Signup() {
                 } catch (error) {
                     console.error("Erro ao adicionar nome de usuário à coleção 'UserNames':", error);
                 }
-
-
                 console.log("Username adicionado à coleção 'UserNames'");
+
+                // Adiciona o username à coleção 'linkUserNames'
+                 try {
+                    await fb?.firestore.collection("linkUserNames").doc("sHG2pavwu4O22AWIw0mU").update({
+                        linkUserNames: fb.arrayUnion(username)
+                    });
+                    console.log("Nome de usuário adicionado com sucesso à coleção 'linkUserNames'");
+                } catch (error) {
+                    console.error("Erro ao adicionar nome de usuário à coleção 'linkUserNames':", error);
+                }
+
+
+                console.log("Username adicionado à coleção 'linkUserNames'");
+
+                
 
                 // Realiza o login do usuário automaticamente
                 await fb.auth.signInWithEmailAndPassword(email, senha);

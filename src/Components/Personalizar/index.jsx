@@ -27,14 +27,14 @@ function Personalizar() {
   const { authUser } = useAuth();
   const id = authUser?.uid;
   const userArray = UserInfo(id);
+  const stats = userArray && userArray[0];
   const pageInfo = usePages(id);
   const cssArray = UserCss(id);
   const css = cssArray && cssArray[0];
   const pages = pageInfo?.Links;
-  const stats = userArray && userArray[0];
   // eslint-disable-next-line
   const imgPerfil = stats?.imagemPerfil;
-  const userName = authUser?.displayName;
+  const userName = stats?.linkUserName;
   const molduraAtual = stats?.moldura;
   console.log("array de paginas", pageInfo);
   console.log("const pages", pages);

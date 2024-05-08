@@ -8,7 +8,7 @@ export const useLinkPages = (usuario) => {
     const unsubscribe = usuario
       ? fb.firestore
           .collection("linkPages")
-          .where("username", "==", usuario)
+          .where("linkUserName", "==", usuario)
           .onSnapshot((snap) => {
             const _linkpages = [];
             snap.forEach((s) => {

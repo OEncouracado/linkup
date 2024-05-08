@@ -75,7 +75,7 @@ function PaginaPerfil({ username, perfil, selectedFrame, rank, userStyle }) {
         style={estilo}
       >
         <p className="paginaUsernamePerfil mb-0 fw-bold text-center">
-          {username}
+          {userStyle?.username}
         </p>
       </div>
     </div>

@@ -4,9 +4,12 @@ import TrocaUserName from "../../TrocaUsername";
 import ModalEditarImgPerfil from "./ModalEditarImgPerfil";
 import { fb } from "../../../shared/service";
 import { useAuth } from "./../../../hook/authUser";
+import { UserInfo } from "../../../hook";
 
 function DashboardPerfil({ id, username, perfil, selectedFrame }) {
   const { authUser } = useAuth();
+  const infoArray = UserInfo(id);
+  const stats = infoArray && infoArray[0];
   const [show, setShow] = useState(false);
   const [showIcons, setShowIcons] = useState(false);
   const [showIgm, setShowImg] = useState(false);
@@ -89,7 +92,7 @@ function DashboardPerfil({ id, username, perfil, selectedFrame }) {
       </div>
       {!show ? (
         <div className="usernamePefilWarp bg-light d-flex justify-content-center align-items-center">
-          <p className="username mb-0 fw-bold text-center">{username}</p>
+          <p className="username mb-0 fw-bold text-center">{stats?.username}</p>
           <i
             className="iconShowEditUsername fa fa-pencil ms-3"
             aria-hidden="true"

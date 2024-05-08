@@ -14,6 +14,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Pagina from "./pages/Pagina";
+import UserProfile from "./pages/perfil";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
@@ -29,6 +30,18 @@ function App() {
                 <TelaLoading />
               ) : isAuthed ? (
                 <Dashboard />
+              ) : (
+                <Navigate to="/Login" />
+              )
+            }
+          />
+          <Route
+            path="/perfil"
+            element={
+              authUser === undefined ? (
+                <TelaLoading />
+              ) : isAuthed ? (
+                <UserProfile />
               ) : (
                 <Navigate to="/Login" />
               )

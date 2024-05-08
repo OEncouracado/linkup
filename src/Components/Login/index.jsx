@@ -161,6 +161,22 @@ function Login() {
             error
           );
         }
+        try {
+          await fb?.firestore
+            .collection("linkUserNames")
+            .doc("sHG2pavwu4O22AWIw0mU")
+            .update({
+              linkUserNames: fb.arrayUnion(user.displayName),
+            });
+          console.log(
+            "Nome de usuário adicionado com sucesso à coleção 'LinkUserName'"
+          );
+        } catch (error) {
+          console.error(
+            "Erro ao adicionar nome de usuário à coleção 'LinkUserName':",
+            error
+          );
+        }
       }
 
       console.log(

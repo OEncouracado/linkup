@@ -8,7 +8,7 @@ export const UseLinkCss = (usuario) => {
     const unsubscribe = usuario
       ? fb.firestore
           .collection("UserCss")
-          .where("username", "==", usuario)
+          .where("linkUserName", "==", usuario)
           .onSnapshot((snap) => {
             const _linkstyle = [];
             snap.forEach((s) => {
