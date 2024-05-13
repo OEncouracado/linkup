@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Button, InputGroup, Modal } from "react-bootstrap";
+import { InputGroup } from "react-bootstrap";
 import {  UserCss, UserInfo } from "../../../hook";
 import { fb } from "../../../shared/service";
+import VIPModal from "../../Modais/VIPmodal";
 
 function TrocarbgTipo({ userId }) {
   const cssArray = UserCss(userId);
@@ -12,11 +13,14 @@ function TrocarbgTipo({ userId }) {
   // eslint-disable-next-line
   const [newbgTipo, setNewbgTipo] = useState(bgTipoAtual);
   const [showModal, setShowModal] = useState(false); // Estado para controlar a exibição do modal
+  const [mensagem, setMensagem] = useState("");
 
   const handleTrocabgTipo = async (selectedbgTipo) => {
     if (selectedbgTipo === "imagem" && !stats?.VIP) {
+      setMensagem("Para selecionar uma imagem de fundo, você precisa ser VIP.")
       // Verifica se o tipo de fundo selecionado é imagem e se o usuário não é VIP
-      setShowModal(true); // Exibe o modal de assinatura VIP
+      setShowModal(true);
+      // Exibe o modal de assinatura VIP
     } else {
       setNewbgTipo(selectedbgTipo);
       try {
@@ -100,24 +104,8 @@ function TrocarbgTipo({ userId }) {
         </div>
       </InputGroup>
       {/* Modal de assinatura VIP */}
-      <Modal show={showModal} onHide={closeModal}>
-        <Modal.Header>
-          <Modal.Title>Assine o VIP</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="text-center">
-          <p>Para selecionar uma imagem de fundo, você precisa ser VIP.</p>
-          <img className="w-50" src="https://www.vipbrtelecom.com.br/_next/static/images/logo-9b15102ecdc39560f2d3371b1c9ec1b3.svg" alt="VIP" />
-          <p>Assine agora para aproveitar todos os benefícios!</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={closeModal}>
-            Fechar
-          </Button>
-          <Button variant="primary" onClick={closeModal}>
-            Assinar VIP
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <VIPModal show={showModal} onClose={closeModal} mensagem={mensagem} />
+
     </div>
   );
 }

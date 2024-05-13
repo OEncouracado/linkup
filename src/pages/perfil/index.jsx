@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
-import { useAuth } from "../../hook";
+import { UserInfo, useAuth } from "../../hook";
 import { useNavigate } from "react-router-dom";
+import VIPModal from './../../Components/Modais/VIPmodal';
 
 function UserProfile() {
   const { authUser } = useAuth();
+  const id = authUser?.uid;
   const navigate = useNavigate();
+  const infoArray = UserInfo(id);
+  const stats = infoArray && infoArray[0];
+  const [showModal, setShowModal] = useState(false);
+  const [mensagem, setMensagem] = useState("");
+
+  const closeModal = () => {
+    setMensagem("");
+    setShowModal(false);
+  };
+
+  const handleShowModal = () => {
+    setMensagem("Conheça os beneficios do VIP");
+    setShowModal(true);
+  };
 
   return (
     <>
@@ -70,6 +86,11 @@ function UserProfile() {
                     value={authUser?.email}
                   />
                 </div>
+
+                <div className="col-md-12">
+                  <label className="labels">Status VIP:</label>
+                  <p readOnly onClick={stats?.VIP ? null : handleShowModal} className="form-control">{stats?.VIP ? "Ativo" : "Inativo. Clique aqui para saber mais"}</p>
+                </div>
               </div>
               <div className="mt-5 text-center">
                 <button
@@ -83,6 +104,7 @@ function UserProfile() {
           </div>
         </div>
       </div>
+      <VIPModal show={showModal} onClose={closeModal} mensagem={mensagem} />
     </>
   );
 }
