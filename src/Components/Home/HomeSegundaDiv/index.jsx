@@ -8,10 +8,10 @@ function HomeSegundaDiv() {
   return (
     <Container className="homesegundadiv">
       <Row>
-        <Col xs={6}>
+        <Col md>
           <img className="w-100" src={homensegundadiv} alt="" srcset="" />
         </Col>
-        <Col xs={6}>
+        <Col md>
           <h3>Evolua com seu Link</h3>
         </Col>
       </Row>

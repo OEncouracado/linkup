@@ -26,9 +26,9 @@ function PrimeiraDiv() {
     }
   };
   return (
-    <Container className="HomePrimeiraDiv">
+    <Container fluid="md" className="HomePrimeiraDiv">
       <Row>
-        <Col className="">
+        <Col sm className="">
           <div className="HomePrimeiraDivBannerDireita">
             <h1 className="mb-4 ">
               Seus Links juntos, de maneira{" "}
@@ -69,7 +69,7 @@ function PrimeiraDiv() {
             </Form.Group>
           </div>
         </Col>
-        <Col className="">
+        <Col md className="">
           <img src={moca} alt="moça" className="w-100" />
         </Col>
       </Row>
