@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    font-family: "Press Start 2P", system-ui;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+a:hover {
+    color: unset;
+}
+
+.footerTop {
+
+    background-color: #00182E;
+    position: relative;
+    z-index: 2;
+}
+
+.footermid {
+    margin-top: -2rem;
+    margin-bottom: -2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.footetbot {
+    height: 20rem;
+    background-color: #134D5D;
+    position: relative;
+    z-index: 2;
+}
+
+.footerbg {}
+
+.colEsquerdaImg {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
+
+.colEsquerdaWarper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+
+.colEsquerda,
+.colCentro {
+    border-right: #134D5D solid 1px;
+}
+
+.footerContent {
+    font-family: "Press Start 2P", system-ui;
+    text-align: center;
+}
+
+.textLeft {
+    font-size: 1rem;
+}
+
+
+@media only screen and (max-width: 768px) {
+
+    /* Estilos específicos para dispositivos móveis */
+    .footermid {
+        margin-top: -1rem;
+        margin-bottom: -1rem;
+    }
+
+    .colEsquerda,
+    .colCentro {
+        border-bottom: #134D5D solid 1px;
+    }
+
+    .colEsquerda,
+    .colCentro {
+        border-right: none;
+    }
+
+    /* .textLeft {
+        font-size: .5rem;
+    } */
+}

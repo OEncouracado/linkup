@@ -2,11 +2,11 @@ import React from "react";
 import { Navbar, Container, Button } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import logo from "../../../Images/linkuplogotemporariosfundo.png";
+import "./style.css"
 
 function HomeTopbar() {
   return (
     <Navbar
-      bg="light"
       variant="light"
       fixed="top"
       className="HomeTopbar rounded-pill px-4 my-4"

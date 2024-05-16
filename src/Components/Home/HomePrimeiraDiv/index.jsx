@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Row, Col, Container, Form, InputGroup } from "react-bootstrap";
 import moca from "../../../Images/moca.png";
 import { fb } from "../../../shared/service";
+import './style.css'
 
 function PrimeiraDiv() {
   const [username, setUsername] = useState("");
@@ -26,7 +27,7 @@ function PrimeiraDiv() {
     }
   };
   return (
-    <Container fluid="md" className="HomePrimeiraDiv">
+    <Container fluid="md" className="HomePrimeiraDiv text-dark bg-light">
       <Row>
         <Col sm className="">
           <div className="HomePrimeiraDivBannerDireita">
@@ -38,7 +39,7 @@ function PrimeiraDiv() {
             <h3 className="mb-3 ">Prepare-se para sua nova jornada</h3>
             <h5>Assegure seu nick e se torne uma lenda</h5>
             <Form.Group
-              className="bg-dark p-3 rounded"
+              className="bg-dark p-3 rounded mb-3"
               style={{ height: "5rem" }}
             >
               <InputGroup>
