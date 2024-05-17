@@ -69,6 +69,7 @@ function PaginaPerfil({ username, perfil, selectedFrame, rank, userStyle }) {
         src={rankImageUrl}
         alt=""
         srcset=""
+        title={determinarFaixaRank(rank)}
       />
       <div
         className="usernamePaginaWarp d-flex justify-content-center align-items-center"

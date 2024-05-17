@@ -123,8 +123,6 @@ a {
   width: 80%;
 }
 
-
-
 /* Progress Bar */
 .barwarper {
   width: 100%;
@@ -170,37 +168,39 @@ a {
   height: 150px;
   object-fit: cover;
   transition: filter 0.3s;
-  }
-  .iconContainer2 {
-    position: absolute;
-    top: 33%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    gap: 1rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 3;
-  }
+}
 
-  .iconContainer {
-    position: absolute;
-    top: 33%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    gap: 1rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 3;
-  }
+.iconContainer2 {
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 3;
+}
+
+.iconContainer {
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 3;
+}
   
-  .frameepefilwarp:hover .iconContainer .iconContainer2 {
-    opacity: 1;
-  }
-  .frameepefilwarp:hover .dashboardImagePerfil {
-    filter: brightness(70%);
-  }
+.frameepefilwarp:hover .iconContainer .iconContainer2 {
+  opacity: 1;
+}
+
+.frameepefilwarp:hover .dashboardImagePerfil {
+  filter: brightness(70%);
+}
 
 .editIcon,
 .deleteIcon {
@@ -214,6 +214,7 @@ a {
 .deleteIcon:hover {
   color: white;
 }
+
 .previewFundo{
   width: calc(100vw - 60%);
   border-left: 2px solid #00000041;
@@ -222,6 +223,7 @@ a {
   overflow: hidden;
     
 }
+
 .previewFrame {
   /* margin: auto; */
   margin-left: auto;
@@ -230,6 +232,7 @@ a {
   border-radius: 2rem;
   overflow: hidden;
 }
+
 .linkENome{
   width: 80%;
   overflow: hidden;
@@ -247,6 +250,7 @@ a {
 .arrastarWarp{
   width: 10%;
 }
+
 .loadingFundo {
   width: 100vw;
   height: 100vh;
@@ -257,6 +261,7 @@ a {
 .username{
   width:fit-content;
 }
+
 .usernamePefilWarp {
   width:fit-content;
   margin-top: 2rem;
@@ -267,12 +272,15 @@ a {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
 }
   
-  .usernamePaginaWarp {
-    margin-bottom:3rem;
+.usernamePaginaWarp {
+  margin-bottom: 3rem;
     padding: 2%;
+    padding-left: 5%;
+      padding-right: 5%;
     border-radius: 1.6rem;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
-  }
+  min-width: max-content;
+}
 
 .paginaFundoWarp{
   overflow-x: hidden;
@@ -283,25 +291,26 @@ a {
 
 }
 .paginaFundo {
-    background-position-x: 65%;
+  background-position-x: 65%;
     background-size: cover;
     width: 30rem;
     min-height: 100vh;
   background-color: beige;
   display: flex;
-    flex-direction: column;
+  flex-direction: column;
 
 }
 
 
 .paginaLinksList{
   width: 100vw;
-    max-width: 20rem;
+  max-width: 20rem;
 }
 
 .fecharBtn {
   cursor: pointer;
 }
+
 .paginaLink{
   color: #000;
   text-decoration: none;
@@ -347,6 +356,7 @@ a {
   outline: 0.2rem solid rgba(255, 255, 255, 0.315);
   outline-offset: 0.2rem;
 }
+
 .perfilsuperiorwarp {
   margin-top: 4rem;
   margin-bottom: 2rem;
@@ -363,44 +373,21 @@ a {
 
 .paginaImagePerfil {
   width: 10rem;
-    height: 10rem;
+  height: 10rem;
     object-fit: cover;
   }
   
-  .paginaMolduraPerfil {
-    position: absolute;
-    width: 13.5rem;
-    /* Largura igual à imagem perfil */
-    height: 13.5rem;
-    /* Ou ajuste conforme necessário */
-  }
-  
-  .paginaUsernamePerfil {
-    width: 7rem;
-    cursor: default;
-    }
-    
-    .paginaNivelWarper {
-      cursor: default;
-  }
-  
-  /* .paginaImagePerfil {
-  filter: opacity();
-  position: relative;
-  z-index: 1;
-  width: 10rem;
-  height: 10rem;
-  object-fit: cover;
-}
-
 .paginaMolduraPerfil {
   position: absolute;
-  width: 13.3rem;
-  height: 13.3rem;
-  z-index: 2;
+  width: 13.5rem;
+  /* Largura igual à imagem perfil */
+  height: 13.5rem;
+  /* Ou ajuste conforme necessário */
 }
-
-*/
+.paginaUsernamePerfil,
+.paginaNivelWarper {
+  cursor: default;
+}
 .perfilImgHomePage{
   width: 2rem;
   border-radius: 50%;
@@ -429,9 +416,6 @@ a {
 .iconShowEditUsername {
   cursor: pointer;
 }
-/* .iconShowEditImgPerfil {
-  cursor: pointer;
-} */
 .HomeTopbar {
   width: 90%;
   margin: auto;
@@ -476,7 +460,8 @@ a {
   text-align: center;
 }
 
-.homesegundadiv {
+.homesegundadiv,
+.hometerceiradiv {
   max-width: 100vw !important;
   margin-left: 0 !important; 
   margin-right: 0 !important;
@@ -486,6 +471,10 @@ a {
   font-style: normal
 }
 
+.hometerceiradiv {
+  padding: auto;
+  overflow-y: hidden;
+}
 .paginaFooterItem{
   margin-left: auto;
   margin-right: auto;
