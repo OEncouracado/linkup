@@ -1,0 +1,13 @@
+items para o MVP:
+
+site completo.
+
+mecânica simples de monetização
+
+X criação, alteração e exclusão de links
+
+manipulação de css
+
+domínio
+
+hospedagem
