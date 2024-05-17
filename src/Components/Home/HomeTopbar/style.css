@@ -1,3 +1,13 @@
 .HomeTopbar {
-    background-color: #f8f9fa5e;
+    background-color: #f8f9fac4;
+    backdrop-filter: blur(0.5rem);
+}
+
+.HomePrimeiraDivWarp{
+    width: 90%;
+    margin: auto;
+}
+
+.HomePrimeiraDiv{
+    background-color: #bbbbbb;
 }

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Row, Col, Container, Form, InputGroup } from "react-bootstrap";
 import moca from "../../../Images/moca.png";
 import { fb } from "../../../shared/service";
-import './style.css'
 
 function PrimeiraDiv() {
   const [username, setUsername] = useState("");
@@ -27,16 +26,16 @@ function PrimeiraDiv() {
     }
   };
   return (
-    <Container fluid="md" className="HomePrimeiraDiv text-dark bg-light">
-      <Row>
-        <Col sm className="">
+    <Container lg className="HomePrimeiraDiv text-dark">
+      <Row className="HomePrimeiraDivWarp">
+        <Col md className="">
           <div className="HomePrimeiraDivBannerDireita">
             <h1 className="mb-4 ">
               Seus Links juntos, de maneira{" "}
               <span className="text-primary">fácil</span> e{" "}
               <span style={{ color: "#FF8800" }}>divertida</span>
             </h1>
-            <h3 className="mb-3 ">Prepare-se para sua nova jornada</h3>
+            <h4 className="mb-3 ">Prepare-se para sua nova jornada</h4>
             <h5>Assegure seu nick e se torne uma lenda</h5>
             <Form.Group
               className="bg-dark p-3 rounded mb-3"
