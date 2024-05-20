@@ -7,19 +7,20 @@ import final from "../../../Images/capturas/Final.jpg";
 function HomeTerceiraDiv() {
     return (
         <Container className="hometerceiradiv bg-light">
-            <h3>Personalize do seu Jeito</h3>
-            <Row>
-                <Col md="4" className='ps-0'>
-                    <img className='w-100' src={simples} alt="" srcset="" />
+            <h3 className='mt-4'>Personalize do seu Jeito</h3>
+            <Row className='hometerceiradivrow'>
+                <Col md className='hometerceiradivcol'>
+                    <img className='w-100 hometerceiradivimg' src={simples} alt="" srcset="" />
                 </Col>
-                <Col md="4">
-                    <img className='w-100' src={medio} alt="" srcset="" />
+                <Col md className='hometerceiradivcol'>
+                    <img className='w-100 hometerceiradivimg' src={medio} alt="" srcset="" />
                 </Col>
-                <Col md="4" className='pe-0'>
-                    <img className='w-100' src={final} alt="" srcset="" />
+                <Col md className='hometerceiradivcol'>
+                    <img className='w-100 hometerceiradivimg' src={final} alt="" srcset="" />
 
                 </Col>
             </Row>
+            <p>Personalize e crie páginas únicas e incríveis!</p>
         </Container>
     )
 }

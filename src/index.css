@@ -461,7 +461,8 @@ a {
 }
 
 .homesegundadiv,
-.hometerceiradiv {
+.hometerceiradiv,
+.homequartadiv {
   max-width: 100vw !important;
   margin-left: 0 !important; 
   margin-right: 0 !important;
@@ -473,8 +474,27 @@ a {
 
 .hometerceiradiv {
   padding: auto;
-  overflow-y: hidden;
-}
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .homequartadiv {
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hometerceiradivrow {
+    width: 60rem;
+  }
+  
+  .hometerceiradivimg {
+    margin: 1rem auto;
+    min-height: min-content;
+    border: #000 solid 0.1rem;
+  }
 .paginaFooterItem{
   margin-left: auto;
   margin-right: auto;
@@ -582,6 +602,9 @@ a {
   background: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#000000", GradientType=1);
+}
+.hometerceiradivrow {
+  width: 100vw;
 }
 }
 

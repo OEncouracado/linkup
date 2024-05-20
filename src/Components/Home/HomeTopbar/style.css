@@ -3,6 +3,10 @@
     backdrop-filter: blur(0.5rem);
 }
 
+.offcanvasbg {
+    backdrop-filter: blur(0.1rem) !important;
+    max-width: 80dvw;
+}
 .HomePrimeiraDivWarp{
     width: 90%;
     margin: auto;
