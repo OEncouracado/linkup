@@ -6,6 +6,7 @@ import {
   Button,
   Image,
   NavDropdown,
+  Offcanvas,
 } from "react-bootstrap";
 import photoNull from "../../../Images/perfil/perfil.jpg";
 import { fb } from "../../../shared/service";
@@ -29,9 +30,21 @@ function DashboardTopBar({ handleSetAba, photo }) {
   };
 
   return (
-    <Navbar variant="dark" bg="dark" sticky="top" className="DashboardTopBar">
+    <Navbar variant="dark" bg="dark" expand="md" className="DashboardTopBar">
       <Container className="">
-        <Nav className="me-auto">
+        <Navbar.Toggle aria-controls="offcanvasNavbar-expand-md" />
+        <Navbar.Offcanvas
+          className="offcanvasbg ps-3"
+          id="offcanvasNavbar-expand-md"
+          aria-labelledby="offcanvasNavbarLabel-expand-md"
+          placement="start"
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title id="offcanvasNavbarLabel-expand-md">
+              <img className="ImgPerfilDashboardTopbar" src={photo ? photo : photoNull} alt="" srcset="" />
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Nav className="me-auto">
           <Nav.Link onClick={() => handleSetAba("dashboard")} title="Dashboard">
             Dashboard
           </Nav.Link>
@@ -47,6 +60,7 @@ function DashboardTopBar({ handleSetAba, photo }) {
             Configurações
           </Nav.Link>
         </Nav>
+        </Navbar.Offcanvas>
         <Button className="me-4">Teste</Button>
 
         <NavDropdown

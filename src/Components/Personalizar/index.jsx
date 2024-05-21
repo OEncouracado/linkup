@@ -60,7 +60,7 @@ function Personalizar() {
   return (
     <>
       {authUser && (
-        <div className="dashboardLinks pb-5 d-flex flex-column justify-content-center align-items-center">
+        <div className="dashboardLinks pb-5 d-flex flex-column align-items-center">
           <Alert variant="info" className="mb-5">
             Sua página já está disponível aqui:{" "}
             <Link to={`/${userName}`} target="_blank" rel="noreferrer">
@@ -68,7 +68,7 @@ function Personalizar() {
             </Link>
             .
           </Alert>
-          <Container className="personalizarContainers editFundo d-flex flex-column align-items-center py-2 px-3 w-75">
+          <Container className="personalizarContainers editFundo d-flex flex-column align-items-center py-2 px-3 ">
             <input type="image" src="" alt="" />
             <TrocarbgTipo userId={id}/>
             {css?.bgTipo === "corsolida" ? <><TrocaCorFundo userId={id} /></> : null }
@@ -76,7 +76,7 @@ function Personalizar() {
             {css?.bgTipo === "imagem" ? <><TrocaruserBackGround userId={id} /></> : null }
             
           </Container>
-          <Container className="personalizarContainers editLinks d-flex flex-column align-items-center py-2 px-3 w-75">
+          <Container className="personalizarContainers editLinks d-flex flex-column align-items-center py-2 px-3 ">
             <TrocarRaiodaBorda userId={id} />
             <TrocaCorLink userId={id} />
             <TrocaCorSombraLink userId={id} />
@@ -87,7 +87,7 @@ function Personalizar() {
             <TrocarborderStyle userId={id} />
           </Container>
 
-          <Container className="personalizarContainers editPerfil d-flex flex-column align-items-center py-2 px-3 w-75">
+          <Container className="personalizarContainers editPerfil d-flex flex-column align-items-center py-2 px-3 ">
             <TrocaFundoUserName userId={id} />
             <TrocaCorSombraUserName userId={id} />
             <TrocaCorTextoUserName userId={id} />

@@ -11,7 +11,7 @@ function DashboardPerfil({ id, username, perfil, selectedFrame }) {
   const infoArray = UserInfo(id);
   const stats = infoArray && infoArray[0];
   const [show, setShow] = useState(false);
-  const [showIcons, setShowIcons] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [showIgm, setShowImg] = useState(false);
   const handleShowImg = () => setShowImg(true);
 
@@ -59,8 +59,8 @@ function DashboardPerfil({ id, username, perfil, selectedFrame }) {
     <div className="perfilsuperiorwarp d-flex flex-column justify-content-center">
       <div
         className="frameepefilwarp d-flex justify-content-center align-items-center"
-        onMouseEnter={() => setShowIcons(true)}
-        onMouseLeave={() => setShowIcons(false)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         {selectedFrame.src && (
           <img
@@ -75,15 +75,15 @@ function DashboardPerfil({ id, username, perfil, selectedFrame }) {
           srcSet=""
           className="dashboardImagePerfil rounded-circle"
         />
-        {showIcons && (
+        {isHovered && (
           <div className="iconContainer">
             <i
-              className="fa fa-pencil editIcon"
+              class="fa fa-pencil EditIcon"
               onClick={handleShowImg}
               aria-hidden="true"
             />
             <i
-              className="fa fa-trash deleteIcon"
+              class="fa fa-trash DeleteIcon"
               onClick={handleDeleteImage}
               aria-hidden="true"
             />

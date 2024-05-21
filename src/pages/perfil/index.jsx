@@ -42,8 +42,8 @@ function UserProfile() {
                 src={authUser?.photoURL}
               />
               <span>
-                <i class="fa fa-pencil me-3 editIcon" aria-hidden="true" />{" "}
-                <i class="fa fa-trash deleteIcon" aria-hidden="true" />
+                <i class="fa fa-pencil me-3 editIconPerfil" aria-hidden="true" />{" "}
+                <i class="fa fa-trash deleteIconPerfil" aria-hidden="true" />
               </span>
               <span className="font-weight-bold">{authUser?.displayName}</span>
               <span className="text-white-50">{authUser?.email}</span>

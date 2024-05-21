@@ -17,7 +17,7 @@
     /* Estilos específicos para dispositivos móveis */
     .offcanvasbg {
         background-color: #f8f9fac4;
-        backdrop-filter: blur(0.1rem) !important;
+        backdrop-filter: blur(0.1rem);
         max-width: 80dvw;
     }
   }

@@ -98,13 +98,14 @@ a {
 
 /* Dashboard */
 .dashboardFundo {
+  width: 100dvw;
   margin-top: 1rem;
   height: 100%;
 }
 
 .dashboardLinks {
-  width: calc(100vw - 40%);
-  height: 100%;
+  /* width: calc(100vw - 40%); */
+    min-height: 80dvh;
 }
 
 .dashboardtituloLinks {
@@ -144,7 +145,7 @@ a {
   position: absolute;
   width: 200px; /* Ajuste conforme necessário */
   height: 200px; /* Ajuste conforme necessário */
-  z-index: 2;
+  z-index: 1;
 }
 .configLinksIcons i, .addLink{
   cursor: pointer;
@@ -159,7 +160,17 @@ a {
 .arrastarLink:active{
   cursor: grabbing;
 }
-
+/*Perfil*/
+.perfilsuperiorwarp {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 10rem;
+}
 .dashboardImagePerfil {
   filter: opacity();
   position: relative;
@@ -168,18 +179,6 @@ a {
   height: 150px;
   object-fit: cover;
   transition: filter 0.3s;
-}
-
-.iconContainer2 {
-  position: absolute;
-  top: 33%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  gap: 1rem;
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: 3;
 }
 
 .iconContainer {
@@ -191,10 +190,10 @@ a {
   gap: 1rem;
   opacity: 0;
   transition: opacity 0.3s;
-  z-index: 3;
+  z-index: 4;
 }
   
-.frameepefilwarp:hover .iconContainer .iconContainer2 {
+.iconContainer {
   opacity: 1;
 }
 
@@ -202,16 +201,17 @@ a {
   filter: brightness(70%);
 }
 
-.editIcon,
-.deleteIcon {
-  color: rgb(236, 236, 236);
-  font-size: 20px;
+.EditIcon,
+.DeleteIcon {
+  /* color: rgb(219, 219, 219); */
+  color: 0;
+  font-size: 1.5rem;
   cursor: pointer;
-  z-index: 3;
+    z-index: 3;
 }
 
-.editIcon:hover,
-.deleteIcon:hover {
+.EditIcon:hover,
+.DeleteIcon:hover {
   color: white;
 }
 
@@ -357,20 +357,7 @@ a {
   outline-offset: 0.2rem;
 }
 
-.perfilsuperiorwarp {
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 10rem;
-  height: 10rem;
-  /* Altura da imagem perfil */
-  /* overflow: hidden; */
-  /* Para garantir que a moldura não ultrapasse */
-}
-
+/*Perfil End*/
 .paginaImagePerfil {
   width: 10rem;
   height: 10rem;
@@ -551,8 +538,8 @@ a {
   margin: auto;
   
 }
-
 .personalizarContainers {
+  width: 75% !important;
   margin-bottom: 5%;
   background-color: white;
   box-shadow: #000 10px 10px 15px;
@@ -605,6 +592,9 @@ a {
 }
 .hometerceiradivrow {
   width: 100vw;
+}
+.personalizarContainers {
+  width: 100% !important;
 }
 }
 

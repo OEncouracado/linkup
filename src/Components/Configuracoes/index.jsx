@@ -16,14 +16,14 @@ function Configuracoes() {
   const username = stats?.linkUserName;
 
   return (
-    <div className="dashboardLinks pb-5 d-flex flex-column justify-content-center align-items-center">
+    <div className="dashboardLinks pb-5 d-flex flex-column align-items-center">
     <Alert variant="info" className="mb-5">
       Sua página já está disponível aqui:{" "}
       <Link to={`/${username}`} target="_blank" rel="noreferrer">
         {username}
-      </Link>
+        </Link>.
       </Alert>
-      <Container className="personalizarContainers editFundo d-flex flex-column align-items-center py-2 px-3 w-75">
+      <Container className="personalizarContainers editFundo d-flex flex-column align-items-center py-2 px-3">
         <TrocalinkUserName/>
       </Container>
 

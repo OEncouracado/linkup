@@ -39,34 +39,16 @@
     border: solid 1px #BA68C8
 }
 
-.iconContainer {
-    position: absolute;
-    top: 33%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    gap: 1rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 3;
-  }
-  
-  .frameepefilwarp:hover .iconContainer .iconContainer2 {
-    opacity: 1;
-  }
-  .frameepefilwarp:hover .dashboardImagePerfil {
-    filter: brightness(70%);
-  }
 
-.editIcon,
-.deleteIcon {
+.editIconPerfil,
+.deleteIconPerfil {
   color: rgb(129, 129, 129);
   font-size: 20px;
   cursor: pointer;
   z-index: 3;
 }
 
-.editIcon:hover,
-.deleteIcon:hover {
+.editIconPerfil:hover,
+.deleteIconPerfil:hover {
   color: white;
 }

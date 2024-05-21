@@ -6,6 +6,7 @@ import DashboardLeft from "../../Components/Dashboard/DashboardLeft";
 import Personalizar from "../../Components/Personalizar";
 import DashboardTopBar from "../../Components/Dashboard/DasboardTopBar";
 import Configuracoes from "../../Components/Configuracoes";
+import { Col, Container, Row } from 'react-bootstrap';
 
 function Dashboard() {
   const { authUser } = useAuth();
@@ -23,15 +24,19 @@ function Dashboard() {
   return (
     <>
       <DashboardTopBar handleSetAba={handleSetAba} photo={avatar} id={id} />
-      <div className="dashboardFundo d-flex">
-        {aba === "dashboard" && <DashboardLeft />}
-        {aba === "personalizar" && <Personalizar />}
-        {aba === "estatisticas" && <DashboardLeft />}
-        {aba === "configuracoes" && <Configuracoes />}
-        <div className="previewFundo pt-3">
-          <Preview username={userName} />
-        </div>
-      </div>
+      <Container className="dashboardFundo d-flex justify-content-center me-0">
+        <Row className="w-100">
+          <Col md={8} >
+            {aba === "dashboard" && <DashboardLeft />}
+            {aba === "personalizar" && <Personalizar />}
+            {aba === "estatisticas" && <DashboardLeft />}
+            {aba === "configuracoes" && <Configuracoes />}
+          </Col>
+          <Col md={4} className="previewFundo py-3">
+            <Preview username={userName} />
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }
