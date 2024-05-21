@@ -2,11 +2,15 @@ import React from "react";
 import { Navbar, Container, Offcanvas } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import logo from "../../../Images/linkuplogotemporariosfundo.png";
-import "./style.css"
+import "./style.css";
 
 function HomeTopbar() {
   return (
-    <Navbar expand="md" className=" HomeTopbar rounded-pill px-4 my-4" fixed="top">
+    <Navbar
+      expand="md"
+      className=" HomeTopbar rounded-pill px-4 my-4"
+      fixed="top"
+    >
       <Container fluid>
         <Navbar.Brand>
           <a href="/">
@@ -15,7 +19,7 @@ function HomeTopbar() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar-expand-md" />
         <Navbar.Offcanvas
-          className="offcanvasbg HomeTopbar"
+          className="offcanvasbg"
           id="offcanvasNavbar-expand-md"
           aria-labelledby="offcanvasNavbarLabel-expand-md"
           placement="end"
@@ -23,16 +27,21 @@ function HomeTopbar() {
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel-expand-md">
               <Navbar.Brand>
-          <a href="/">
-            <img className="ImgLogoHomeTopbar" src={logo} alt="" srcset="" />
-          </a>
-        </Navbar.Brand>
+                <a href="/">
+                  <img
+                    className="ImgLogoHomeTopbar"
+                    src={logo}
+                    alt=""
+                    srcset=""
+                  />
+                </a>
+              </Navbar.Brand>
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="#action1">Cadastrar-se</Nav.Link>
-              <Nav.Link href="#action2">Entrar</Nav.Link>
+              <Nav.Link href="/Singup">Cadastrar-se</Nav.Link>
+              <Nav.Link href="/Login">Entrar</Nav.Link>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
