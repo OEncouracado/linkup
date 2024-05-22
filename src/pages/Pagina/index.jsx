@@ -86,18 +86,6 @@ if (stats?.VIP && stats?.userBackGround && css?.bgTipo === "imagem") {
             </div>
           </>
         )}
-        {/* <a
-          href="/Singup"
-          className="paginaFooter d-flex flex-column align-items-center"
-        >
-          <button className="paginaFooterBnt bn632-hover bn22 text-white paginaFooterItem">
-            Linkgame.app/voce
-            <button className="fecharBtn" onClick={() => handleClose()}>X</button>
-          </button>
-          <p className="text-white paginaFooterItem">
-            Junte-se a {stats?.username} e crie sua própria aventura.
-          </p>
-        </a> */}
       </div>
     </>
   );

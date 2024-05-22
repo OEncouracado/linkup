@@ -103,6 +103,9 @@ a {
   height: 100%;
 }
 
+.dashboardprincipal {
+  border-right: 2px solid #00000041;
+}
 .dashboardLinks {
   /* width: calc(100vw - 40%); */
     min-height: 80dvh;
@@ -217,7 +220,6 @@ a {
 
 .previewFundo{
   width: calc(100vw - 60%);
-  border-left: 2px solid #00000041;
   display: flex;
   align-items: flex-start;
   overflow: hidden;
@@ -288,6 +290,9 @@ a {
   display: flex;
   justify-content: center;
   background-color: beige;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLpJE2Gy-GdEp7koniPZ5sXuH4E7XiLTYOPAUBO57cVsDOhETa3D6dPo_dKPqtEl3PMUg);
+    background-size: 2%;
+    background-blend-mode: soft-light;
 
 }
 .paginaFundo {
@@ -545,6 +550,23 @@ a {
   box-shadow: #000 10px 10px 15px;
 }
 
+.previewFundo {
+  transition: max-height 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.previewFundo.expanded {
+  max-height: 100dvh;
+  /* Or any height you prefer when expanded */
+}
+
+.expand-btn {
+  opacity: 0;
+  display: none;
+  height: 0px;
+  width: 0px;
+}
 
 
 
@@ -565,7 +587,7 @@ a {
   .paginaFundo{
       background-position-x: 65%;
       background-size: cover;
-      width: 100vw;
+      width: 100dvw;
     background-color: beige;
   }
   .paginaFundoWarp{
@@ -595,6 +617,25 @@ a {
 }
 .personalizarContainers {
   width: 100% !important;
+}
+.previewFundo {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.previewFundo.expanded {
+  opacity: 1;
+  max-height: 100%;
+  /* Or any height you prefer when expanded */
+}
+
+.expand-btn {
+  opacity: 1;
+  display: block;
+  margin-bottom: 1rem;
+  height: inherit;
+  width: inherit;
 }
 }
 

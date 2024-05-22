@@ -6,7 +6,7 @@ import DashboardLeft from "../../Components/Dashboard/DashboardLeft";
 import Personalizar from "../../Components/Personalizar";
 import DashboardTopBar from "../../Components/Dashboard/DasboardTopBar";
 import Configuracoes from "../../Components/Configuracoes";
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 
 function Dashboard() {
   const { authUser } = useAuth();
@@ -16,9 +16,13 @@ function Dashboard() {
   const userName = stats?.linkUserName;
   const avatar = authUser?.photoURL;
   const [aba, setAba] = useState("dashboard");
+  const [isPreviewExpanded, setIsPreviewExpanded] = useState(false); // State for controlling expansion
 
   const handleSetAba = (valorAba) => {
     setAba(valorAba);
+  };
+  const togglePreview = () => {
+    setIsPreviewExpanded(!isPreviewExpanded); // Toggle expansion state
   };
 
   return (
@@ -26,13 +30,16 @@ function Dashboard() {
       <DashboardTopBar handleSetAba={handleSetAba} photo={avatar} id={id} />
       <Container className="dashboardFundo d-flex justify-content-center me-0">
         <Row className="w-100">
-          <Col md={8} >
+          <Col md={8} className="dashboardprincipal">
             {aba === "dashboard" && <DashboardLeft />}
             {aba === "personalizar" && <Personalizar />}
             {aba === "estatisticas" && <DashboardLeft />}
             {aba === "configuracoes" && <Configuracoes />}
+            <Button className="expand-btn" onClick={togglePreview} aria-expanded={isPreviewExpanded}>
+              {isPreviewExpanded ? 'Recolher Preview' : 'Preview'}
+            </Button>
           </Col>
-          <Col md={4} className="previewFundo py-3">
+          <Col md={4} className={`previewFundo py-3 ${isPreviewExpanded ? 'expanded' : ''}`}>
             <Preview username={userName} />
           </Col>
         </Row>
