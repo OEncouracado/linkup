@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert, Container } from 'react-bootstrap'
+import { Accordion, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { UserCss, UserInfo, useAuth, usePages } from '../../hook';// eslint-disable-next-line
 import TrocalinkUserName from './TrocalinkUserName';
@@ -23,9 +23,15 @@ function Configuracoes() {
         {username}
         </Link>.
       </Alert>
-      <Container className="personalizarContainers editFundo d-flex flex-column align-items-center py-2 px-3">
-        <TrocalinkUserName/>
-      </Container>
+
+      <Accordion alwaysOpen defaultActiveKey={"0"} className="personalizarContainers">
+        <Accordion.Item eventKey="0" className="editFundo d-flex flex-column align-items-center">
+          <Accordion.Header className="w-100">Link Personalizado</Accordion.Header>
+          <Accordion.Body>
+            <TrocalinkUserName />
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
 
     </div>
   )
