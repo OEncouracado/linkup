@@ -582,7 +582,44 @@ a {
   width: 0px;
 }
 
+/*PopUp Conquista*/
+.conquista {
+  border: #595959 solid .3rem;
+  padding: 0 !important;
+}
 
+/* custom-toast.css */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+}
+
+.toast-slide-in {
+  animation: slideIn 0.5s forwards;
+}
+
+.toast-slide-out {
+  animation: slideOut 0.5s forwards;
+}
 
 
 

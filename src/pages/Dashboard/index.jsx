@@ -7,6 +7,7 @@ import Personalizar from "../../Components/Personalizar";
 import DashboardTopBar from "../../Components/Dashboard/DasboardTopBar";
 import Configuracoes from "../../Components/Configuracoes";
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import Conquistas from "../../Components/Conquistas";
 
 function Dashboard() {
   const { authUser } = useAuth();
@@ -28,6 +29,7 @@ function Dashboard() {
   return (
     <>
       <DashboardTopBar handleSetAba={handleSetAba} photo={avatar} id={id} />
+      <Conquistas id={id} />
       <Container className="dashboardFundo d-flex justify-content-center me-0">
         <Row className="w-100">
           <Col md={8} className="dashboardprincipal">

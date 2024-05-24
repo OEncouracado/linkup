@@ -45,8 +45,8 @@ function DashboardTopBar({ handleSetAba, photo }) {
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Nav className="me-auto">
-          <Nav.Link onClick={() => handleSetAba("dashboard")} title="Dashboard">
-            Dashboard
+            <Nav.Link onClick={() => handleSetAba("dashboard")} title="Links">
+              Links
           </Nav.Link>
           <Nav.Link onClick={() => handleSetAba("personalizar")}>
             Personalizar
