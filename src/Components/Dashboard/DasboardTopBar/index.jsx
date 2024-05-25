@@ -41,25 +41,30 @@ function DashboardTopBar({ handleSetAba, photo }) {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel-expand-md">
-              <img className="ImgPerfilDashboardTopbar" src={photo ? photo : photoNull} alt="" srcset="" />
+              <img
+                className="ImgPerfilDashboardTopbar"
+                src={photo ? photo : photoNull}
+                alt=""
+                srcset=""
+              />
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Nav className="me-auto">
             <Nav.Link onClick={() => handleSetAba("dashboard")} title="Links">
               Links
-          </Nav.Link>
-          <Nav.Link onClick={() => handleSetAba("personalizar")}>
-            Personalizar
-          </Nav.Link>
-          <Nav.Link
-            onClick={() => handleSetAba("estatisticas")} //trocar para estatisticas
-          >
-            Estatísticas
-          </Nav.Link>
-          <Nav.Link onClick={() => handleSetAba("configuracoes")}>
-            Configurações
-          </Nav.Link>
-        </Nav>
+            </Nav.Link>
+            <Nav.Link onClick={() => handleSetAba("personalizar")}>
+              Personalizar
+            </Nav.Link>
+            <Nav.Link
+              onClick={() => handleSetAba("colecionaveis")} //trocar para estatisticas
+            >
+              Colecionáveis
+            </Nav.Link>
+            <Nav.Link onClick={() => handleSetAba("configuracoes")}>
+              Configurações
+            </Nav.Link>
+          </Nav>
         </Navbar.Offcanvas>
         <Button className="me-4">Teste</Button>
 
@@ -72,9 +77,7 @@ function DashboardTopBar({ handleSetAba, photo }) {
             />
           }
         >
-          <NavDropdown.Item href="/perfil">
-            Perfil
-          </NavDropdown.Item>
+          <NavDropdown.Item href="/perfil">Perfil</NavDropdown.Item>
           <NavDropdown.Item onClick={handleLogout}>
             <i class="fa fa-sign-out" aria-hidden="true" />
             Sair

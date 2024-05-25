@@ -549,6 +549,12 @@ a {
   background-color: white;
   box-shadow: #000 10px 10px 15px;
 }
+.colecionaveisContainers {
+  width: 100% !important;
+  margin-bottom: 5%;
+  background-color: white;
+  box-shadow: #000 10px 10px 15px;
+}
 .editFundo {
   width: 100%;
   border: #000 solid 0.1rem

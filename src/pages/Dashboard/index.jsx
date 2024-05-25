@@ -6,8 +6,9 @@ import DashboardLeft from "../../Components/Dashboard/DashboardLeft";
 import Personalizar from "../../Components/Personalizar";
 import DashboardTopBar from "../../Components/Dashboard/DasboardTopBar";
 import Configuracoes from "../../Components/Configuracoes";
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from "react-bootstrap";
 import Conquistas from "../../Components/Conquistas";
+import Colecionaveis from "../../Components/Colecionaveis";
 
 function Dashboard() {
   const { authUser } = useAuth();
@@ -35,13 +36,22 @@ function Dashboard() {
           <Col md={8} className="dashboardprincipal">
             {aba === "dashboard" && <DashboardLeft />}
             {aba === "personalizar" && <Personalizar />}
-            {aba === "estatisticas" && <DashboardLeft />}
+            {aba === "colecionaveis" && <Colecionaveis />}
             {aba === "configuracoes" && <Configuracoes />}
-            <Button className="expand-btn" onClick={togglePreview} aria-expanded={isPreviewExpanded}>
-              {isPreviewExpanded ? 'Recolher Preview' : 'Preview'}
+            <Button
+              className="expand-btn"
+              onClick={togglePreview}
+              aria-expanded={isPreviewExpanded}
+            >
+              {isPreviewExpanded ? "Recolher Preview" : "Preview"}
             </Button>
           </Col>
-          <Col md={4} className={`previewFundo py-3 ${isPreviewExpanded ? 'expanded' : ''}`}>
+          <Col
+            md={4}
+            className={`previewFundo py-3 ${
+              isPreviewExpanded ? "expanded" : ""
+            }`}
+          >
             <Preview username={userName} />
           </Col>
         </Row>
