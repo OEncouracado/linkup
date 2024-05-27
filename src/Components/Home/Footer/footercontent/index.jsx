@@ -60,22 +60,22 @@ function FooterContent() {
               <h3 className="colCentroTitle">Institucional</h3>
               <Container className="mt-5">
                 <p className="mb-4">
-                  <a href="/" target="_blank" rel="noopener noreferrer">
+                  <a href="#comofunciona">
                     Como Funciona
                   </a>
                 </p>
                 <p className="mb-4">
-                  <a href="/" target="_blank" rel="noopener noreferrer">
+                  <a href="/" >
                     Planos e VIP
                   </a>
                 </p>
                 <p className="mb-4">
-                  <a href="/" target="_blank" rel="noopener noreferrer">
+                  <a href="/" >
                     Perguntas Frequentes
                   </a>
                 </p>
                 <p className="mb-4">
-                  <a href="/" target="_blank" rel="noopener noreferrer">
+                  <a href="/" >
                     Contato
                   </a>
                 </p>

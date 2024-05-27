@@ -1,12 +1,23 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import criacao from "../../../Images/capturas/criacaodelink.gif"
+import cadastro from "../../../Images/capturas/cadastrar.gif"
 
 
 function HomeQuartaDiv() {
     return (
-        <Container className="homequartadiv bg-success text-light">
-            <h3 className='mt-4'>Como Funciona</h3>
+        <Container id='comofunciona' className="homequartadiv bg-success text-light">
+            <h3 className='mt-4 mb-2'>Como Funciona</h3>
+            <a href="Singup"><Row className='hometerceiradivrow'>
+                <Col md className='hometerceiradivcol'>
+                    <p><span className='text-warning'>Clique aqui</span> para se cadastrar</p>
+                    <p>O Cadastro é simples e o melhor<span> De Graça</span>!</p>
+                    <p>Basta um email e uma senha ou entrar com seu usuário do Google</p>
+                </Col>
+                <Col md className='hometerceiradivcol'>
+                    <img className='w-100 hometerceiradivimg' src={cadastro} alt="" srcset="" />
+                </Col>
+            </Row></a>
             <Row className='hometerceiradivrow'>
                 <Col md className='hometerceiradivcol'>
                     <img className='w-100 hometerceiradivimg' src={criacao} alt="" srcset="" />

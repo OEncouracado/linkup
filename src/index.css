@@ -148,7 +148,7 @@ a {
   position: absolute;
   width: 200px; /* Ajuste conforme necessário */
   height: 200px; /* Ajuste conforme necessário */
-  z-index: 1;
+  z-index: 2;
 }
 .configLinksIcons i, .addLink{
   cursor: pointer;
@@ -218,8 +218,7 @@ a {
   color: white;
 }
 
-.previewFundo{
-  width: calc(100vw - 60%);
+.previewFundo {
   display: flex;
   align-items: flex-start;
   overflow: hidden;
@@ -230,6 +229,7 @@ a {
   /* margin: auto; */
   margin-left: auto;
   margin-right: auto;
+  padding: auto;
   border: solid .5em black;
   border-radius: 2rem;
   overflow: hidden;
@@ -265,8 +265,8 @@ a {
 }
 
 .usernamePefilWarp {
-  width:fit-content;
   margin-top: 2rem;
+    width: fit-content;
   padding: 2%;
   padding-left: 8%;
   padding-right: 8%;
@@ -275,10 +275,9 @@ a {
 }
   
 .usernamePaginaWarp {
-  margin-bottom: 3rem;
     padding: 2%;
     padding-left: 5%;
-      padding-right: 5%;
+    padding-right: 5%;
     border-radius: 1.6rem;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
   min-width: max-content;
@@ -296,10 +295,10 @@ a {
 
 }
 .paginaFundo {
-  background-position-x: 65%;
-    background-size: cover;
+  min-height: 100vh;
     width: 30rem;
-    min-height: 100vh;
+  background-position-x: 65%;
+  background-size: cover;
   background-color: beige;
   display: flex;
   flex-direction: column;
@@ -316,12 +315,11 @@ a {
   cursor: pointer;
 }
 
-.paginaLink{
-  color: #000;
+.paginaLink {
+  width: 95%;
+  height: 4rem;
   text-decoration: none;
-  margin: 1rem;
-  width: 80%;
-  height: 2.5rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -333,7 +331,7 @@ a {
 
 .paginaLink:hover{
   transition: ease-in-out 0.2s;
-  box-shadow: 15px 15px 15px;
+  box-shadow: initial 15px 15px 15px;
   text-decoration: none;
 }
 
@@ -364,16 +362,16 @@ a {
 
 /*Perfil End*/
 .paginaImagePerfil {
-  width: 10rem;
-  height: 10rem;
+  width: 6rem;
+    height: 6rem;
     object-fit: cover;
   }
   
 .paginaMolduraPerfil {
   position: absolute;
-  width: 13.5rem;
+  width: 7.9rem;
   /* Largura igual à imagem perfil */
-  height: 13.5rem;
+  height: 7.9rem;
   /* Ou ajuste conforme necessário */
 }
 .paginaUsernamePerfil,
@@ -407,10 +405,6 @@ a {
 }
 .iconShowEditUsername {
   cursor: pointer;
-}
-.HomeTopbar {
-  width: 90%;
-  margin: auto;
 }
 
 .fundo1HomePage {
@@ -644,12 +638,12 @@ a {
   .paginaFundo{
       background-position-x: 65%;
       background-size: cover;
-      width: 100dvw;
+      width: 100%;
     background-color: beige;
   }
   .paginaFundoWarp{
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+      width: 100dvw;
     display:block;
     background: #000;
   }

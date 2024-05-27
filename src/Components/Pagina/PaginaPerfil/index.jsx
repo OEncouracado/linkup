@@ -65,7 +65,7 @@ function PaginaPerfil({ username, perfil, selectedFrame, rank, userStyle }) {
         />
       </div>
       <img
-        className="faixaRank w-100 mb-2 mt-4"
+        className="faixaRank w-100"
         src={rankImageUrl}
         alt=""
         srcset=""

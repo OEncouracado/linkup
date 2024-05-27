@@ -6,7 +6,7 @@ function PaginaNivel({ nivel, xp, maxxp, userStyle }) {
     color: userStyle?.corTextoNivel,
   };
   return (
-    <div className="paginaNivelWarper d-flex flex-column align-items-center w-50 my-3">
+    <div className="paginaNivelWarper d-flex flex-column align-items-center w-50 mb-3">
       <h6 className="nivelLabel" style={estilo}>
         Nível <span className="text-success">{nivel}</span>
       </h6>

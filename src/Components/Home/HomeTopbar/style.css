@@ -1,8 +1,24 @@
-.HomeTopbar {
-    background-color: #f8f9fac4;
-    backdrop-filter: blur(0.5rem);
-}
 
+.HomeTopbar {
+    background-color: #f8f9fa;
+        transition: all 0.3s ease-in-out;
+        width: 90%;
+        margin: auto;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-scrolled {
+        margin-top: 0;
+        margin-bottom: 5%;
+        width: 100%;
+    background-color: #f8f9fac4;
+    backdrop-filter: blur(.1rem);
+        /* Ou qualquer cor que você desejar */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+}
 
 .HomePrimeiraDivWarp{
     width: 90%;

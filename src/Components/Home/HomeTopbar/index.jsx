@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Container, Offcanvas } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import logo from "../../../Images/linkuplogotemporariosfundo.png";
 import "./style.css";
 
 function HomeTopbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      if (scrollTop > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Navbar
       expand="md"
-      className=" HomeTopbar rounded-pill px-4 my-4"
+      className={`px-4  ${isScrolled ? "navbar-scrolled" : "HomeTopbar rounded-pill"}`}
       fixed="top"
     >
       <Container fluid>
@@ -47,36 +65,6 @@ function HomeTopbar() {
         </Navbar.Offcanvas>
       </Container>
     </Navbar>
-
-    // <Navbar
-    //   variant="light"
-    //   fixed="top"
-    //   className="HomeTopbar rounded-pill px-4 my-4"
-    //   expand="md"
-    // >
-    //   <Container className="">
-    //     <Navbar.Brand>
-    //       <a href="/">
-    //         <img className="ImgLogoHomeTopbar" src={logo} alt="" srcset="" />
-    //       </a>
-    //     </Navbar.Brand>
-    //     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-    //     <Navbar.Collapse id="responsive-navbar-nav">
-    //       <Nav.Item>
-    //         <Button variant="outline-secondary" href="/Singup">
-    //           Cadastrar-se
-    //         </Button>
-    //         <Button
-    //           variant="outline-success"
-    //           className="ms-3 rounded-pill"
-    //           href="/Login"
-    //         >
-    //           Entrar
-    //         </Button>
-    //       </Nav.Item>
-    //     </Navbar.Collapse>
-    //   </Container>
-    // </Navbar>
   );
 }
 

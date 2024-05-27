@@ -188,7 +188,7 @@ function Signup() {
         <div className='d-flex'>
         <img src={logo} alt="logo linkup" className='logologinup p-3' />
         <div className="backFormupin d-flex flex-column align-items-center justify-content-center">
-                <Button onClick={() => setFormUsernameVisivel(!formUsernameVisivel)}>clique aqui</Button>
+                {/* <Button onClick={() => setFormUsernameVisivel(!formUsernameVisivel)}>clique aqui</Button> */}
                 {formUsernameVisivel ? (<Form className='mx-auto p-3 text-dark'>
                     <h1>Junte-se a Nós</h1>
                     <p class="text-concrete text-md ">Venha conosco nessa jornada, e de

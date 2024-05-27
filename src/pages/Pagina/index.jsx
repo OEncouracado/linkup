@@ -44,7 +44,7 @@ if (stats?.VIP && stats?.userBackGround && css?.bgTipo === "imagem") {
       </Helmet>
       <div className="paginaFundoWarp">
         <div className="paginaFundo pt-0" style={estiloLinearGr}>
-          <div className="paginaWarper mt-5 m-auto pb-5 d-flex flex-column align-items-center">
+          <div className="paginaWarper mt-4 m-auto pb-5 d-flex flex-column align-items-center">
             <PaginaPerfil
               perfil={stats?.imagemPerfil}
               username={stats?.username}
@@ -52,12 +52,12 @@ if (stats?.VIP && stats?.userBackGround && css?.bgTipo === "imagem") {
               rank={stats?.rank}
               userStyle={css}
             />
-            <PaginaNivel
+            {/* <PaginaNivel
               nivel={stats?.nivelUser}
               xp={stats?.xp}
               maxxp={stats?.maxXp}
               userStyle={css}
-            />
+            /> */}
             <PaginaLinkList pages={pages && pages} userStyle={css} />
           </div>
           <div className="botaoCrieSeuLink text-center pb-3">
