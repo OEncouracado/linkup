@@ -5,6 +5,7 @@ import HomeSegundaDiv from "../../Components/Home/HomeSegundaDiv";
 import Footer from "../../Components/Home/Footer";
 import HomeTerceiraDiv from "../../Components/Home/HomeTerceiraDiv";
 import HomeQuartaDiv from "../../Components/Home/HomeQuartaDiv";
+import HomeDivPreco from "../../Components/Home/HomeDivPrecos";
 
 function Homepage() {
   return (
@@ -14,6 +15,7 @@ function Homepage() {
       <HomeQuartaDiv />
       <HomeTerceiraDiv />
       <HomeSegundaDiv />
+      <HomeDivPreco />
       <Footer />
     </>
   );
