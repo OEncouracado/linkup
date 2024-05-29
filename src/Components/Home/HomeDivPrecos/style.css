@@ -24,3 +24,6 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 }
+.card {
+    font-family: "Press Start 2P", system-ui;
+}
