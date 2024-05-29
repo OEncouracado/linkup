@@ -98,7 +98,7 @@ a {
 
 /* Dashboard */
 .dashboardFundo {
-  width: 100dvw;
+  max-width: 100dvw !important;
   margin-top: 1rem;
   height: 100%;
 }
@@ -448,7 +448,8 @@ a {
 
 .homesegundadiv,
 .hometerceiradiv,
-.homequartadiv {
+.homequartadiv,
+.precos {
   max-width: 100vw !important;
   margin-left: 0 !important; 
   margin-right: 0 !important;
