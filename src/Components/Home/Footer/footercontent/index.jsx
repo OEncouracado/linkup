@@ -59,32 +59,33 @@ function FooterContent() {
             <div className="colCentroWarper mt-5">
               <h3 className="colCentroTitle">Institucional</h3>
               <Container className="mt-5">
-                <p className="mb-4">
+                <p className="mb-4" title="pressione [ENTER] para pular o tutorial">
                   <a href="#comofunciona">
                     Como Funciona
                   </a>
                 </p>
-                <p className="mb-4">
-                  <a href="/" >
+                <p className="mb-4" title="Cash e Pay-to-win">
+                  <a href="#divPlanos" >
                     Planos e VIP
                   </a>
                 </p>
-                <p className="mb-4">
+                <p className="mb-4" title="Perguntas Frequentes">
                   <a href="/" >
                     Perguntas Frequentes
                   </a>
                 </p>
-                <p className="mb-4">
+                <p className="mb-4" title="/ALL">
                   <a href="/" >
                     Contato
                   </a>
                 </p>
-                <p className="mb-4">
+                <p className="mb-4" title="Objection!">
                   <a href="/" target="_blank" rel="noopener noreferrer">
                     Contratos e Termos
                   </a>
                 </p>
               </Container>
+
             </div>
           </Col>
         </Row>

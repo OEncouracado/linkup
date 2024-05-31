@@ -7,7 +7,7 @@ import cadastro from "../../../Images/capturas/cadastrar.gif"
 function HomeQuartaDiv() {
     return (
         <Container id='comofunciona' className="homequartadiv bg-success text-light">
-            <h3 className='mt-4 mb-2'>Como Funciona</h3>
+            <h3 className='my-4'>Como Funciona</h3>
             <a href="Singup"><Row className='hometerceiradivrow'>
                 <Col md className='hometerceiradivcol'>
                     <p><span className='text-warning'>Clique aqui</span> para se cadastrar</p>

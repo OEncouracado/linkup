@@ -1,33 +1,39 @@
 import React from "react";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import "./style.css";
 
 const planContents = [
     {
-        header: "Free",
-        price: 0,
+        header: "Grátis",
+        price: "00",
+        cents: "00",
         features: [
             "10 users included",
             "2 GB of storage",
             "Email support",
             "Help center access"
         ],
-        buttonLabel: "Sign up for free",
-        outline: true
+        buttonLabel: "Criar minha conta Gratuita",
+        outline: true,
+        buttonURL: "/Singup",
     },
     {
-        header: "Pro",
-        price: 15,
+        header: "Mensal",
+        price: 29,
+        cents: 95,
         features: [
             "20 users included",
             "10 GB of storage",
             "Priority email support",
             "Help center access"
         ],
-        buttonLabel: "Get started",
+        buttonLabel: "Começar com V.I.P.",
         outline: false
     },
     {
-        header: "Enterprise",
-        price: 29,
+        header: "Anual",
+        price: 14,
+        cents: 95,
         features: [
             "30 users included",
             "15 GB storage",
@@ -41,35 +47,36 @@ const planContents = [
 
 const Plan = props => {
     return (
-        <div className="card mb-4 shadow-sm">
-            <div className="card-header">
+        <Col md={3} className="pb-5">
+            <Card className="CardBG my-4 mx-1 shadow-sm">
+                <Card.Body className="cardbody">
+                    <Card.Title>
                 <h4 className="my-0 font-weight-normal">
                     {props.header}
                 </h4>
-            </div>
-            <div className="card-body">
-                <h1 className="card-title pricing-card-title">
-                    {`$${props.price}`}
-                    <small className="text-muted">
-                        / mo
-                    </small>
-                </h1>
+                    </Card.Title>
+                    <h4 className="card-title pricing-card-title">
+                        {`R$${props.price}`}
+                        <span style={{ fontSize: ".7em" }}>{`,${props.cents}`}</span>
+                        <span className="mes">
+                            /mês
+                        </span>
+                    </h4>
                 <ul className="list-unstyled mt-3 mb-4">
                     {props.features.map((feature, i) => (
                         <li key={i}>{feature}</li>
                     ))}
                 </ul>
-                <button
-                    className={`btn btn-lg btn-block ${props.outline
-                            ? "btn-outline-primary"
-                            : "btn-primary"
-                        }`}
-                    type="button"
+                    <Button
+                        variant={props.outline ? "outline-light" : "light"}
+                        className="rounded-pill" style={{ height: "3rem", fontSize: ".7rem" }}
+                        href={props.buttonURL}
                 >
                     {props.buttonLabel}
-                </button>
-            </div>
-        </div>
+                    </Button>
+                </Card.Body>
+            </Card>
+        </Col>
     );
 };
 
@@ -80,17 +87,22 @@ const Plans = () => {
                 key={obj.header}
                 header={obj.header}
                 price={obj.price}
+                cents={obj.cents}
                 features={obj.features}
                 buttonLabel={obj.buttonLabel}
                 outline={obj.outline}
+                buttonURL={obj.buttonURL}
             />
         );
     });
 
     return (
-        <div className="card-deck mb-3 text-center">
-            {plans}
-        </div>
+        <Container id='divPlanos' className="precos">
+            <h1 className="text-center my-4">Planos</h1>
+            <Row className="card-deck d-flex justify-content-center mb-3 text-center">
+                {plans}
+            </Row>
+        </Container>
     );
 };
 
