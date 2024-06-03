@@ -34,10 +34,11 @@ a:hover {
 
 
 .colEsquerdaImg {
-    margin-top: 2rem;
+    margin-top: 5rem;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
+    filter: invert();
 }
 
 .colEsquerdaWarper {

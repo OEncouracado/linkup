@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Container, Offcanvas } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
-import logo from "../../../Images/linkuplogotemporariosfundo.png";
+import logo from "../../../Images/linkuplogo.png";
 import "./style.css";
 
 function HomeTopbar() {
@@ -26,13 +26,20 @@ function HomeTopbar() {
   return (
     <Navbar
       expand="md"
-      className={`px-4  ${isScrolled ? "navbar-scrolled" : "HomeTopbar rounded-pill"}`}
+      className={`px-4  ${
+        isScrolled ? "navbar-scrolled" : "HomeTopbar rounded-pill"
+      }`}
       fixed="top"
     >
       <Container fluid>
         <Navbar.Brand>
           <a href="/">
-            <img className="ImgLogoHomeTopbar" src={logo} alt="" srcset="" />
+            <img
+              className="ImgLogoHomeTopbar"
+              src={logo}
+              alt="logo"
+              srcset=""
+            />
           </a>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar-expand-md" />

@@ -425,7 +425,8 @@ a {
 
 .ImgLogoHomeTopbar {
   width: 8rem;
-  filter: invert();
+  margin: 1rem;
+  /* filter: invert(); */
 }
 .HomePrimeiraDiv {
   max-width: 100vw !important;
