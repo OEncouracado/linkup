@@ -38,7 +38,7 @@ function QeADiv() {
                   Quais métodos de pagamento são aceitos?
                 </h6>
                 <p className="flex-grow-1">
-                  Aceitamos cartões de crédito, PayPal e transferências
+                  Aceitamos cartões de crédito, PayPal, Pix e transferências
                   bancárias.
                 </p>
               </div>
@@ -68,8 +68,7 @@ function QeADiv() {
                   Existe um período de teste gratuito?
                 </h6>
                 <p className="flex-grow-1">
-                  Sim, oferecemos um período de teste gratuito de 14 dias para
-                  novos usuários.
+                  Trabalhamos com um sistema de VIP ou seja, somente algumas funções são pagas, o resto é gratis para usar.
                 </p>
               </div>
             </Col>
@@ -90,10 +89,8 @@ function QeADiv() {
             </Col>
             <Col md="6" lg="4" className="mb-4 d-flex">
               <div className="faq-item d-flex flex-column h-100 p-3">
-                <i
-                  className="fa fa-book text-primary my-2 FAQIcons"
-                  aria-hidden="true"
-                />
+                <i class="fas fa-user-shield text-primary my-2 FAQIcons" aria-hidden="true" />
+
                 <h6 className="mb-3 text-primary">
                   Os meus dados estão seguros?
                 </h6>
@@ -106,7 +103,7 @@ function QeADiv() {
             <Col md="6" lg="4" className="mb-4 d-flex">
               <div className="faq-item d-flex flex-column h-100 p-3">
                 <i
-                  className="fa fa-rocket text-primary my-2 FAQIcons"
+                  className="fas fa-file-signature text-primary my-2 FAQIcons"
                   aria-hidden="true"
                 />
                 <h6 className="mb-3 text-primary">
@@ -121,7 +118,7 @@ function QeADiv() {
             <Col md="6" lg="4" className="mb-4 d-flex">
               <div className="faq-item d-flex flex-column h-100 p-3">
                 <i
-                  className="fa fa-home text-primary my-2 FAQIcons"
+                  className="fas fa-headset text-primary my-2 FAQIcons"
                   aria-hidden="true"
                 />
                 <h6 className="mb-3 text-primary">
@@ -136,7 +133,7 @@ function QeADiv() {
             <Col md="6" lg="4" className="mb-4 d-flex">
               <div className="faq-item d-flex flex-column h-100 p-3">
                 <i
-                  className="fa fa-book text-primary my-2 FAQIcons"
+                  className="fas fa-credit-card text-primary my-2 FAQIcons"
                   aria-hidden="true"
                 />
                 <h6 className="mb-3 text-primary">
