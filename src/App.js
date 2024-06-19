@@ -15,6 +15,7 @@ import {
 } from "react-router-dom";
 import Pagina from "./pages/Pagina";
 import UserProfile from "./pages/perfil";
+import ContatoPage from "./pages/contato";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
@@ -23,6 +24,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="contato" element={<ContatoPage />} />
           <Route
             path="/dashboard"
             element={

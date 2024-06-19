@@ -69,10 +69,10 @@ function FooterContent() {
                   <a href="#divPlanos">Planos e VIP</a>
                 </p>
                 <p className="mb-4" title="Perguntas Frequentes">
-                  <a href="/">Perguntas Frequentes</a>
+                  <a href="#perguntas">Perguntas Frequentes</a>
                 </p>
                 <p className="mb-4" title="/ALL">
-                  <a href="/">Contato</a>
+                  <a href="contato">Contato</a>
                 </p>
                 <p className="mb-4" title="Objection!">
                   <a href="/" target="_blank" rel="noopener noreferrer">

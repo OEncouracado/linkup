@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 
 function QeADiv() {
   return (
-    <Container className="homeqeadiv py-4">
+    <Container id="perguntas" className="homeqeadiv py-4">
       <Container>
         <section>
           <h3 className="text-center pb-2 text-primary fw-bold">FAQ</h3>
