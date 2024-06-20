@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import "./style.css";
+import StripePricingTable from "./stripe";
 
 const planContents = [
     {
@@ -98,10 +99,11 @@ const Plans = () => {
 
     return (
         <Container id='divPlanos' className="precos">
-            <h1 className="text-center my-4">Planos</h1>
+            <StripePricingTable />
+            {/* <h1 className="text-center my-4">Planos</h1>
             <Row className="card-deck d-flex justify-content-center mb-3 text-center">
                 {plans}
-            </Row>
+            </Row> */}
         </Container>
     );
 };

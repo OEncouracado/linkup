@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom"; // eslint-disable-next-line
 import { useLinkPages, UseLinkCss, UseLinkInfo, useAuth } from "./../../hook";
-import PaginaPerfil from "./../../Components/Pagina/PaginaPerfil/index";
+import PaginaPerfil from "./../../Components/Pagina/PaginaPerfil/index";// eslint-disable-next-line
 import PaginaNivel from "./../../Components/Pagina/PaginaNivel/index";
 import PaginaLinkList from "./../../Components/Pagina/PaginaLinkList/index";
 import { Helmet } from "react-helmet"; // eslint-disable-next-line
@@ -20,6 +20,8 @@ function Pagina() {
   const handleClose = () => {
     setExibirA(false);
   };
+
+  const fontePagina = { fontFamily: "fibra" };
 
   let estiloLinearGr = {};
 
@@ -42,7 +44,7 @@ if (stats?.VIP && stats?.userBackGround && css?.bgTipo === "imagem") {
       <Helmet>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Helmet>
-      <div className="paginaFundoWarp">
+      <div className="paginaFundoWarp" >
         <div className="paginaFundo pt-0" style={estiloLinearGr}>
           <div className="paginaWarper mt-4 m-auto pb-5 d-flex flex-column align-items-center">
             <PaginaPerfil

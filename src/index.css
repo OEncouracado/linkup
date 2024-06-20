@@ -9,7 +9,7 @@
 /* Global Styles */
 body {
   margin: 0;
-  font-family: "Press Start 2P", system-ui !important;
+  font-family: "Press Start 2P", system-ui;
     font-size: 1rem !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -284,6 +284,7 @@ a {
 }
 
 .paginaFundoWarp{
+
   overflow-x: hidden;
   width: 100%;
   display: flex;
