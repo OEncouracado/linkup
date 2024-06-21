@@ -24,8 +24,6 @@ function PerfilEdit() {
         }),
         [molduraAtual]
     );
-
-    console.log(userMoldura.src);
     // eslint-disable-next-line
     const [frames, setFrames] = useState([]);
     const [selectedFrame, setSelectedFrame] = useState(userMoldura);

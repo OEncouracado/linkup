@@ -23,8 +23,6 @@ function TrocaFundoUserName({ userId }) {
       );
     }
   };
-
-  console.log("troca de cor de fundo ", fundoUserNameAtual);
   return (
     <div className="w-100 my-1">
       <Form className="">

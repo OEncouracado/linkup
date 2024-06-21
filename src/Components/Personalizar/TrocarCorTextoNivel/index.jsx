@@ -23,8 +23,6 @@ function TrocaCorTextoNivel({ userId }) {
       );
     }
   };
-
-  console.log("troca de cor de TextoNivel ", corTextoNivelAtual);
   return (
     <div className="w-100 my-1">
       <Form className="">

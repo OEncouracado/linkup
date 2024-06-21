@@ -26,8 +26,6 @@ function TrocarborderStyle({ userId }) {
     }
   };
 
-  console.log("troca de Tipo de Borda ", borderStyleAtual);
-
   // Objeto com opções de borda em português
   const borderStyleOptions = {
     Nenhum: "none",

@@ -23,8 +23,6 @@ function TrocaborderColor({ userId }) {
       );
     }
   };
-
-  console.log("troca de cor da Borda ", borderColorAtual);
   return (
     <div className="w-100 my-1">
       <Form className="">

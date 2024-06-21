@@ -24,7 +24,6 @@ function TrocaCorFundo({ userId }) {
     }
   };
 
-  console.log("troca de cor de fundo ", corFundoAtual);
   return (
     <div className="w-100 my-1">
       <Form className="">

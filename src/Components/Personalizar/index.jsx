@@ -39,8 +39,8 @@ function Personalizar() {
     [molduraAtual]
   );
 
-  console.log(userMoldura.src);
-  const [frames, setFrames] = useState([]);
+  console.log(userMoldura.src);// eslint-disable-next-line
+  const [frames, setFrames] = useState([]);// eslint-disable-next-line
   const [selectedFrame, setSelectedFrame] = useState(userMoldura);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ function Personalizar() {
             </Link>
             .
           </Alert>
-          <Accordion alwaysOpen defaultActiveKey={"0"} className="personalizarContainers">
+          <Accordion alwaysOpen defaultActiveKey={["0", "1", "2", "3"]} className="personalizarContainers">
             <Accordion.Item eventKey="0" className="editFundo d-flex flex-column align-items-center">
               <Accordion.Header className="w-100">Imagem de Perfil e Alterar Nome</Accordion.Header>
               <Accordion.Body className="AccBody">

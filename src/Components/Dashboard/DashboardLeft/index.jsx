@@ -33,7 +33,7 @@ function DashboardLeft() {
   return (
     <>
       {authUser && (
-        <div className="dashboardLinks pb-5 d-flex flex-column justify-content-center align-items-center">
+        <div className="dashboardLinks pb-5 d-flex flex-column align-items-center">
           <Alert variant="info" className="mb-5">
             Sua página já está disponível aqui:{" "}
             <Link to={`/${userName}`} target="_blank" rel="noreferrer">

@@ -23,8 +23,6 @@ function TrocaCorLink({ userId }) {
       );
     }
   };
-
-  console.log("troca de cor de Botao ", corBotaoAtual);
   return (
     <div className="w-100 my-1">
       <Form className="">

@@ -23,8 +23,6 @@ function TrocaCorSombraUserName({ userId }) {
       );
     }
   };
-
-  console.log("troca de cor de SombraBotao ", corSombraUserNameAtual);
   return (
     <div className="w-100 my-1">
       <Form className="">

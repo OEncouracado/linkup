@@ -23,8 +23,6 @@ function TrocaCorTextoBotao({ userId }) {
       );
     }
   };
-
-  console.log("troca de cor de TextoBotao ", corTextoBotaoAtual);
   return (
     <div className="w-100 my-1">
       <Form className="">

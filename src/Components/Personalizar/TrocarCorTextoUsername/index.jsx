@@ -23,8 +23,6 @@ function TrocaCorTextoUserName({ userId }) {
       );
     }
   };
-
-  console.log("troca de cor de TextoUserName ", corTextoUserNameAtual);
   return (
     <div className="w-100 my-1">
       <Form className="">

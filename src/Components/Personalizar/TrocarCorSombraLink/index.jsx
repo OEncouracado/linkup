@@ -23,8 +23,6 @@ function TrocaCorSombraLink({ userId }) {
       );
     }
   };
-
-  console.log("troca de cor de SombraBotao ", corSombraBotaoAtual);
   return (
     <div className="w-100 my-1">
       <Form className="">

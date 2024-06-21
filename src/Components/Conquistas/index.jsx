@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, ToastContainer } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
 import Toast from "react-bootstrap/Toast";
 import { fb } from "../../shared/service";
 import { UserInfo } from "../../hook";
@@ -18,49 +17,39 @@ function Conquistas({ id }) {
     if (ArraycompletedObjectives) {
       setCompletedObjectives(ArraycompletedObjectives);
     }
-    if (completedObjectives?.length > 0) {
-      const ultimoNumeroObjetivo =
-        completedObjectives[completedObjectives.length - 1];
-      fb.firestore
-        .collection("Objetivos")
-        .doc("htsim9AD40DTTkCz9FJI")
-        .get()
-        .then((doc) => {
-          if (doc.exists) {
-            const objetivosMap = doc.data().objetivos;
-            const objetivoConcluido = objetivosMap[ultimoNumeroObjetivo];
-            console.log("Objetivo concluído:", objetivoConcluido);
-            setShowToast(true);
-            setLastCompletedObjective(objetivoConcluido);
-          } else {
-            console.log("Documento não encontrado");
-          }
-        })
-        .catch((error) => {
-          console.error("Erro ao buscar objetivo:", error);
-        });
-    }
-    // eslint-disable-next-line
-  }, [completedObjectives]);
+  }, [ArraycompletedObjectives]);
 
-  const adicionarObjetivo = () => {
-    if (!completedObjectives?.includes(1)) {
-      const novosObjetivos = [...completedObjectives, 1];
-      fb.firestore
-        .collection("UserStats")
-        .doc(id)
-        .update({
-          completedObjectives: novosObjetivos,
-        })
-        .then(() => {
-          console.log("Objetivo adicionado com sucesso!");
-          setCompletedObjectives(novosObjetivos);
-        })
-        .catch((error) => {
-          console.error("Erro ao adicionar objetivo:", error);
-        });
+  useEffect(() => {
+    const storedCompletedObjectives = JSON.parse(localStorage.getItem("completedObjectives")) || [];
+
+    if (completedObjectives.length > 0) {
+      const novoObjetivo = completedObjectives.find(obj => !storedCompletedObjectives.includes(obj));
+
+      if (novoObjetivo !== undefined) {
+        fb.firestore
+          .collection("Objetivos")
+          .doc("htsim9AD40DTTkCz9FJI")
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              const objetivosMap = doc.data().objetivos;
+              const objetivoConcluido = objetivosMap[novoObjetivo];
+              console.log("Objetivo concluído:", objetivoConcluido);
+              setLastCompletedObjective(objetivoConcluido);
+              setShowToast(true);
+
+              storedCompletedObjectives.push(novoObjetivo);
+              localStorage.setItem("completedObjectives", JSON.stringify(storedCompletedObjectives));
+            } else {
+              console.log("Documento não encontrado");
+            }
+          })
+          .catch((error) => {
+            console.error("Erro ao buscar objetivo:", error);
+          });
+      }
     }
-  };
+  }, [completedObjectives]);
 
   const handleToastClose = () => {
     setShowToast(false);
@@ -84,7 +73,7 @@ function Conquistas({ id }) {
                   src={lastCompletedObjective?.imagem}
                   alt=""
                   width="70%"
-                  srcset=""
+                  srcSet=""
                 />
               </Col>
               <Col className="py-auto px-0">
@@ -97,7 +86,6 @@ function Conquistas({ id }) {
           </Toast.Body>
         </Toast>
       </ToastContainer>
-      <Button onClick={adicionarObjetivo}>Adicionar Objetivo</Button>
     </>
   );
 }

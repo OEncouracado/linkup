@@ -23,8 +23,6 @@ function TrocarborderWith({ userId }) {
       );
     }
   };
-
-  console.log("troca de cor de TextoUserName ", borderWithAtual);
   return (
     <div className="w-100 my-1">
       <Form className="">

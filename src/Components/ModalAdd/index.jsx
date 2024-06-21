@@ -1,41 +1,81 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { fb } from "../../shared/service";
-
+import { UserInfo } from "../../hook";
 
 function ModalAdd({ show, setShow, userId }) {
+  const infoArray = UserInfo(userId);
+  const stats = infoArray && infoArray[0];
+  const ArraycompletedObjectives = stats?.completedObjectives;
+  const [completedObjectives, setCompletedObjectives] = useState([]);
+
+  useEffect(() => {
+    if (ArraycompletedObjectives) {
+      setCompletedObjectives(ArraycompletedObjectives);
+    }
+  }, [ArraycompletedObjectives]);
 
   const handleClose = () => {
     setShow(false);
     setNomeLink("");
     setUrlLink("");
   };
+
   const [nomeLink, setNomeLink] = useState("");
   const [urlLink, setUrlLink] = useState("");
+
   const handleAddLink = async () => {
     const linkPagesRef = fb.firestore.collection("linkPages");
 
     try {
-      // Verifique se o usuário está autenticado antes de adicionar o link
       if (userId) {
-        const userLinkPagesRef = linkPagesRef.doc(userId); // Referência ao documento do usuário
-
-        // Obtém o documento do usuário
+        const userLinkPagesRef = linkPagesRef.doc(userId);
         const userLinkPagesDoc = await userLinkPagesRef.get();
 
-        // Verifica se o documento do usuário já existe
+        let linksArray = [];
         if (userLinkPagesDoc.exists) {
-          const linksArray = userLinkPagesDoc.data().Links || [];
+          linksArray = userLinkPagesDoc.data().Links || [];
+        }
 
-          const newLink = { nome: nomeLink, url: urlLink };
+        const newLink = { nome: nomeLink, url: urlLink };
+        const updatedLinksArray = [...linksArray, newLink];
 
-          const updatedLinksArray = [...linksArray, newLink];
-
+        if (userLinkPagesDoc.exists) {
           await userLinkPagesRef.update({ Links: updatedLinksArray });
         } else {
-          // Se o documento do usuário não existir, cria um novo com o ID do usuário como nome do documento
-          await userLinkPagesRef.set({ Links: [{ nome: nomeLink, url: urlLink }] });
+          await userLinkPagesRef.set({ Links: [newLink] });
+        }
+
+        // Verificação e adição dos objetivos
+        let newCompletedObjectives = [...completedObjectives];
+
+        const addObjectiveIfNeeded = (objective) => {
+          if (!newCompletedObjectives.includes(objective)) {
+            newCompletedObjectives.push(objective);
+          }
+        };
+
+        // Objetivo 0: Adicionou o primeiro link
+        if (linksArray.length === 0) {
+          addObjectiveIfNeeded(0);
+        }
+
+        // Objetivo 1: Adicionou 5 links
+        if (updatedLinksArray.length === 5) {
+          addObjectiveIfNeeded(1);
+        }
+
+        // Objetivo 2: Adicionou 10 links
+        if (updatedLinksArray.length === 10) {
+          addObjectiveIfNeeded(2);
+        }
+
+        if (newCompletedObjectives.length !== completedObjectives.length) {
+          await fb.firestore.collection("UserStats").doc(userId).update({
+            completedObjectives: newCompletedObjectives,
+          });
+          setCompletedObjectives(newCompletedObjectives);
         }
 
         handleClose(true);
