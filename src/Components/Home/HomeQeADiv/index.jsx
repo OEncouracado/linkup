@@ -3,10 +3,10 @@ import { Col, Container, Row } from "react-bootstrap";
 
 function QeADiv() {
   return (
-    <Container id="perguntas" className="homeqeadiv py-4">
+    <Container id="perguntas" className="homeqeadiv bg-light py-4">
       <Container>
         <section>
-          <h3 className="text-center pb-2 text-primary fw-bold">FAQ</h3>
+          <h3 className="text-center pb-2 text-black fw-bold">Perguntas <span className="text-primary">Frequentes</span></h3>
           <p className="text-center mb-5">
             Encontre as respostas para as dúvidas mais frequentes
           </p>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import "./style.css";
+import "./style.css";// eslint-disable-next-line
 import StripePricingTable from "./stripe";
 
 const planContents = [
@@ -9,10 +9,7 @@ const planContents = [
         price: "00",
         cents: "00",
         features: [
-            "10 users included",
-            "2 GB of storage",
-            "Email support",
-            "Help center access"
+            "Links ilimitados e uma página personalizável, adicione atalhos para as suas redes sociais."
         ],
         buttonLabel: "Criar minha conta Gratuita",
         outline: true,
@@ -23,10 +20,7 @@ const planContents = [
         price: 29,
         cents: 95,
         features: [
-            "20 users included",
-            "10 GB of storage",
-            "Priority email support",
-            "Help center access"
+            "Perfeito para quem quer mais opções de personalização e análise."
         ],
         buttonLabel: "Começar com V.I.P.",
         outline: false
@@ -36,10 +30,7 @@ const planContents = [
         price: 14,
         cents: 95,
         features: [
-            "30 users included",
-            "15 GB storage",
-            "Phone and email support",
-            "Help center access"
+            "Fique tranquilo por um ano, mais opções de personalização e análise, receba mais visitantes e economize."
         ],
         buttonLabel: "Contact us",
         outline: false
@@ -63,7 +54,7 @@ const Plan = props => {
                             /mês
                         </span>
                     </h4>
-                <ul className="list-unstyled mt-3 mb-4">
+                    <ul className="list-unstyled" style={{ height: "11rem" }}>
                     {props.features.map((feature, i) => (
                         <li key={i}>{feature}</li>
                     ))}
@@ -99,11 +90,11 @@ const Plans = () => {
 
     return (
         <Container id='divPlanos' className="precos">
-            <StripePricingTable />
-            {/* <h1 className="text-center my-4">Planos</h1>
+            {/* <StripePricingTable /> */}
+            <h1 className="text-center my-4">Planos</h1>
             <Row className="card-deck d-flex justify-content-center mb-3 text-center">
                 {plans}
-            </Row> */}
+            </Row>
         </Container>
     );
 };
