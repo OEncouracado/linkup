@@ -222,7 +222,10 @@ a {
   display: flex;
   align-items: flex-start;
   overflow: hidden;
-    
+  position: -webkit-sticky; /* para compatibilidade com navegadores antigos */
+  position: sticky;
+  top: 0;
+  z-index: 10; 
 }
 
 .previewFrame {
@@ -233,6 +236,10 @@ a {
   border: solid .5em black;
   border-radius: 2rem;
   overflow: hidden;
+  position: -webkit-sticky; /* para compatibilidade com navegadores antigos */
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .linkENome{
@@ -581,12 +588,13 @@ a {
   transition: max-height 0.3s ease;
   display: flex;
   flex-direction: column;
+  position: -webkit-sticky; /* para compatibilidade com navegadores antigos */
+  position: sticky;
+  top: 0;
+  z-index: 10;  
 }
 
-.previewFundo.expanded {
-  max-height: 100dvh;
-  /* Or any height you prefer when expanded */
-}
+
 
 .expand-btn {
   opacity: 0;
@@ -683,12 +691,14 @@ a {
   width: 100% !important;
 }
 .previewFundo {
+  
   opacity: 0;
   max-height: 0;
   overflow: hidden;
 }
 
 .previewFundo.expanded {
+  max-height: 100dvh;
   opacity: 1;
   max-height: 100%;
   /* Or any height you prefer when expanded */

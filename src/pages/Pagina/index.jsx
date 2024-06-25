@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom"; // eslint-disable-next-line
 import { useLinkPages, UseLinkCss, UseLinkInfo, useAuth } from "./../../hook";
-import PaginaPerfil from "./../../Components/Pagina/PaginaPerfil/index";// eslint-disable-next-line
+import PaginaPerfil from "./../../Components/Pagina/PaginaPerfil/index"; // eslint-disable-next-line
 import PaginaNivel from "./../../Components/Pagina/PaginaNivel/index";
 import PaginaLinkList from "./../../Components/Pagina/PaginaLinkList/index";
 import { Helmet } from "react-helmet"; // eslint-disable-next-line
@@ -20,31 +20,31 @@ function Pagina() {
   const handleClose = () => {
     setExibirA(false);
   };
-
+  // eslint-disable-next-line
   const fontePagina = { fontFamily: "fibra" };
 
   let estiloLinearGr = {};
 
-if (stats?.VIP && stats?.userBackGround && css?.bgTipo === "imagem") {
-  estiloLinearGr = {
-    backgroundImage: `url(${stats?.userBackGround})`,
-  };
-} else if (css?.bgTipo === "corsolida") {
-  estiloLinearGr = {
-    backgroundColor: css?.corFundo,
-  };
-} else if (css?.bgTipo === "gradiente") {
-  estiloLinearGr = {
-    background: `linear-gradient(180deg, ${css?.corFundo} 0%, ${css?.corFundo2} 100%)`,
-  };
-}
+  if (stats?.VIP && stats?.userBackGround && css?.bgTipo === "imagem") {
+    estiloLinearGr = {
+      backgroundImage: `url(${stats?.userBackGround})`,
+    };
+  } else if (css?.bgTipo === "corsolida") {
+    estiloLinearGr = {
+      backgroundColor: css?.corFundo,
+    };
+  } else if (css?.bgTipo === "gradiente") {
+    estiloLinearGr = {
+      background: `linear-gradient(180deg, ${css?.corFundo} 0%, ${css?.corFundo2} 100%)`,
+    };
+  }
 
   return (
     <>
       <Helmet>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Helmet>
-      <div className="paginaFundoWarp" >
+      <div className="paginaFundoWarp">
         <div className="paginaFundo pt-0" style={estiloLinearGr}>
           <div className="paginaWarper mt-4 m-auto pb-5 d-flex flex-column align-items-center">
             <PaginaPerfil
