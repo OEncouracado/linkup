@@ -12,7 +12,7 @@ function PerfilRank({ rank }) {
         // Substitua "NOME_DO_BUCKET" pelo nome do seu bucket no Firebase Storage
         const rankImageRef = fb?.storage
           .ref()
-          .child(`decoracao_rank/${determinarFaixaRank(rank)}.png`);
+          .child(`decoracao_rank/${rankDetails.nome}.png`);
         const url = await rankImageRef.getDownloadURL();
         setRankImageUrl(url);
       } catch (error) {
@@ -20,46 +20,54 @@ function PerfilRank({ rank }) {
       }
     };
 
-    getRankImageUrl();
+    getRankImageUrl(); // eslint-disable-next-line
   }, [rank]); // Executa sempre que o valor de "rank" mudar
 
-  // Função para determinar a faixa de rank com base no valor de rank
   const determinarFaixaRank = (rank) => {
-    if (rank >= 1000) {
-      return "Mestre";
-    } else if (rank >= 800) {
-      return "Diamante";
-    } else if (rank >= 600) {
-      return "Platina";
-    } else if (rank >= 400) {
-      return "Ouro";
-    } else if (rank >= 200) {
-      return "Prata";
-    } else if (rank >= 0) {
-      return "Bronze";
-    } else {
-      return null;
+    const ranks = [
+      { nome: "Bronze", min: 0, max: 199 },
+      { nome: "Prata", min: 200, max: 399 },
+      { nome: "Ouro", min: 400, max: 599 },
+      { nome: "Platina", min: 600, max: 799 },
+      { nome: "Diamante", min: 800, max: 999 },
+      { nome: "Mestre", min: 1000, max: rank }
+    ];
+
+    for (let i = 0; i < ranks.length; i++) {
+      if (rank <= ranks[i].max) {
+        return ranks[i];
+      }
     }
+    return null;
   };
+
+  const rankDetails = determinarFaixaRank(rank);
+
+  if (!rankDetails) {
+    return <div>Rank inválido</div>;
+  }
+
   return (
     <div className="d-flex flex-column align-items-center w-50 my-3">
       <h6 className="nivelLabel">
-        Rank <span className="text-success">{determinarFaixaRank(rank)}</span>
+        Rank <span className="text-success">{rankDetails.nome}</span>
       </h6>
       <ProgressBar
+        title={`${rank}/${rankDetails.max}`}
         className="bar xp-bar"
         striped
         animated
         variant="success"
         now={rank}
-        max={1000}
+        min={rankDetails.min}
+        max={rankDetails.max}
       />
       <img
         className="faixaRank w-100 mb-2 mt-4"
         src={rankImageUrl}
         alt=""
         srcset=""
-        title={determinarFaixaRank(rank)}
+        title={rankDetails.nome}
       />
     </div>
   );
