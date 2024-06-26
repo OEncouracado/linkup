@@ -6,10 +6,12 @@ import VIPModal from "./../../Components/Modais/VIPmodal";
 import DashboardNivel from "./../../Components/Dashboard/DashboardNivel/index";
 import PerfilRank from "./PerfilRank";
 import { Form, Button, Col, Row } from "react-bootstrap";
+import PhoneInput from "react-phone-number-input";
+import br from "react-phone-number-input/locale/pt-BR";
+import "react-phone-number-input/style.css";
 
 function UserProfile() {
   const { authUser } = useAuth();
-  console.log("authUser.phoneNumber :>> ", authUser?.phoneNumber);
   const id = authUser?.uid;
   const navigate = useNavigate();
   const infoArray = UserInfo(id);
@@ -18,6 +20,8 @@ function UserProfile() {
   const [mensagem, setMensagem] = useState("");
   const phoneNumberAtual = authUser?.phoneNumber;
   const [phoneNumero, setPhoneNumero] = useState(phoneNumberAtual);
+  console.log("phoneNumero :>> ", phoneNumero);
+  console.log("phoneNumberAtual :>> ", phoneNumberAtual);
 
   const closeModal = () => {
     setMensagem("");
@@ -29,15 +33,11 @@ function UserProfile() {
     setShowModal(true);
   };
 
-  const handlePhoneNumberChange = (e) => {
-    setPhoneNumero(e.target.value);
-  };
-
-  const handlePhoneNumberUpdate = async () => {
+  const handlePhoneNumberUpdate = async (phoneNumero) => {
     try {
       // Obtenha o usuário atualmente autenticado
       // Faça a atualização do displayName
-      await authUser?.updateProfile({
+      await authUser.updateProfile({
         phoneNumber: phoneNumero,
       });
       alert("Número de telefone atualizado com sucesso!");
@@ -50,9 +50,9 @@ function UserProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handlePhoneNumberUpdate();
+    await handlePhoneNumberUpdate(phoneNumero);
     // Limpar o campo do formulário após a atualização
-    setPhoneNumero('');
+    setPhoneNumero("");
   };
 
   return (
@@ -74,8 +74,14 @@ function UserProfile() {
                 src={authUser?.photoURL}
               />
               <span>
-                <i className="fa fa-pencil me-3 editIconPerfil" aria-hidden="true" />{" "}
-                <i className="fa fa-trash deleteIconPerfil" aria-hidden="true" />
+                <i
+                  className="fa fa-pencil me-3 editIconPerfil"
+                  aria-hidden="true"
+                />{" "}
+                <i
+                  className="fa fa-trash deleteIconPerfil"
+                  aria-hidden="true"
+                />
               </span>
               <span className="font-weight-bold">{authUser?.displayName}</span>
               <span className="text-white-50">{authUser?.email}</span>
@@ -106,12 +112,12 @@ function UserProfile() {
                   <Col md={12}>
                     <Form.Group className="mb-3">
                       <Form.Label>Número</Form.Label>
-                      <Form.Control
-                        type="text"
+                      <PhoneInput
+                        labels={br}
+                        defaultCountry="BR"
                         placeholder="(00) 9 0000-0000"
-                        defaultValue={phoneNumberAtual}
                         value={phoneNumero}
-                        onChange={handlePhoneNumberChange}
+                        onChange={setPhoneNumero}
                       />
                     </Form.Group>
                   </Col>
@@ -150,7 +156,11 @@ function UserProfile() {
                   </Col>
                 </Row>
                 <div className="mt-5 text-center">
-                  <Button type="submit" className="btn btn-primary profile-button">
+                  <Button
+                    onClick={handleSubmit}
+                    type="submit"
+                    className="btn btn-primary profile-button"
+                  >
                     Salvar
                   </Button>
                 </div>
