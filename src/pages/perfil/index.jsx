@@ -9,6 +9,7 @@ import { Form, Button, Col, Row } from "react-bootstrap";
 import PhoneInput from "react-phone-number-input";
 import br from "react-phone-number-input/locale/pt-BR";
 import "react-phone-number-input/style.css";
+import { RecaptchaVerifier, PhoneAuthProvider, updatePhoneNumber } from "firebase/auth";
 
 function UserProfile() {
   const { authUser } = useAuth();
@@ -20,8 +21,11 @@ function UserProfile() {
   const [mensagem, setMensagem] = useState("");
   const phoneNumberAtual = authUser?.phoneNumber;
   const [phoneNumero, setPhoneNumero] = useState(phoneNumberAtual);
-  console.log("phoneNumero :>> ", phoneNumero);
-  console.log("phoneNumberAtual :>> ", phoneNumberAtual);
+  const [verificationCode, setVerificationCode] = useState("");
+  const [verificationId, setVerificationId] = useState(null);
+  const [isCodeSent, setIsCodeSent] = useState(false);
+  console.log('phoneNumberAtual :>> ', phoneNumberAtual);
+  console.log('phoneNumero :>> ', phoneNumero);
 
   const closeModal = () => {
     setMensagem("");
@@ -33,26 +37,41 @@ function UserProfile() {
     setShowModal(true);
   };
 
-  const handlePhoneNumberUpdate = async (phoneNumero) => {
+  const handleSendVerificationCode = async () => {
     try {
-      // Obtenha o usuário atualmente autenticado
-      // Faça a atualização do displayName
-      await authUser.updateProfile({
-        phoneNumber: phoneNumero,
-      });
+      const applicationVerifier = new RecaptchaVerifier('recaptcha-container', {}, authUser.auth);
+      const provider = new PhoneAuthProvider(authUser.auth);
+      const verificationId = await provider.verifyPhoneNumber(phoneNumero, applicationVerifier);
+      setVerificationId(verificationId);
+      setIsCodeSent(true);
+      alert("Código de verificação enviado!");
+    } catch (error) {
+      console.error("Erro ao enviar o código de verificação:", error);
+      alert(error.message);
+    }
+  };
+
+  const handleVerifyCode = async () => {
+    try {
+      const phoneCredential = PhoneAuthProvider.credential(verificationId, verificationCode);
+      await updatePhoneNumber(authUser, phoneCredential);
       alert("Número de telefone atualizado com sucesso!");
     } catch (error) {
-      // Ocorreu um erro ao atualizar o número de telefone
-      console.error("Erro ao atualizar o Telefone:", error);
+      console.error("Erro ao verificar o código:", error);
       alert(error.message);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handlePhoneNumberUpdate(phoneNumero);
-    // Limpar o campo do formulário após a atualização
-    setPhoneNumero("");
+    if (!isCodeSent) {
+      await handleSendVerificationCode();
+    } else {
+      await handleVerifyCode();
+      setPhoneNumero('');
+      setVerificationCode('');
+      setIsCodeSent(false);
+    }
   };
 
   return (
@@ -115,16 +134,30 @@ function UserProfile() {
                       <PhoneInput
                         labels={br}
                         defaultCountry="BR"
-                        placeholder="(00) 9 0000-0000"
+                        placeholder={phoneNumberAtual ? phoneNumberAtual : "(00) 9 0000-0000"}
                         value={phoneNumero}
                         onChange={setPhoneNumero}
+                        onFocus={() => setPhoneNumero(phoneNumberAtual)}
                       />
                     </Form.Group>
                   </Col>
+                  {isCodeSent && (
+                    <Col md={12}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Código de Verificação</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Insira o código de verificação"
+                          value={verificationCode}
+                          onChange={(e) => setVerificationCode(e.target.value)}
+                        />
+                      </Form.Group>
+                    </Col>
+                  )}
                   <Col md={12}>
                     <Form.Group className="mb-3">
                       <Form.Label>E-mail</Form.Label>
-                      <Form.Control
+                      {authUser?.emailVerified ? (<Form.Control
                         disabled
                         type="text"
                         placeholder="enter email id"
@@ -136,7 +169,26 @@ function UserProfile() {
                         value={authUser?.email}
                         isInvalid={!authUser?.emailVerified}
                         isValid={authUser?.emailVerified}
-                      />
+                      />) : (<Row className="">
+                        <Col md={8}>
+                            <Form.Control
+                              disabled
+                              type="text"
+                              placeholder="enter email id"
+                              title={
+                                authUser?.emailVerified
+                                  ? "Não é possível alterar o E-mail"
+                                  : "Email não verificado"
+                              }
+                              value={authUser?.email}
+                              isInvalid={!authUser?.emailVerified}
+                              isValid={authUser?.emailVerified}
+                            />
+                        </Col>
+                        <Col md={4}>
+                          <Button type="button"> Verificar E-Mail</Button>
+                        </Col>
+                      </Row>)}
                     </Form.Group>
                   </Col>
                   <Col md={12}>
@@ -155,16 +207,17 @@ function UserProfile() {
                     </Form.Group>
                   </Col>
                 </Row>
+                <div id="recaptcha-container"></div>
                 <div className="mt-5 text-center">
                   <Button
-                    onClick={handleSubmit}
                     type="submit"
                     className="btn btn-primary profile-button"
                   >
-                    Salvar
+                    {isCodeSent ? "Verificar Código" : "Salvar"}
                   </Button>
                 </div>
               </Form>
+
             </div>
           </div>
         </div>
