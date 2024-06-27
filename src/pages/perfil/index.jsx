@@ -9,7 +9,8 @@ import { Form, Button, Col, Row } from "react-bootstrap";
 import PhoneInput from "react-phone-number-input";
 import br from "react-phone-number-input/locale/pt-BR";
 import "react-phone-number-input/style.css";
-import { RecaptchaVerifier, PhoneAuthProvider, updatePhoneNumber } from "firebase/auth";
+import { RecaptchaVerifier, PhoneAuthProvider, updatePhoneNumber, sendEmailVerification } from "firebase/auth";
+import PasswordChangeModal from "../../Components/Modais/PasswordChangeModal";
 
 function UserProfile() {
   const { authUser } = useAuth();
@@ -24,8 +25,10 @@ function UserProfile() {
   const [verificationCode, setVerificationCode] = useState("");
   const [verificationId, setVerificationId] = useState(null);
   const [isCodeSent, setIsCodeSent] = useState(false);
-  console.log('phoneNumberAtual :>> ', phoneNumberAtual);
-  console.log('phoneNumero :>> ', phoneNumero);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+
+
+  console.log('authUser :>> ', authUser);
 
   const closeModal = () => {
     setMensagem("");
@@ -74,6 +77,15 @@ function UserProfile() {
     }
   };
 
+  const handleSendEmailVerification = async () => {
+    try {
+      await sendEmailVerification(authUser);
+      alert(`Email de Verificação Enviado para ${authUser?.email}`);
+    } catch (error) {
+      alert("Erro ao enviar o Email de Verificação:", error.message);
+    }
+  }
+
   return (
     <>
       <i
@@ -115,7 +127,7 @@ function UserProfile() {
               </div>
               <Form onSubmit={handleSubmit}>
                 <Row className="mt-2">
-                  <Col md={12}>
+                  <Col md={8}>
                     <Form.Group className="mb-3">
                       <Form.Label>Nome</Form.Label>
                       <Form.Control
@@ -124,6 +136,14 @@ function UserProfile() {
                         value={authUser?.displayName}
                         readOnly
                       />
+                    </Form.Group>
+                  </Col>
+                  <Col md={4}>
+                    <Form.Group className="mb-3 d-flex flex-column">
+                      <Form.Label>Senha</Form.Label>
+                      <Button onClick={() => setShowPasswordModal(true)}>
+                        Troque sua Senha
+                      </Button>
                     </Form.Group>
                   </Col>
                 </Row>
@@ -186,7 +206,7 @@ function UserProfile() {
                             />
                         </Col>
                         <Col md={4}>
-                          <Button type="button"> Verificar E-Mail</Button>
+                            <Button type="button" onClick={handleSendEmailVerification}> Verificar E-Mail</Button>
                         </Col>
                       </Row>)}
                     </Form.Group>
@@ -223,6 +243,7 @@ function UserProfile() {
         </div>
       </div>
       <VIPModal show={showModal} onClose={closeModal} mensagem={mensagem} />
+      <PasswordChangeModal show={showPasswordModal} onClose={() => setShowPasswordModal(false)} />
     </>
   );
 }
