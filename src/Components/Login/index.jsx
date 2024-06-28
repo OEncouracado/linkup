@@ -14,7 +14,6 @@ function Login() {
   const [mostrarErro, setMostrarErro] = useState(false);
   const [erroVariant, setErroVariant] = useState("");
   const [erro, setErro] = useState("");
-  const [esqueci, setEsqueci] = useState(false);
 
   const handleEye = (campo) => {
     if (campo === "senha") {
@@ -84,20 +83,6 @@ function Login() {
         });
     }
   };
-
-  // const handleGoogleLogin = () => {
-  //   fb.auth
-  //     .signInWithPopup(fb.googleProvider)
-  //     .then((result) => {
-  //       // Handle Google login success
-  //       console.log("Login com o Google realizado com sucesso:", result);
-  //     })
-  //     .catch((error) => {
-  //       // Handle Google login error
-  //       console.error("Erro ao fazer login com o Google:", error);
-  //     });
-  // };
-
   const handleGoogleLogin = async () => {
     try {
       const result = await fb?.auth.signInWithPopup(fb.googleProvider);
@@ -193,34 +178,6 @@ function Login() {
     <div className="d-flex">
       <img src={logo} alt="logo linkup" className="logologinup p-3" />
       <div className="backFormupin d-flex flex-column align-items-center justify-content-center">
-        {esqueci ? (
-          <>
-            <Form className="mx-auto pt-3 text-dark">
-              <h1>Recuperar Senha</h1>
-              <Form.Group className="mb-3" controlId="emailRecuperar">
-                <Form.Label>
-                  Coloque seu email para recuperação da senha
-                </Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="seuemail@seuprovedor.com.br"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Form.Group>
-              <Button className="botaoCriar rounded-pill" type="submit">
-                Recuperar
-              </Button>
-              <p
-                style={{ cursor: "pointer" }}
-                onClick={() => setEsqueci(false)}
-              >
-                <small>Voltar para o Login</small>
-              </p>
-            </Form>
-          </>
-        ) : (
-          <>
             <Form className="mx-auto pt-3 text-dark">
               <h1>Bem Vindo de Volta!</h1>
               <p class="text-concrete text-md ">
@@ -256,9 +213,9 @@ function Login() {
                   </InputGroup.Text>
                 </InputGroup>
               </Form.Group>
-              <p style={{ cursor: "pointer" }} onClick={() => setEsqueci(true)}>
+          <a href="recuperacao">
                 <small>Esqueci minha senha</small>
-              </p>
+          </a>
               <Form.Group className="d-grid gap-2 my-4">
                 <Button
                   onClick={handleLogin}
@@ -298,9 +255,7 @@ function Login() {
             <small className="mb-3">
               Não tem uma conta? Sem problemas{" "}
               <Link to={"/Singup"}>clique aqui</Link>
-            </small>
-          </>
-        )}
+        </small>
       </div>
       <div className="fundoImgSingUp"></div>
     </div>

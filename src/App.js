@@ -16,6 +16,8 @@ import {
 import Pagina from "./pages/Pagina";
 import UserProfile from "./pages/perfil";
 import ContatoPage from "./pages/contato";
+import RecuperacaoEnviado from "./Components/Telas Extras/recuperacaoEnviado";
+import RecuperarSenha from "./Components/Telas Extras/recuperarSenha";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
@@ -52,6 +54,14 @@ function App() {
           <Route
             path="/Login"
             element={isAuthed ? <Navigate to="/dashboard" /> : <Login />}
+          />
+          <Route
+            path="/recuperacao"
+            element={isAuthed ? <Navigate to="/dashboard" /> : <RecuperarSenha />}
+          />
+           <Route
+            path="/recuperacao/concluido"
+            element={isAuthed ? <Navigate to="/dashboard" /> : <RecuperacaoEnviado />}
           />
           <Route
             path="/Singup"

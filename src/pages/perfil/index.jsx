@@ -11,6 +11,7 @@ import br from "react-phone-number-input/locale/pt-BR";
 import "react-phone-number-input/style.css";
 import { RecaptchaVerifier, PhoneAuthProvider, updatePhoneNumber, sendEmailVerification } from "firebase/auth";
 import PasswordChangeModal from "../../Components/Modais/PasswordChangeModal";
+import BloquearUsuario from "./bloquearUsuario";
 
 function UserProfile() {
   const { authUser } = useAuth();
@@ -237,8 +238,10 @@ function UserProfile() {
                   </Button>
                 </div>
               </Form>
-
             </div>
+          </div>
+          <div className="col-md-2 py-5 d-flex align-items-end">
+            <BloquearUsuario />
           </div>
         </div>
       </div>
