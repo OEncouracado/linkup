@@ -14,6 +14,7 @@ function Login() {
   const [mostrarErro, setMostrarErro] = useState(false);
   const [erroVariant, setErroVariant] = useState("");
   const [erro, setErro] = useState("");
+  const [esqueci, setEsqueci] = useState(false);
 
   const handleEye = (campo) => {
     if (campo === "senha") {
@@ -192,82 +193,114 @@ function Login() {
     <div className="d-flex">
       <img src={logo} alt="logo linkup" className="logologinup p-3" />
       <div className="backFormupin d-flex flex-column align-items-center justify-content-center">
-        <Form className="mx-auto pt-3 text-dark">
-          <h1>Bem Vindo de Volta!</h1>
-          <p class="text-concrete text-md ">Que bom te ver por aqui denovo!</p>
-          <Form.Group className="mb-3" controlId="emailLogin">
-            <Form.Label>E-mail:</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="seuemail@seuprovedor.com.br"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="senhaLogin">
-            <Form.Label>Senha:</Form.Label>
-            <InputGroup>
-              <Form.Control
-                type={mostrarSenha ? "text" : "password"}
-                placeholder="Senha"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                required
-              />
-              <InputGroup.Text
-                onClick={() => handleEye("senha")}
-                style={{
-                  cursor: "pointer",
-                  backgroundColor: "white",
-                }}
+        {esqueci ? (
+          <>
+            <Form className="mx-auto pt-3 text-dark">
+              <h1>Recuperar Senha</h1>
+              <Form.Group className="mb-3" controlId="emailRecuperar">
+                <Form.Label>
+                  Coloque seu email para recuperação da senha
+                </Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="seuemail@seuprovedor.com.br"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group>
+              <Button className="botaoCriar rounded-pill" type="submit">
+                Recuperar
+              </Button>
+              <p
+                style={{ cursor: "pointer" }}
+                onClick={() => setEsqueci(false)}
               >
-                {mostrarSenha ? <Eye /> : <EyeSlash />}
-              </InputGroup.Text>
-            </InputGroup>
-          </Form.Group>
-          <a href="/#">
-            <small>Esqueci minha senha</small>
-          </a>
-          <Form.Group className="d-grid gap-2 my-4">
+                <small>Voltar para o Login</small>
+              </p>
+            </Form>
+          </>
+        ) : (
+          <>
+            <Form className="mx-auto pt-3 text-dark">
+              <h1>Bem Vindo de Volta!</h1>
+              <p class="text-concrete text-md ">
+                Que bom te ver por aqui denovo!
+              </p>
+              <Form.Group className="mb-3" controlId="emailLogin">
+                <Form.Label>E-mail:</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="seuemail@seuprovedor.com.br"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="senhaLogin">
+                <Form.Label>Senha:</Form.Label>
+                <InputGroup>
+                  <Form.Control
+                    type={mostrarSenha ? "text" : "password"}
+                    placeholder="Senha"
+                    value={senha}
+                    onChange={(e) => setSenha(e.target.value)}
+                    required
+                  />
+                  <InputGroup.Text
+                    onClick={() => handleEye("senha")}
+                    style={{
+                      cursor: "pointer",
+                      backgroundColor: "white",
+                    }}
+                  >
+                    {mostrarSenha ? <Eye /> : <EyeSlash />}
+                  </InputGroup.Text>
+                </InputGroup>
+              </Form.Group>
+              <p style={{ cursor: "pointer" }} onClick={() => setEsqueci(true)}>
+                <small>Esqueci minha senha</small>
+              </p>
+              <Form.Group className="d-grid gap-2 my-4">
+                <Button
+                  onClick={handleLogin}
+                  disabled={!confirBotao}
+                  size="lg"
+                  className="botaoCriar rounded-pill"
+                >
+                  Entrar
+                </Button>
+              </Form.Group>
+              <Alert
+                className="alertaLogin"
+                variant={erroVariant}
+                show={mostrarErro}
+              >
+                <p>{erro}</p>
+              </Alert>
+            </Form>
+            <p>OU</p>
             <Button
-              onClick={handleLogin}
-              disabled={!confirBotao}
-              size="lg"
-              className="botaoCriar rounded-pill"
+              variant="light"
+              size="md"
+              id="btn-Google"
+              onClick={handleGoogleLogin}
+              className="mb-3 border"
             >
-              Entrar
+              <div className="">
+                <img
+                  src="https://linkme.bio/wp-content/themes/linkme/img/icon-google.svg"
+                  className="me-3"
+                  style={{ width: "1rem" }}
+                  alt="Google logo"
+                />
+                <span>Entrar com o Google</span>
+              </div>
             </Button>
-          </Form.Group>
-          <Alert
-            className="alertaLogin"
-            variant={erroVariant}
-            show={mostrarErro}
-          >
-            <p>{erro}</p>
-          </Alert>
-        </Form>
-        <p>OU</p>
-        <Button
-          variant="light"
-          size="md"
-          id="btn-Google"
-          onClick={handleGoogleLogin}
-          className="mb-3 border"
-        >
-          <div className="">
-            <img
-              src="https://linkme.bio/wp-content/themes/linkme/img/icon-google.svg"
-              className="me-3"
-              style={{ width: "1rem" }}
-              alt="Google logo"
-            />
-            <span>Entrar com o Google</span>
-          </div>
-        </Button>
-        <small className="mb-3">
-          Não tem uma conta? Sem problemas{" "}
-          <Link to={"/Singup"}>clique aqui</Link>
-        </small>
+            <small className="mb-3">
+              Não tem uma conta? Sem problemas{" "}
+              <Link to={"/Singup"}>clique aqui</Link>
+            </small>
+          </>
+        )}
       </div>
       <div className="fundoImgSingUp"></div>
     </div>
