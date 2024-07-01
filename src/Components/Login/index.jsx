@@ -4,7 +4,7 @@ import { Eye, EyeSlash } from "react-bootstrap-icons";
 import logo from "../../Images/linkuplogotemporario.png";
 import { emailRegex } from "../Constants";
 import { fb } from "../../shared/service";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -14,29 +14,22 @@ function Login() {
   const [mostrarErro, setMostrarErro] = useState(false);
   const [erroVariant, setErroVariant] = useState("");
   const [erro, setErro] = useState("");
+  const navigate = useNavigate();
 
   const handleEye = (campo) => {
     if (campo === "senha") {
       setMostrarSenha(!mostrarSenha);
-    } else {
     }
   };
 
-  // Função para verificar se o botão deve ser habilitado
   const verificarHabilitacaoBotao = () => {
-    // Verifique se todos os campos obrigatórios estão preenchidos
     if (email && emailRegex.test(email) && senha) {
-      // Outras verificações necessárias, se houver
-
-      // Habilitar o botão se todas as condições forem atendidas
       setConfirBotao(true);
     } else {
-      // Desabilitar o botão se alguma condição não for atendida
       setConfirBotao(false);
     }
   };
 
-  // Chamada da função de verificação sempre que houver uma mudança nos campos do formulário
   useEffect(() => {
     verificarHabilitacaoBotao(); // eslint-disable-next-line
   }, [email, senha]);
@@ -57,7 +50,7 @@ function Login() {
       setErro("");
       fb?.auth
         .signInWithEmailAndPassword(email, senha)
-        .then((res) => {
+        .then(async (res) => {
           if (!res.user) {
             setErroVariant("danger");
             setErro(
@@ -65,9 +58,21 @@ function Login() {
             );
             setMostrarErro(true);
           } else {
-            setErroVariant("success");
-            setErro("Logado com Sucesso");
-            setMostrarErro(true);
+            const userDoc = await fb?.firestore
+              .collection("UserStats")
+              .doc(res.user.uid)
+              .get();
+            const userData = userDoc.data();
+
+            if (userData.isBlocked) {
+              navigate("/bloqueado");
+            } else {
+              setErroVariant("success");
+              setErro("Logado com Sucesso");
+              setMostrarErro(true);
+              // Redirecionar para o dashboard ou outra página
+              navigate("/dashboard");
+            }
           }
         })
         .catch((err) => {
@@ -83,12 +88,12 @@ function Login() {
         });
     }
   };
+
   const handleGoogleLogin = async () => {
     try {
       const result = await fb?.auth.signInWithPopup(fb.googleProvider);
       const user = result.user;
 
-      // Verifica se os documentos já existem antes de criar novos
       const userStatsDoc = await fb?.firestore
         .collection("UserStats")
         .doc(user.uid)
@@ -103,15 +108,14 @@ function Login() {
         .get();
 
       if (!userStatsDoc.exists || !userCssDoc.exists || !linkPagesDoc.exists) {
-        // Cria os documentos apenas se eles não existirem
         await fb?.firestore.collection("UserStats").doc(user.uid).set({
-          imagemPerfil: user.photoURL, // Você pode definir um valor padrão aqui se necessário
+          imagemPerfil: user.photoURL,
           maxXp: 0,
-          moldura: "", // Pode ser definido um valor padrão também
+          moldura: "",
           nivelUser: 1,
-          userBackGround: "", // Valor padrão
+          userBackGround: "",
           userId: user.uid,
-          username: user.displayName, // Usando o nome de usuário fornecido pelo usuário
+          username: user.displayName,
           xp: 0,
         });
         await fb?.firestore.collection("UserCss").doc(user.uid).set({
@@ -131,6 +135,7 @@ function Login() {
           userId: user.uid,
           username: user.displayName,
         });
+
         try {
           await fb?.firestore
             .collection("UserNames")
@@ -147,6 +152,7 @@ function Login() {
             error
           );
         }
+
         try {
           await fb?.firestore
             .collection("linkUserNames")
@@ -178,83 +184,83 @@ function Login() {
     <div className="d-flex">
       <img src={logo} alt="logo linkup" className="logologinup p-3" />
       <div className="backFormupin d-flex flex-column align-items-center justify-content-center">
-            <Form className="mx-auto pt-3 text-dark">
-              <h1>Bem Vindo de Volta!</h1>
-              <p class="text-concrete text-md ">
-                Que bom te ver por aqui denovo!
-              </p>
-              <Form.Group className="mb-3" controlId="emailLogin">
-                <Form.Label>E-mail:</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="seuemail@seuprovedor.com.br"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="senhaLogin">
-                <Form.Label>Senha:</Form.Label>
-                <InputGroup>
-                  <Form.Control
-                    type={mostrarSenha ? "text" : "password"}
-                    placeholder="Senha"
-                    value={senha}
-                    onChange={(e) => setSenha(e.target.value)}
-                    required
-                  />
-                  <InputGroup.Text
-                    onClick={() => handleEye("senha")}
-                    style={{
-                      cursor: "pointer",
-                      backgroundColor: "white",
-                    }}
-                  >
-                    {mostrarSenha ? <Eye /> : <EyeSlash />}
-                  </InputGroup.Text>
-                </InputGroup>
-              </Form.Group>
-          <a href="recuperacao">
-                <small>Esqueci minha senha</small>
-          </a>
-              <Form.Group className="d-grid gap-2 my-4">
-                <Button
-                  onClick={handleLogin}
-                  disabled={!confirBotao}
-                  size="lg"
-                  className="botaoCriar rounded-pill"
-                >
-                  Entrar
-                </Button>
-              </Form.Group>
-              <Alert
-                className="alertaLogin"
-                variant={erroVariant}
-                show={mostrarErro}
+        <Form className="mx-auto pt-3 text-dark">
+          <h1>Bem Vindo de Volta!</h1>
+          <p className="text-concrete text-md">
+            Que bom te ver por aqui denovo!
+          </p>
+          <Form.Group className="mb-3" controlId="emailLogin">
+            <Form.Label>E-mail:</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="seuemail@seuprovedor.com.br"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="senhaLogin">
+            <Form.Label>Senha:</Form.Label>
+            <InputGroup>
+              <Form.Control
+                type={mostrarSenha ? "text" : "password"}
+                placeholder="Senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                required
+              />
+              <InputGroup.Text
+                onClick={() => handleEye("senha")}
+                style={{
+                  cursor: "pointer",
+                  backgroundColor: "white",
+                }}
               >
-                <p>{erro}</p>
-              </Alert>
-            </Form>
-            <p>OU</p>
+                {mostrarSenha ? <Eye /> : <EyeSlash />}
+              </InputGroup.Text>
+            </InputGroup>
+          </Form.Group>
+          <a href="recuperacao">
+            <small>Esqueci minha senha</small>
+          </a>
+          <Form.Group className="d-grid gap-2 my-4">
             <Button
-              variant="light"
-              size="md"
-              id="btn-Google"
-              onClick={handleGoogleLogin}
-              className="mb-3 border"
+              onClick={handleLogin}
+              disabled={!confirBotao}
+              size="lg"
+              className="botaoCriar rounded-pill"
             >
-              <div className="">
-                <img
-                  src="https://linkme.bio/wp-content/themes/linkme/img/icon-google.svg"
-                  className="me-3"
-                  style={{ width: "1rem" }}
-                  alt="Google logo"
-                />
-                <span>Entrar com o Google</span>
-              </div>
+              Entrar
             </Button>
-            <small className="mb-3">
-              Não tem uma conta? Sem problemas{" "}
-              <Link to={"/Singup"}>clique aqui</Link>
+          </Form.Group>
+          <Alert
+            className="alertaLogin"
+            variant={erroVariant}
+            show={mostrarErro}
+          >
+            <p>{erro}</p>
+          </Alert>
+        </Form>
+        <p>OU</p>
+        <Button
+          variant="light"
+          size="md"
+          id="btn-Google"
+          onClick={handleGoogleLogin}
+          className="mb-3 border"
+        >
+          <div className="">
+            <img
+              src="https://linkme.bio/wp-content/themes/linkme/img/icon-google.svg"
+              className="me-3"
+              style={{ width: "1rem" }}
+              alt="Google logo"
+            />
+            <span>Entrar com o Google</span>
+          </div>
+        </Button>
+        <small className="mb-3">
+          Não tem uma conta? Sem problemas{" "}
+          <Link to={"/Singup"}>clique aqui</Link>
         </small>
       </div>
       <div className="fundoImgSingUp"></div>

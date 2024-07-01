@@ -5,11 +5,16 @@ import { useNavigate } from "react-router-dom";
 import VIPModal from "./../../Components/Modais/VIPmodal";
 import DashboardNivel from "./../../Components/Dashboard/DashboardNivel/index";
 import PerfilRank from "./PerfilRank";
-import { Form, Button, Col, Row } from "react-bootstrap";
+import { Form, Button, Col, Row, Container } from "react-bootstrap";
 import PhoneInput from "react-phone-number-input";
 import br from "react-phone-number-input/locale/pt-BR";
 import "react-phone-number-input/style.css";
-import { RecaptchaVerifier, PhoneAuthProvider, updatePhoneNumber, sendEmailVerification } from "firebase/auth";
+import {
+  RecaptchaVerifier,
+  PhoneAuthProvider,
+  updatePhoneNumber,
+  sendEmailVerification,
+} from "firebase/auth";
 import PasswordChangeModal from "../../Components/Modais/PasswordChangeModal";
 import BloquearUsuario from "./bloquearUsuario";
 
@@ -28,9 +33,6 @@ function UserProfile() {
   const [isCodeSent, setIsCodeSent] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
-
-  console.log('authUser :>> ', authUser);
-
   const closeModal = () => {
     setMensagem("");
     setShowModal(false);
@@ -43,9 +45,16 @@ function UserProfile() {
 
   const handleSendVerificationCode = async () => {
     try {
-      const applicationVerifier = new RecaptchaVerifier('recaptcha-container', {}, authUser.auth);
+      const applicationVerifier = new RecaptchaVerifier(
+        "recaptcha-container",
+        {},
+        authUser.auth
+      );
       const provider = new PhoneAuthProvider(authUser.auth);
-      const verificationId = await provider.verifyPhoneNumber(phoneNumero, applicationVerifier);
+      const verificationId = await provider.verifyPhoneNumber(
+        phoneNumero,
+        applicationVerifier
+      );
       setVerificationId(verificationId);
       setIsCodeSent(true);
       alert("Código de verificação enviado!");
@@ -57,7 +66,10 @@ function UserProfile() {
 
   const handleVerifyCode = async () => {
     try {
-      const phoneCredential = PhoneAuthProvider.credential(verificationId, verificationCode);
+      const phoneCredential = PhoneAuthProvider.credential(
+        verificationId,
+        verificationCode
+      );
       await updatePhoneNumber(authUser, phoneCredential);
       alert("Número de telefone atualizado com sucesso!");
     } catch (error) {
@@ -72,8 +84,8 @@ function UserProfile() {
       await handleSendVerificationCode();
     } else {
       await handleVerifyCode();
-      setPhoneNumero('');
-      setVerificationCode('');
+      setPhoneNumero("");
+      setVerificationCode("");
       setIsCodeSent(false);
     }
   };
@@ -85,7 +97,7 @@ function UserProfile() {
     } catch (error) {
       alert("Erro ao enviar o Email de Verificação:", error.message);
     }
-  }
+  };
 
   return (
     <>
@@ -95,9 +107,9 @@ function UserProfile() {
         title="Voltar"
         onClick={() => navigate(-1)}
       ></i>
-      <div className="container rounded bg-dark text-light mt-5 mb-5">
-        <div className="row">
-          <div className="col-md-3 border-right">
+      <Container className="rounded bg-dark text-light mt-5 mb-5">
+        <Row>
+          <Col md={3} className="">
             <div className="d-flex flex-column align-items-center text-center px-3 py-5">
               <img
                 className="rounded-circle mt-5"
@@ -120,9 +132,9 @@ function UserProfile() {
               <DashboardNivel xp={stats?.xp} />
               <PerfilRank rank={stats?.rank} />
             </div>
-          </div>
-          <div className="col-md-7 border-right">
-            <div className="p-3 py-5">
+          </Col>
+          <Col md={6} className="">
+            <div className="py-5">
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h4 className="text-right">Perfil de Usuário</h4>
               </div>
@@ -155,7 +167,11 @@ function UserProfile() {
                       <PhoneInput
                         labels={br}
                         defaultCountry="BR"
-                        placeholder={phoneNumberAtual ? phoneNumberAtual : "(00) 9 0000-0000"}
+                        placeholder={
+                          phoneNumberAtual
+                            ? phoneNumberAtual
+                            : "(00) 9 0000-0000"
+                        }
                         value={phoneNumero}
                         onChange={setPhoneNumero}
                         onFocus={() => setPhoneNumero(phoneNumberAtual)}
@@ -178,20 +194,23 @@ function UserProfile() {
                   <Col md={12}>
                     <Form.Group className="mb-3">
                       <Form.Label>E-mail</Form.Label>
-                      {authUser?.emailVerified ? (<Form.Control
-                        disabled
-                        type="text"
-                        placeholder="enter email id"
-                        title={
-                          authUser?.emailVerified
-                            ? "Não é possível alterar o E-mail"
-                            : "Email não verificado"
-                        }
-                        value={authUser?.email}
-                        isInvalid={!authUser?.emailVerified}
-                        isValid={authUser?.emailVerified}
-                      />) : (<Row className="">
-                        <Col md={8}>
+                      {authUser?.emailVerified ? (
+                        <Form.Control
+                          disabled
+                          type="text"
+                          placeholder="enter email id"
+                          title={
+                            authUser?.emailVerified
+                              ? "Não é possível alterar o E-mail"
+                              : "Email não verificado"
+                          }
+                          value={authUser?.email}
+                          isInvalid={!authUser?.emailVerified}
+                          isValid={authUser?.emailVerified}
+                        />
+                      ) : (
+                        <Row>
+                          <Col md={8}>
                             <Form.Control
                               disabled
                               type="text"
@@ -205,11 +224,17 @@ function UserProfile() {
                               isInvalid={!authUser?.emailVerified}
                               isValid={authUser?.emailVerified}
                             />
-                        </Col>
-                        <Col md={4}>
-                            <Button type="button" onClick={handleSendEmailVerification}> Verificar E-Mail</Button>
-                        </Col>
-                      </Row>)}
+                          </Col>
+                          <Col md={4}>
+                            <Button
+                              type="button"
+                              onClick={handleSendEmailVerification}
+                            >
+                              Verificar E-Mail
+                            </Button>
+                          </Col>
+                        </Row>
+                      )}
                     </Form.Group>
                   </Col>
                   <Col md={12}>
@@ -239,14 +264,20 @@ function UserProfile() {
                 </div>
               </Form>
             </div>
-          </div>
-          <div className="col-md-2 py-5 d-flex align-items-end">
+          </Col>
+          <Col
+            md={3}
+            className="py-5 d-flex align-items-end justify-content-center"
+          >
             <BloquearUsuario />
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
       <VIPModal show={showModal} onClose={closeModal} mensagem={mensagem} />
-      <PasswordChangeModal show={showPasswordModal} onClose={() => setShowPasswordModal(false)} />
+      <PasswordChangeModal
+        show={showPasswordModal}
+        onClose={() => setShowPasswordModal(false)}
+      />
     </>
   );
 }
