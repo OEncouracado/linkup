@@ -17,6 +17,7 @@ import {
 } from "firebase/auth";
 import PasswordChangeModal from "../../Components/Modais/PasswordChangeModal";
 import BloquearUsuario from "./bloquearUsuario";
+import DeletarUsuario from "./deletarUsuario";
 
 function UserProfile() {
   const { authUser } = useAuth();
@@ -267,8 +268,9 @@ function UserProfile() {
           </Col>
           <Col
             md={3}
-            className="py-5 d-flex align-items-end justify-content-center"
+            className="py-5 d-flex flex-column align-items-center justify-content-end"
           >
+            <DeletarUsuario />
             <BloquearUsuario />
           </Col>
         </Row>
