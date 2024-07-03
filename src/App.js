@@ -19,6 +19,8 @@ import ContatoPage from "./pages/contato";
 import RecuperacaoEnviado from "./Components/Telas Extras/recuperacaoEnviado";
 import RecuperarSenha from "./Components/Telas Extras/recuperarSenha";
 import UsuarioBloqueado from "./Components/Telas Extras/usuarioBloqueado";
+import Despedida from "./Components/Telas Extras/despedida";
+import VerificacaoEmail from "./Components/Telas Extras/verificacaoEmail";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
@@ -75,6 +77,8 @@ function App() {
           <Route path="/:usuario" element={<Pagina />} />
 
           <Route path="/bloqueado" element={<UsuarioBloqueado />} />
+          <Route path="/despedida" element={<Despedida />} />
+          <Route path="/verificacaoEmail" element={<VerificacaoEmail />} />
         </Routes>
       </Router>
     </div>

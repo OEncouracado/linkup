@@ -6,7 +6,7 @@ import { UserCss, UserInfo, useAuth } from "../../hook";
 import TrocaCorFundo from "./TrocaCorFundo/index";
 import TrocaCorLink from "./TrocarCorLink";
 import TrocaCorTextoBotao from "./TrocarCorTextoLink";
-import TrocaCorTextoNivel from "./TrocarCorTextoNivel";
+// import TrocaCorTextoNivel from "./TrocarCorTextoNivel";
 import TrocaCorSombraLink from "./TrocarCorSombraLink";
 import TrocaCorTextoUserName from "./TrocarCorTextoUsername";
 import TrocaFundoUserName from "./TrocaFundoUserName";
@@ -81,9 +81,9 @@ function Personalizar() {
                 <TrocaCorSombraLink userId={id} />
                 <TrocaCorTextoBotao userId={id} />
                 {stats?.VIP ? <TrocarfundoImgBotao userId={id} /> : null}
-                <TrocarborderWith userId={id} />
-                <TrocaborderColor userId={id} />
                 <TrocarborderStyle userId={id} />
+                <TrocaborderColor userId={id} />
+                <TrocarborderWith userId={id} />
               </Accordion.Body>
             </Accordion.Item>
 
@@ -93,7 +93,7 @@ function Personalizar() {
                 <TrocaFundoUserName userId={id} />
                 <TrocaCorSombraUserName userId={id} />
                 <TrocaCorTextoUserName userId={id} />
-                <TrocaCorTextoNivel userId={id} />
+                {/* <TrocaCorTextoNivel userId={id} /> */}
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>

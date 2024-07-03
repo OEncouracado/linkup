@@ -1,0 +1,27 @@
+.fundo {
+    background-image: url("../../Images/fundodespedida.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100dvh;
+    max-width: 100dvw;
+    margin: 0;
+}
+
+.fundo3 {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100dvh;
+    max-width: 100dvw;
+    margin: 0;
+}
+
+.fundo2 {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+}

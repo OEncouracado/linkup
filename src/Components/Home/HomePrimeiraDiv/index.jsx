@@ -8,9 +8,9 @@ function PrimeiraDiv() {
   const [usernameValido, setUsernameValido] = useState(false);
   const verificarUsername = async (username) => {
     try {
-      const userNamesRef = fb.firestore.collection("UserNames");
+      const userNamesRef = fb.firestore.collection("linkUserNames");
       const snapshot = await userNamesRef
-        .where("usernames", "array-contains", username)
+        .where("linkUserNames", "array-contains", username)
         .get();
 
       if (snapshot.empty) {

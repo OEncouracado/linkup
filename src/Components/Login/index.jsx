@@ -109,31 +109,28 @@ function Login() {
 
       if (!userStatsDoc.exists || !userCssDoc.exists || !linkPagesDoc.exists) {
         await fb?.firestore.collection("UserStats").doc(user.uid).set({
-          imagemPerfil: user.photoURL,
-          maxXp: 0,
-          moldura: "",
-          nivelUser: 1,
-          userBackGround: "",
+          VIP: false,
+          completedObjectives: [],
+          imagemPerfil: user.photoURL, // Você pode definir um valor padrão aqui se necessário
+          isBlocked: false,
+          linkUserName: user.displayName,
+          moldura: "", // Pode ser definido um valor padrão também
+          rank: 0,
+          userBackGround: "", // Valor padrão       
           userId: user.uid,
           username: user.displayName,
           xp: 0,
         });
         await fb?.firestore.collection("UserCss").doc(user.uid).set({
-          corBotao: "#fff",
-          corFundo: "#fff",
-          corSombraBotao: "#000",
-          corSombraUserName: "#000",
-          corTextoBotao: "#000",
-          corTextoNivel: "#000",
-          corTextoUserName: "#000",
-          fundoUserName: "#fff",
           userId: user.uid,
           username: user.displayName,
+          linkUserName: user.displayName,
         });
         await fb?.firestore.collection("linkPages").doc(user.uid).set({
           Links: [],
           userId: user.uid,
           username: user.displayName,
+          linkUserName: user.displayName,
         });
 
         try {

@@ -5,6 +5,7 @@ import logo from "../../Images/linkuplogotemporario.png"
 import { emailRegex } from '../Constants'
 import { fb } from '../../shared/service';
 import 'firebase/compat/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 function Signup() {
@@ -18,6 +19,7 @@ function Signup() {
     const [formUsernameVisivel, setFormUsernameVisivel] = useState(false);
     const [usernameValido, setUsernameValido] = useState(false);
     const [emailJaCadastrado, setEmailJaCadastrado] = useState(false);
+    const navigate = useNavigate('');
 
     const handleEye = (campo) => {
         if (campo === 'senha') {
@@ -30,8 +32,8 @@ function Signup() {
     // Verifica se o nome de usuário já existe na coleção 'UserNames'
     const verificarUsername = async (username) => {
         try {
-            const userNamesRef = fb.firestore.collection('UserNames');
-            const snapshot = await userNamesRef.where('usernames', 'array-contains', username).get();
+            const userNamesRef = fb.firestore.collection('linkUserNames');
+            const snapshot = await userNamesRef.where('linkUserNames', 'array-contains', username).get();
 
             if (snapshot.empty) {
                 // O displayName não está em uso
@@ -98,13 +100,16 @@ function Signup() {
                 const userCredential = await fb.auth.createUserWithEmailAndPassword(email, senha);
                 const newuser = userCredential.user;
 
+                await newuser.sendEmailVerification();
                 // Cria um documento na coleção 'UserStats' com os campos necessários
                 await fb?.firestore.collection('UserStats').doc(newuser.uid).set({
+                    VIP: false,
+                    completedObjectives: [],
                     imagemPerfil: "", // Você pode definir um valor padrão aqui se necessário
+                    isBlocked: false,
                     linkUserName: username,
-                    maxXp: 0,
                     moldura: "", // Pode ser definido um valor padrão também
-                    nivelUser: 1,
+                    rank: 0,
                     userBackGround: "", // Valor padrão
                     userId: newuser.uid,
                     username: username, // Usando o nome de usuário fornecido pelo usuário
@@ -115,14 +120,6 @@ function Signup() {
 
                 // Cria um documento na coleção 'UserCss'
                 await fb?.firestore.collection('UserCss').doc(newuser.uid).set({
-                    corBotao: "#fff",
-                    corFundo: "#fff",
-                    corSombraBotao: "#000",
-                    corSombraUserName: "#000",
-                    corTextoBotao: "#000",
-                    corTextoNivel: "#000",
-                    corTextoUserName: "#000",
-                    fundoUserName: "#fff",
                     userId: newuser.uid,
                     username: username,
                     linkUserName: username,
@@ -168,13 +165,12 @@ function Signup() {
 
 
                 console.log("Username adicionado à coleção 'linkUserNames'");
-
-                
+                // Realiza o envio do email de verificação
 
                 // Realiza o login do usuário automaticamente
                 await fb.auth.signInWithEmailAndPassword(email, senha);
-
                 console.log("Login realizado automaticamente com sucesso!");
+                navigate("/verificacaoEmail")
             } catch (error) {
                 console.error("Erro durante o processo de criação do usuário:", error);
             }
@@ -281,7 +277,8 @@ function Signup() {
                     <Form.Check type='checkbox' label='Concordo em receber ofertas, notícias e atualizações da LinkUp' />
                 </Form.Group>
                         <Form.Group className="d-grid gap-2 my-3"><Button onClick={() => setFormUsernameVisivel(true)} disabled={!confirBotao} size='lg' className='botaoCriar rounded-pill' >Criar Conta</Button></Form.Group>
-                <div class="pt-lg text-center"><p class="text-concrete text-sm ">Ao Clicar <span class="font-semibold">Criar Conta</span>, você concorda com os nossos <a class="!text-concrete text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/#">Termos e Condições</a><br /> e confirma que leu a nossa <a class="!text-concrete text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/#">Politica de Privacidade</a>.</p></div>
+                        <div class="pt-lg text-center"><p class="text-concrete text-sm ">Ao Clicar <span class="font-semibold">Criar Conta</span>, você concorda com os nossos <a class="!text-concrete text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/#">Termos e Condições</a><br /> e confirma que leu a nossa <a class="!text-concrete text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/#">Politica de Privacidade</a>.</p>
+                            <p>Já possui uma Conta? Então <a className="!text-concrete text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/Login">Entre Aqui!</a></p></div>
                 </Form>)}
         </div>
         <div className="fundoImgSingUp"></div>

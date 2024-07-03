@@ -2,6 +2,7 @@ import React from "react";
 import PaginaLink from "../PaginaLink";
 
 function PaginaLinkList({ pages, userStyle }) {
+  console.log('page :>> ', pages);
   return (
     <div className="paginaLinksList d-flex flex-column align-items-center">
       {pages?.Links.map((link, index) => (

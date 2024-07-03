@@ -10,6 +10,25 @@ function TrocalinkUserName() {
     const stats = userArray && userArray[0];
     const linkUserNameAtual = stats?.linkUserName;
     const [linkUserName, setlinkUserName] = useState(linkUserNameAtual);
+    const [usernameValido, setUsernameValido] = useState(false);
+
+    const verificarUsername = async (username) => {
+        try {
+            const userNamesRef = fb.firestore.collection('linkUserNames');
+            const snapshot = await userNamesRef.where('linkUserNames', 'array-contains', username).get();
+
+            if (snapshot.empty) {
+                // O displayName não está em uso
+                setUsernameValido(true);
+            } else {
+                // O displayName já está em uso
+                setUsernameValido(false);
+            }
+        } catch (error) {
+            console.error("Erro ao verificar o displayName:", error);
+            throw error; // Você pode tratar o erro de acordo com sua lógica de tratamento de erros
+        }
+    };
 
     const handlelinkUserName = async (linkUserName) => {
         try {
@@ -58,14 +77,25 @@ function TrocalinkUserName() {
     return (
         <Container className='mt-1'>
             <Form onSubmit={handleSubmit} className='d-flex flex-row align-items-center'>
+                <Form.Group className="w-100">
                 <Form.Control
                     type="text"
                     value={linkUserName || linkUserNameAtual}
-                    onChange={(e) => setlinkUserName(e.target.value)}
-                    
+                        onChange={(e) => { setlinkUserName(e.target.value); verificarUsername(e.target.value); }}
+                        isInvalid={!usernameValido || !linkUserName}
+                        isValid={usernameValido}
                 />
-                <i className="iconShowEditUsername fa fa-check ms-2" onClick={handleSubmit}></i>
+                    {linkUserName ? (<Form.Control.Feedback type="invalid">
+                        Esse Usuário já está Cadastrado.
+                    </Form.Control.Feedback>) : (<Form.Control.Feedback type="invalid">
+                        Digite um usuário.
+                    </Form.Control.Feedback>)}
+                    <Form.Control.Feedback type="valid" />
+                </Form.Group>
+                {usernameValido ? <i className="iconShowEditUsername fa fa-check ms-2" onClick={handleSubmit} /> : <i class="iconShowEditUsername fas fa-ban ms-2" />}
+
             </Form>
+
         </Container>
     );
 }
