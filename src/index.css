@@ -35,12 +35,12 @@ a {
 
 .backFormupin {
   width: calc(100vw - 40%);
-  height: 100vh;
+  height: 100dvh;
 }
 
 .logologinup {
   position: absolute;
-  filter: invert();
+  /* filter: invert(); */
   width: 12%;
 }
 
@@ -710,6 +710,14 @@ a {
   margin-bottom: 1rem;
   height: inherit;
   width: inherit;
+}
+.logologinup {
+  position: absolute;
+  width: 40%;
+}
+
+.backFormupin {
+  margin-top: 9rem;
 }
 }
 

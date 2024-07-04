@@ -92,7 +92,7 @@ function TrocalinkUserName() {
                     </Form.Control.Feedback>)}
                     <Form.Control.Feedback type="valid" />
                 </Form.Group>
-                {usernameValido ? <i className="iconShowEditUsername fa fa-check ms-2" onClick={handleSubmit} /> : <i class="iconShowEditUsername fas fa-ban ms-2" />}
+                {usernameValido ? <i className="iconShowEditUsername fa fa-check ms-2" onClick={handleSubmit} /> : <i class="fas fa-ban ms-2" style={{ cursor: "no-drop" }} />}
 
             </Form>
 

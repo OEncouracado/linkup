@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import { Button, Container, Form, InputGroup } from 'react-bootstrap';
 import { Eye, EyeSlash } from 'react-bootstrap-icons';
-import logo from "../../Images/linkuplogotemporario.png"
+import logo from "../../Images/sublinkslogo.png"
 import { emailRegex } from '../Constants'
 import { fb } from '../../shared/service';
 import 'firebase/compat/auth';
@@ -181,9 +181,9 @@ function Signup() {
 
 
     return (
-        <div className='d-flex'>
-        <img src={logo} alt="logo linkup" className='logologinup p-3' />
-        <div className="backFormupin d-flex flex-column align-items-center justify-content-center">
+        <Container style={{ maxWidth: "100dvw" }} className="d-flex m-0 p-0">
+            <a href="/"><img src={logo} alt="logo linkup" className='logologinup p-3' /></a>
+            <Container className="backFormupin d-flex flex-column align-items-center justify-content-center">
                 {/* <Button onClick={() => setFormUsernameVisivel(!formUsernameVisivel)}>clique aqui</Button> */}
                 {formUsernameVisivel ? (<Form className='mx-auto p-3 text-dark'>
                     <h1>Junte-se a Nós</h1>
@@ -277,12 +277,12 @@ function Signup() {
                     <Form.Check type='checkbox' label='Concordo em receber ofertas, notícias e atualizações da LinkUp' />
                 </Form.Group>
                         <Form.Group className="d-grid gap-2 my-3"><Button onClick={() => setFormUsernameVisivel(true)} disabled={!confirBotao} size='lg' className='botaoCriar rounded-pill' >Criar Conta</Button></Form.Group>
-                        <div class="pt-lg text-center"><p class="text-concrete text-sm ">Ao Clicar <span class="font-semibold">Criar Conta</span>, você concorda com os nossos <a class="!text-concrete text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/#">Termos e Condições</a><br /> e confirma que leu a nossa <a class="!text-concrete text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/#">Politica de Privacidade</a>.</p>
-                            <p>Já possui uma Conta? Então <a className="!text-concrete text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/Login">Entre Aqui!</a></p></div>
+                        <Container class="pt-lg text-center"><p class="text-concrete text-sm ">Ao Clicar <span class="font-semibold">Criar Conta</span>, você concorda com os nossos <a class="!text-concrete text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/#">Termos e Condições</a><br /> e confirma que leu a nossa <a class="!text-concrete text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/#">Politica de Privacidade</a>.</p>
+                            <p>Já possui uma Conta? Então <a className="!text-concrete text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline" href="/Login">Entre Aqui!</a></p></Container>
                 </Form>)}
-        </div>
-        <div className="fundoImgSingUp"></div>
-    </div>
+            </Container>
+            <Container className="fundoImgSingUp d-none d-md-block"></Container>
+        </Container>
     )
 }
 

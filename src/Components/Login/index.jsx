@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Button, Form, InputGroup } from "react-bootstrap";
+import { Alert, Button, Container, Form, InputGroup } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
-import logo from "../../Images/linkuplogotemporario.png";
+import logo from "../../Images/sublinkslogo.png";
 import { emailRegex } from "../Constants";
 import { fb } from "../../shared/service";
 import { Link, useNavigate } from "react-router-dom";
@@ -178,9 +178,9 @@ function Login() {
   };
 
   return (
-    <div className="d-flex">
-      <img src={logo} alt="logo linkup" className="logologinup p-3" />
-      <div className="backFormupin d-flex flex-column align-items-center justify-content-center">
+    <Container style={{ maxWidth: "100dvw" }} className="d-flex m-0 p-0">
+      <a href="/"><img src={logo} alt="logo linkup" className="logologinup p-3 m-0" /></a>
+      <Container className="backFormupin d-flex flex-column align-items-center justify-content-center">
         <Form className="mx-auto pt-3 text-dark">
           <h1>Bem Vindo de Volta!</h1>
           <p className="text-concrete text-md">
@@ -259,9 +259,9 @@ function Login() {
           Não tem uma conta? Sem problemas{" "}
           <Link to={"/Singup"}>clique aqui</Link>
         </small>
-      </div>
-      <div className="fundoImgSingUp"></div>
-    </div>
+      </Container>
+      <Container className="fundoImgSingUp d-none d-md-block" />
+    </Container>
   );
 }
 

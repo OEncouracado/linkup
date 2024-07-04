@@ -75,7 +75,7 @@ function FooterContent() {
                   <a href="contato">Contato</a>
                 </p>
                 <p className="mb-4" title="Objection!">
-                  <a href="/" target="_blank" rel="noopener noreferrer">
+                  <a href="s/TermoseCondicoes">
                     Contratos e Termos
                   </a>
                 </p>
