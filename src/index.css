@@ -165,7 +165,7 @@ a {
 }
 /*Perfil*/
 .perfilsuperiorwarp {
-  margin-top: 4rem;
+  margin-top: 2rem;
   margin-bottom: 2rem;
   position: relative;
   display: flex;
@@ -351,17 +351,45 @@ a {
   width: 50%;
   background-color: red;
 }
+.PerfilDashboardTopbar {
+  width: max-content;
+  outline: 0.2rem solid rgb(151, 151, 151);
+  outline-offset: 0.2rem;
+}
 
+.perfilNavLink {
+  padding-left: 1rem;
+}
+
+.perfilNavLink:hover {
+  background: #CED4DA;
+}
+
+.PerfilDashboardTopbar:hover {
+  outline: 0.2rem solid rgba(255, 255, 255);
+  outline-offset: 0.2rem;
+
+  .ImgPerfilDashboardTopbar {
+      outline: 0.2rem solid rgba(255, 255, 255);
+      outline-offset: 0.2rem;
+    }
+  }
 .ImgPerfilDashboardTopbar {
   width: 2.5rem;
   height: 2.5rem;
   object-fit: cover;
+  outline: 0.2rem solid rgb(151, 151, 151);
+    outline-offset: 0.2rem;
 }
 
-.ImgPerfilDashboardTopbar:hover {
-  outline: 0.2rem solid rgba(255, 255, 255);
-  outline-offset: 0.2rem;
+.ImgPerfilDashboardTopbarPerfil {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  outline: 0.2rem solid #CED4DA;
+  /* outline-offset: 0.2rem; */
 }
+
 
 .ImgPerfilDashboardTopbar:active {
   outline: 0.2rem solid rgba(255, 255, 255, 0.315);
@@ -414,6 +442,7 @@ a {
 .iconShowEditUsername {
   cursor: pointer;
 }
+
 
 .fundo1HomePage {
   padding-top: 5rem;

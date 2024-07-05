@@ -70,7 +70,6 @@ function Login() {
               setErroVariant("success");
               setErro("Logado com Sucesso");
               setMostrarErro(true);
-              // Redirecionar para o dashboard ou outra página
               navigate("/dashboard");
             }
           }
@@ -98,6 +97,16 @@ function Login() {
         .collection("UserStats")
         .doc(user.uid)
         .get();
+
+      if (userStatsDoc.exists) {
+        const userData = userStatsDoc.data();
+
+        if (userData.isBlocked) {
+          navigate("/bloqueado");
+          return;
+        }
+      }
+
       const userCssDoc = await fb?.firestore
         .collection("UserCss")
         .doc(user.uid)
@@ -111,12 +120,12 @@ function Login() {
         await fb?.firestore.collection("UserStats").doc(user.uid).set({
           VIP: false,
           completedObjectives: [],
-          imagemPerfil: user.photoURL, // Você pode definir um valor padrão aqui se necessário
+          imagemPerfil: user.photoURL,
           isBlocked: false,
           linkUserName: user.displayName,
-          moldura: "", // Pode ser definido um valor padrão também
+          moldura: "",
           rank: 0,
-          userBackGround: "", // Valor padrão       
+          userBackGround: "",
           userId: user.uid,
           username: user.displayName,
           xp: 0,
@@ -172,8 +181,13 @@ function Login() {
         "Documentos criados (se necessário) com sucesso para o usuário:",
         user.displayName
       );
+
+      navigate("/dashboard");
     } catch (error) {
       console.error("Erro durante o login com o Google:", error);
+      setErroVariant("danger");
+      setErro("Erro durante o login com o Google");
+      setMostrarErro(true);
     }
   };
 
