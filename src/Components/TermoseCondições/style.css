@@ -1,0 +1,10 @@
+
+.linkContato{
+    padding: 2%;
+    color: lightgrey;
+}
+.linkContato:hover{
+    color: white !important;
+    background: #000;
+    
+}
