@@ -20,6 +20,7 @@ import TrocarborderStyle from "./TrocarborderStyle";
 import TrocarbgTipo from "./TrocarbgTipo";
 import TrocaCorFundo2 from "./TrocaCorFundo2";
 import PerfilEdit from "./TrocarImagemNome";
+import Trocarfonte from "./TrocarFonte";
 
 function Personalizar() {
   const { authUser } = useAuth();
@@ -57,7 +58,7 @@ function Personalizar() {
             </Link>
             .
           </Alert>
-          <Accordion alwaysOpen defaultActiveKey={["0", "1", "2", "3"]} className="personalizarContainers">
+          <Accordion alwaysOpen defaultActiveKey={["0", "1", "2", "3", "4"]} className="personalizarContainers">
             <Accordion.Item eventKey="0" className="editFundo d-flex flex-column align-items-center">
               <Accordion.Header className="w-100">Imagem de Perfil e Alterar Nome</Accordion.Header>
               <Accordion.Body className="AccBody">
@@ -71,6 +72,12 @@ function Personalizar() {
                 {css?.bgTipo === "corsolida" ? <><TrocaCorFundo userId={id} /></> : null}
                 {css?.bgTipo === "gradiente" ? <><TrocaCorFundo userId={id} /> <TrocaCorFundo2 userId={id} /></> : null}
                 {css?.bgTipo === "imagem" ? <><TrocaruserBackGround userId={id} /></> : null}
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="4" className=" editFundo d-flex flex-column align-items-center ">
+              <Accordion.Header className="w-100">Fonte</Accordion.Header>
+              <Accordion.Body className="">
+                <Trocarfonte userId={id} />
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2" className="editFundo d-flex flex-column align-items-center ">

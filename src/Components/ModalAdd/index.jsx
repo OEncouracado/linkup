@@ -110,7 +110,7 @@ function ModalAdd({ show, setShow, userId }) {
               placeholder="Nome do Link"
             />
             <input
-              type="text"
+              type="url"
               value={urlLink}
               onChange={(e) => setUrlLink(e.target.value)}
               placeholder="URL do Link"

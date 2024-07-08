@@ -62,10 +62,10 @@ function DashboardPerfil({ id, username, perfil, selectedFrame }) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {selectedFrame.src && (
+        {selectedFrame && (
           <img
-            src={selectedFrame.src}
-            alt={selectedFrame.nome}
+            src={selectedFrame}
+            alt={selectedFrame}
             className="dashboardMolduraPerfil"
           />
         )}

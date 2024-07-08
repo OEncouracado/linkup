@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import "react-device-emulator/lib/styles/style.css";
 import { UserInfo, useAuth, usePages } from "../../../hook";
 import DashboardPerfil from "../../Dashboard/DashboardPerfil";
 // import DashboardNivel from "../../Dashboard/DashboardNivel";
+import { fb } from './../../../shared/service/firebase';
 
 function PerfilEdit() {
     const { authUser } = useAuth();
@@ -13,29 +14,35 @@ function PerfilEdit() {
     const stats = userArray && userArray[0];
     const imgPerfil = stats?.imagemPerfil;
     const userName = stats?.linkUserName;
-    const molduraAtual = stats?.moldura;
+    const selectedFrame = stats?.moldura;
     console.log("array de paginas", pageInfo);
     console.log("const pages", pages);
-    const userMoldura = useMemo(
-        () => ({
-            id: 5000,
-            src: molduraAtual,
-            nome: "Moldura Atual",
-        }),
-        [molduraAtual]
-    );
+
     // eslint-disable-next-line
     const [frames, setFrames] = useState([]);
-    const [selectedFrame, setSelectedFrame] = useState(userMoldura);
+    const [molduraImageUrl, setMolduraImageUrl] = useState("");
 
     useEffect(() => {
-        setSelectedFrame(userMoldura);
-    }, [userMoldura]);
+        const getMolduraImageUrl = async () => {
+            try {
+                // Substitua "NOME_DO_BUCKET" pelo nome do seu bucket no Firebase Storage
+                const molduraImageRef = fb?.storage
+                    .ref()
+                    .child(`molduras/${selectedFrame}.png`);
+                const url = await molduraImageRef.getDownloadURL();
+                setMolduraImageUrl(url);
+            } catch (error) {
+                console.error("Erro ao obter a URL da imagem de rank: ", error);
+            }
+        };
+
+        getMolduraImageUrl();
+    }, [selectedFrame]);
 
     return (<>
         <DashboardPerfil
             perfil={imgPerfil}
-            selectedFrame={selectedFrame}
+            selectedFrame={molduraImageUrl}
             username={userName}
             id={id}
         />

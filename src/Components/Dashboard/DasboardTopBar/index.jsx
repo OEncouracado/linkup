@@ -73,7 +73,7 @@ function DashboardTopBar({ handleSetAba, photo, id }) {
             </Navbar.Offcanvas>
           </Col>
           <Col sm={2} xs={6}>
-            <Container onClick={handleShowEnd} className="my-1 p-0 PerfilDashboardTopbar rounded-pill text-light">
+            <Container onClick={handleShowEnd} className="my-1 p-0 PerfilDashboardTopbar rounded-pill text-light" style={{ cursor: "pointer" }}>
               <Image
                 className="ImgPerfilDashboardTopbar"
                 src={photo ? photo : photoNull}
@@ -83,7 +83,7 @@ function DashboardTopBar({ handleSetAba, photo, id }) {
                 @{stats?.linkUserName}</small>
             </Container>
             <Offcanvas placement="end" show={showEnd} onHide={handleCloseEnd}>
-              <Offcanvas.Header closeButton>
+              <Offcanvas.Header style={{ cursor: "default" }} closeButton>
                 <Offcanvas.Title>
                   <Container className="bg-dark-subtle rounded">
                     <Row>

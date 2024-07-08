@@ -99,7 +99,7 @@ function DashboardLink({ url: initialUrl, nomeLink: initialNomeLink, idPage, idu
             {isEdit ? (
               <Form.Control
                 className="my-1"
-                type="text"
+                type="url"
                 name="url"
                 value={url}
                 onChange={handleInputChange}

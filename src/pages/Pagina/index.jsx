@@ -20,8 +20,8 @@ function Pagina() {
   const handleClose = () => {
     setExibirA(false);
   };
-  // eslint-disable-next-line
-  const fontePagina = { fontFamily: "fibra" };
+
+  const fontePagina = { fontFamily: css?.fonte };
 
   let estiloLinearGr = {};
 
@@ -44,7 +44,7 @@ function Pagina() {
       <Helmet>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Helmet>
-      <div className="paginaFundoWarp">
+      <div className="paginaFundoWarp" style={fontePagina}>
         <div className="paginaFundo pt-0" style={estiloLinearGr}>
           <div className="paginaWarper mt-4 m-auto pb-5 d-flex flex-column align-items-center">
             <PaginaPerfil

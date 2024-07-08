@@ -9,6 +9,7 @@ function PaginaPerfil({ username, perfil, selectedFrame, rank, userStyle }) {
     boxShadow: `0px 5px 15px ${userStyle?.corSombraUserName}`,
   };
   const [rankImageUrl, setRankImageUrl] = useState("");
+  const [molduraImageUrl, setMolduraImageUrl] = useState("");
 
   useEffect(() => {
     // Função para obter a URL da imagem de rank do Firebase Storage
@@ -26,7 +27,21 @@ function PaginaPerfil({ username, perfil, selectedFrame, rank, userStyle }) {
     };
 
     getRankImageUrl();
-  }, [rank]); // Executa sempre que o valor de "rank" mudar
+    const getMolduraImageUrl = async () => {
+      try {
+        // Substitua "NOME_DO_BUCKET" pelo nome do seu bucket no Firebase Storage
+        const molduraImageRef = fb?.storage
+          .ref()
+          .child(`molduras/${selectedFrame}.png`);
+        const url = await molduraImageRef.getDownloadURL();
+        setMolduraImageUrl(url);
+      } catch (error) {
+        console.error("Erro ao obter a URL da imagem de rank: ", error);
+      }
+    };
+
+    getMolduraImageUrl();
+  }, [selectedFrame, rank]); // Executa sempre que o valor de "rank" mudar
 
   // Função para determinar a faixa de rank com base no valor de rank
   const determinarFaixaRank = (rank) => {
@@ -52,7 +67,7 @@ function PaginaPerfil({ username, perfil, selectedFrame, rank, userStyle }) {
       <div className="frameepefilwarp d-flex justify-content-center align-items-center">
         {selectedFrame && (
           <img
-            src={selectedFrame}
+            src={molduraImageUrl}
             alt={selectedFrame}
             className="paginaMolduraPerfil"
           />
