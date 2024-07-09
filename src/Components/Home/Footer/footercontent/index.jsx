@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import logo from "../../../../Images/linkuplogo.png";
+import logo from "../../../../Images/sublinkslogo.png";
 
 function FooterContent() {
   return (
@@ -76,7 +76,7 @@ function FooterContent() {
                 </p>
                 <p className="mb-4" title="Objection!">
                   <a href="s/TermoseCondicoes">
-                    Contratos e Termos
+                    Termos e Condições
                   </a>
                 </p>
               </Container>
