@@ -610,9 +610,9 @@ a {
 }
 
 .AccBody {
-  margin-top: 1.5rem;
   display: flex;
   justify-content: center;
+  height: 18rem;
 }
 
 .previewFundo {
@@ -749,6 +749,10 @@ a {
 
 .backFormupin {
   margin-top: 9rem;
+}
+.AccBody {
+  height: 20rem;
+  overflow-y: scroll;
 }
 }
 

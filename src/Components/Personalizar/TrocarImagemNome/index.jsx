@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "react-device-emulator/lib/styles/style.css";
-import { UserInfo, useAuth, usePages } from "../../../hook";
+import { UserInfo, useAuth } from "../../../hook";
 import DashboardPerfil from "../../Dashboard/DashboardPerfil";
 // import DashboardNivel from "../../Dashboard/DashboardNivel";
 import { fb } from './../../../shared/service/firebase';
@@ -9,17 +9,13 @@ function PerfilEdit() {
     const { authUser } = useAuth();
     const id = authUser?.uid;
     const userArray = UserInfo(id);
-    const pageInfo = usePages(id);
-    const pages = pageInfo?.Links;
     const stats = userArray && userArray[0];
     const imgPerfil = stats?.imagemPerfil;
     const userName = stats?.linkUserName;
     const selectedFrame = stats?.moldura;
-    console.log("array de paginas", pageInfo);
-    console.log("const pages", pages);
+    console.log('selectedFrame :>> ', selectedFrame);
 
     // eslint-disable-next-line
-    const [frames, setFrames] = useState([]);
     const [molduraImageUrl, setMolduraImageUrl] = useState("");
 
     useEffect(() => {
@@ -42,7 +38,7 @@ function PerfilEdit() {
     return (<>
         <DashboardPerfil
             perfil={imgPerfil}
-            selectedFrame={molduraImageUrl}
+            // selectedFrame={molduraImageUrl}
             username={userName}
             id={id}
         />

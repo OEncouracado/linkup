@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import "react-device-emulator/lib/styles/style.css";
-import { Accordion, Alert } from "react-bootstrap";
+import { Accordion, Alert, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { UserCss, UserInfo, useAuth } from "../../hook";
 import TrocaCorFundo from "./TrocaCorFundo/index";
@@ -21,6 +21,7 @@ import TrocarbgTipo from "./TrocarbgTipo";
 import TrocaCorFundo2 from "./TrocaCorFundo2";
 import PerfilEdit from "./TrocarImagemNome";
 import Trocarfonte from "./TrocarFonte";
+import TrocarMoldura from "./TrocarMoldura";
 
 function Personalizar() {
   const { authUser } = useAuth();
@@ -62,7 +63,15 @@ function Personalizar() {
             <Accordion.Item eventKey="0" className="editFundo d-flex flex-column align-items-center">
               <Accordion.Header className="w-100">Imagem de Perfil e Alterar Nome</Accordion.Header>
               <Accordion.Body className="AccBody">
-                <PerfilEdit />
+                <Row className="w-100 h-100 m-0 p-0">
+                  <Col md={5} className="d-flex justify-content-center h-100">
+                    <PerfilEdit />
+                  </Col>
+                  {/* <Col md={1} className="bg-primary h-100" /> */}
+                  <Col md={7} className="p-0 pb-1 h-100">
+                    <TrocarMoldura />
+                  </Col>
+                </Row>
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1" className=" editFundo d-flex flex-column align-items-center ">

@@ -26,7 +26,7 @@ function PrimeiraDiv() {
     }
   };
   return (
-    <Container lg className="HomePrimeiraDiv text-dark">
+    <Container className="HomePrimeiraDiv text-dark">
       <Row className="HomePrimeiraDivWarp">
         <Col md className="">
           <div className="HomePrimeiraDivBannerDireita">
