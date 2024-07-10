@@ -155,14 +155,10 @@ a {
   font-size: 2rem;
 }
 
-.arrastarLink{
-  cursor: grab;
+.arrastarLink {
   font-size: xx-large;
 }
 
-.arrastarLink:active{
-  cursor: grabbing;
-}
 /*Perfil*/
 .perfilsuperiorwarp {
   margin-top: 2rem;

@@ -2,28 +2,31 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { fb } from "../../shared/service";
-import { UserInfo } from "../../hook";
+import { useAuth } from "../../hook";
 
-function ModalAdd({ show, setShow, userId }) {
-  const infoArray = UserInfo(userId);
-  const stats = infoArray && infoArray[0];
-  const ArraycompletedObjectives = stats?.completedObjectives;
+function ModalAdd({ show, setShow, userId, setLinks }) { // eslint-disable-next-line
+  const { authUser } = useAuth();
+  const [nomeLink, setNomeLink] = useState("");
+  const [urlLink, setUrlLink] = useState("");
   const [completedObjectives, setCompletedObjectives] = useState([]);
 
   useEffect(() => {
-    if (ArraycompletedObjectives) {
-      setCompletedObjectives(ArraycompletedObjectives);
-    }
-  }, [ArraycompletedObjectives]);
+    const fetchObjectives = async () => {
+      const userStatsRef = fb.firestore.collection("UserStats").doc(userId);
+      const doc = await userStatsRef.get();
+      if (doc.exists) {
+        setCompletedObjectives(doc.data().completedObjectives || []);
+      }
+    };
+
+    fetchObjectives();
+  }, [userId]);
 
   const handleClose = () => {
     setShow(false);
     setNomeLink("");
     setUrlLink("");
   };
-
-  const [nomeLink, setNomeLink] = useState("");
-  const [urlLink, setUrlLink] = useState("");
 
   const handleAddLink = async () => {
     const linkPagesRef = fb.firestore.collection("linkPages");
@@ -38,7 +41,15 @@ function ModalAdd({ show, setShow, userId }) {
           linksArray = userLinkPagesDoc.data().Links || [];
         }
 
-        const newLink = { nome: nomeLink, url: urlLink };
+        // Verificar e adicionar prefixo ao URL, se necessário
+        const formattedUrl = urlLink.startsWith('http://') || urlLink.startsWith('https://')
+          ? urlLink
+          : `http://${urlLink}`;
+
+        // Gerar um novo ID único para o link
+        const newLinkId = linksArray.length > 0 ? Math.max(linksArray.map(link => link.id)) + 1 : 1;
+
+        const newLink = { id: newLinkId, nome: nomeLink, url: formattedUrl };
         const updatedLinksArray = [...linksArray, newLink];
 
         if (userLinkPagesDoc.exists) {
@@ -78,7 +89,8 @@ function ModalAdd({ show, setShow, userId }) {
           setCompletedObjectives(newCompletedObjectives);
         }
 
-        handleClose(true);
+        setLinks(updatedLinksArray);
+        handleClose();
         console.log("Novo link adicionado com sucesso!");
       } else {
         console.error("Usuário não autenticado. Não é possível adicionar link.");

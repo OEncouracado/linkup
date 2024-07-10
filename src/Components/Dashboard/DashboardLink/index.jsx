@@ -1,31 +1,35 @@
-// src/Components/Dashboard/DashboardLink/index.jsx
 import React, { useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { fb } from "../../../shared/service";
 
-function DashboardLink({ url: initialUrl, nomeLink: initialNomeLink, idPage, iduser }) {
+function DashboardLink({ url: initialUrl, nomeLink: initialNomeLink, idPage, iduser, setLinks, id }) {
   const [nomeLink, setNomeLink] = useState(initialNomeLink);
   const [url, setUrl] = useState(initialUrl);
   const [isEdit, setIsEdit] = useState(false);
+
   const editPage = async () => {
     if (isEdit) {
-      const linkPagesRef = fb.firestore.collection("linkPages").doc(iduser); // Filtrar pelo ID do usuário
+      const linkPagesRef = fb.firestore.collection("linkPages").doc(iduser);
 
       try {
         const doc = await linkPagesRef.get();
         if (doc.exists) {
           const linksArray = doc.data().Links;
 
-          // Mapear o array de links para atualizar o mapa com o nome correspondente
+          // Verificar e adicionar prefixo ao URL, se necessário
+          const formattedUrl = url.startsWith('http://') || url.startsWith('https://')
+            ? url
+            : `http://${url}`;
+
           const updatedLinksArray = linksArray.map((link) => {
-            if (link.nome === initialNomeLink) {
-              return { nome: nomeLink, url: url };
+            if (link.id === id) {
+              return { id, nome: nomeLink, url: formattedUrl };
             }
             return link;
           });
 
-          // Atualizar o documento para refletir o array de links atualizado
           await linkPagesRef.update({ Links: updatedLinksArray });
+          setLinks(updatedLinksArray);
           console.log("Link atualizado com sucesso!");
         } else {
           console.log("Documento não encontrado para o ID do usuário");
@@ -36,7 +40,6 @@ function DashboardLink({ url: initialUrl, nomeLink: initialNomeLink, idPage, idu
     }
     setIsEdit(!isEdit);
   };
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -49,27 +52,26 @@ function DashboardLink({ url: initialUrl, nomeLink: initialNomeLink, idPage, idu
 
   const delPage = async () => {
     if (window.confirm("Tem certeza que deseja deletar " + nomeLink + "?")) {
-      const linkPagesRef = fb.firestore.collection("linkPages").doc(iduser); // Filtrar pelo ID do usuário
+      const linkPagesRef = fb.firestore.collection("linkPages").doc(iduser);
 
       try {
         const doc = await linkPagesRef.get();
         if (doc.exists) {
           const linksArray = doc.data().Links;
 
-          // Filtrar o array de links para remover o mapa com o nome correspondente
           const updatedLinksArray = linksArray.filter(
-            (link) => link.nome !== nomeLink
+            (link) => link.id !== id
           );
 
-          // Atualizar o documento para refletir o array de links filtrado
           await linkPagesRef.update({ Links: updatedLinksArray });
-          alert("Link excluido");
-          console.log("Mapa deletado com sucesso!");
+          setLinks(updatedLinksArray);
+          alert("Link excluído");
+          console.log("Link deletado com sucesso!");
         } else {
           console.log("Documento não encontrado para o ID do usuário");
         }
       } catch (error) {
-        console.error("Erro ao deletar mapa:", error);
+        console.error("Erro ao deletar link:", error);
       }
     }
   };
@@ -106,7 +108,7 @@ function DashboardLink({ url: initialUrl, nomeLink: initialNomeLink, idPage, idu
                 placeholder=""
               />
             ) : (
-              <p> {url} </p>
+                <p>{url}</p>
             )}
           </Container>
         </div>
@@ -132,7 +134,7 @@ function DashboardLink({ url: initialUrl, nomeLink: initialNomeLink, idPage, idu
             />
           )}
           <i
-            class="fa fa-minus-square"
+            className="fa fa-minus-square"
             aria-hidden="true"
             onClick={delPage}
           ></i>
