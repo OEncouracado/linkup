@@ -1,0 +1,27 @@
+.dashboard-link {
+    background-color: #f8f9fa;
+    border: .1rem solid #dee2e6;
+}
+
+.drag-handle {
+    cursor: grab;
+    padding-right: 1rem;
+}
+
+.link-content p {
+    margin: 0;
+}
+
+.link-content a {
+    color: #3979be;
+    text-decoration: none;
+}
+
+.action-buttons button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    padding: 0;
+}

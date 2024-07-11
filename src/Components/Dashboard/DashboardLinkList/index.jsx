@@ -46,8 +46,6 @@ function DashboardLinkList({ pages, userId }) {
       return;
     }
 
-    console.log("Drag result:", result);
-
     // Reordena os links na lista
     const items = Array.from(links);
     const [reorderedItem] = items.splice(source.index, 1);
