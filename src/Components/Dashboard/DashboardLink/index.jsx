@@ -9,6 +9,7 @@ function DashboardLink({
   iduser,
   setLinks,
   id,
+  index
 }) {
   const [nomeLink, setNomeLink] = useState(initialNomeLink);
   const [url, setUrl] = useState(initialUrl);
@@ -23,7 +24,6 @@ function DashboardLink({
         if (doc.exists) {
           const linksArray = doc.data().Links;
 
-          // Verificar e adicionar prefixo ao URL, se necessário
           const formattedUrl =
             url.startsWith("http://") || url.startsWith("https://")
               ? url
@@ -83,73 +83,73 @@ function DashboardLink({
   };
 
   return (
-    <>
-      <Container className="dashboardFundoLink bg-light d-flex justify-content-between align-items-center my-2">
-        <div className="drag-handle">
-          <i className="fa fa-ellipsis-v" aria-hidden="true"></i>
-        </div>
-        <div className="linkENome d-flex flex-column align-items-start">
-          <Container className="link-content flex-grow-1 d-flex flex-column align-items-start">
-            {isEdit ? (
-              <>
-                <Form.Control
-                  className="my-1"
-                  type="text"
-                  name="nomeLink"
-                  value={nomeLink}
-                  onChange={handleInputChange}
-                  placeholder="Nome do Link"
-                />
-                <Form.Control
-                  className="my-1"
-                  type="url"
-                  name="url"
-                  value={url}
-                  onChange={handleInputChange}
-                  placeholder="URL do Link"
-                />
-              </>
-            ) : (
-              <>
-                <p className="mb-1">
-                  <strong>{nomeLink}</strong>
-                </p>
-                <a href={url} target="_blank" rel="noopener noreferrer">
-                  {url}
-                </a>
-              </>
-            )}
-          </Container>
-        </div>
-        <div className="action-buttons d-flex">
+    <Container
+      className="dashboardFundoLink bg-light d-flex justify-content-between align-items-center my-2 p-3 rounded"
+    >
+      <div className="drag-handle">
+        <i className="fa fa-ellipsis-v" aria-hidden="true"></i>
+      </div>
+      <div className="linkENome d-flex flex-column align-items-start">
+        <Container className="link-content flex-grow-1 d-flex flex-column align-items-start">
           {isEdit ? (
             <>
-              <Button variant="success" className="mx-1" onClick={editPage}>
-                <i className="fa fa-check"></i>
-              </Button>
-              <Button
-                variant="danger"
-                className="mx-1"
-                onClick={() => setIsEdit(false)}
-              >
-                <i className="fa fa-times"></i>
-              </Button>
+              <Form.Control
+                className="my-1"
+                type="text"
+                name="nomeLink"
+                value={nomeLink}
+                onChange={handleInputChange}
+                placeholder="Nome do Link"
+              />
+              <Form.Control
+                className="my-1"
+                type="url"
+                name="url"
+                value={url}
+                onChange={handleInputChange}
+                placeholder="URL do Link"
+              />
             </>
           ) : (
-            <Button
-              variant="primary"
-              className="mx-1"
-              onClick={() => setIsEdit(true)}
-            >
-              <i className="fa fa-pencil"></i>
-            </Button>
+            <>
+              <p className="mb-1">
+                <strong>{nomeLink}</strong>
+              </p>
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                {url}
+              </a>
+            </>
           )}
-          <Button variant="danger" className="mx-1" onClick={delPage}>
-            <i className="fa fa-trash"></i>
+        </Container>
+      </div>
+      <div className="action-buttons d-flex">
+        {isEdit ? (
+          <>
+            <Button variant="success" className="mx-1" onClick={editPage}>
+              <i className="fa fa-check"></i>
+            </Button>
+            <Button
+              variant="danger"
+              className="mx-1"
+              onClick={() => setIsEdit(false)}
+            >
+              <i className="fa fa-times"></i>
+            </Button>
+          </>
+        ) : (
+          <Button
+            variant="primary"
+            className="mx-1"
+            onClick={() => setIsEdit(true)}
+          >
+            <i className="fa fa-pencil"></i>
           </Button>
-        </div>
-      </Container>
-    </>
+        )}
+        <Button variant="danger" className="mx-1" onClick={delPage}>
+          <i className="fa fa-trash"></i>
+        </Button>
+      </div>
+    </Container>
   );
 }
 

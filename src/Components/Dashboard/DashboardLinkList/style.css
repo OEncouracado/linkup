@@ -1,0 +1,36 @@
+.linksList {
+    padding-top: 1rem;
+  }
+  
+  .dashboardtituloLinks {
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+  }
+  
+  .addLink {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .drag-handle {
+    cursor: grab;
+  }
+  
+  .linkENome {
+    flex-grow: 1;
+  }
+  
+  .link-content {
+    padding-left: 0.5rem;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  

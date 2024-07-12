@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { fb } from "../../shared/service";
-import { useAuth } from "../../hook";
 
-function ModalAdd({ show, setShow, userId, setLinks }) { // eslint-disable-next-line
-  const { authUser } = useAuth();
+function ModalAdd({ show, setShow, userId, setLinks }) {
   const [nomeLink, setNomeLink] = useState("");
   const [urlLink, setUrlLink] = useState("");
   const [completedObjectives, setCompletedObjectives] = useState([]);
@@ -47,7 +45,9 @@ function ModalAdd({ show, setShow, userId, setLinks }) { // eslint-disable-next-
           : `http://${urlLink}`;
 
         // Gerar um novo ID único para o link
-        const newLinkId = linksArray.length > 0 ? Math.max(linksArray.map(link => link.id)) + 1 : 1;
+        const newLinkId = linksArray.length > 0
+          ? Math.max(...linksArray.map(link => Number(link.id) || 0)) + 1
+          : 1;
 
         const newLink = { id: newLinkId, nome: nomeLink, url: formattedUrl };
         const updatedLinksArray = [...linksArray, newLink];

@@ -4,6 +4,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import ModalAdd from "../../ModalAdd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { fb } from "../../../shared/service";
+import "./style.css";
 
 function DashboardLinkList({ pages, userId }) {
   const [links, setLinks] = useState([]);
@@ -91,6 +92,7 @@ function DashboardLinkList({ pages, userId }) {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
+                        className="mb-2"
                       >
                         <DashboardLink
                           url={link.url}
@@ -99,6 +101,7 @@ function DashboardLinkList({ pages, userId }) {
                           iduser={userId}
                           setLinks={setLinks}
                           id={link.id}
+                          index={index} // Passando o index aqui
                         />
                       </div>
                     )}
