@@ -12,7 +12,6 @@ function PaginaLink({ url, nome, linkEstilo }) {
     borderColor: linkEstilo?.borderColor,
   };
 
-  console.log('url :>> ', url);
   return (
     <a
       className="paginaLink"

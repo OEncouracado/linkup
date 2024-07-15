@@ -10,7 +10,7 @@ function Preview({ username }) {
       <iframe
         width="317"
         height="667"
-        frameborder="0"
+        frameBorder="0"
         allowFullScreen="allowFullScreen"
         className="previewFrame"
         src={`/${username}`}

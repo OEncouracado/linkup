@@ -66,7 +66,7 @@ function PerfilRank({ rank }) {
         className="faixaRank w-100 mb-2 mt-4"
         src={rankImageUrl}
         alt=""
-        srcset=""
+        srcSet=""
         title={rankDetails.nome}
       />
     </div>

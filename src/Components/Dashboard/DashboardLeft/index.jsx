@@ -13,9 +13,8 @@ function DashboardLeft() {
   const pages = pageInfo?.Links;
   const stats = userArray && userArray[0];
   const userName = stats?.linkUserName;
-  const molduraAtual = stats?.moldura;
-  console.log("array de paginas", pageInfo);
-  console.log("const pages", pages);
+  const molduraAtual = stats?.moldura; 
+  // eslint-disable-next-line
   const userMoldura = useMemo(
     () => ({
       id: 5000,
@@ -24,8 +23,6 @@ function DashboardLeft() {
     }),
     [molduraAtual]
   );
-
-  console.log(userMoldura.src);
   // eslint-disable-next-line
   const [frames, setFrames] = useState([]);
 

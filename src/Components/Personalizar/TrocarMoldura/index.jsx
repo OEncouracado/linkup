@@ -65,7 +65,7 @@ function TrocarMoldura() {
                                 title='bloqueado'
                                 className="img-thumbnail d-flex align-items-center justify-content-center"
                                 style={{ cursor: 'pointer', width: "100%", height: "100%", backgroundColor: 'gray' }}>
-                                {moldura.name && <span>{moldura.name}</span>}<i class="fas fa-lock    "></i>
+                                    {moldura.name && <span>{moldura.name}</span>}<i className="fas fa-lock    "></i>
                             </div>
                         )}
                     </Container>

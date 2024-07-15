@@ -41,7 +41,7 @@ function Personalizar() {
     [molduraAtual]
   );
 
-  console.log(userMoldura.src);// eslint-disable-next-line
+  // eslint-disable-next-line
   const [frames, setFrames] = useState([]);// eslint-disable-next-line
   const [selectedFrame, setSelectedFrame] = useState(userMoldura);
 

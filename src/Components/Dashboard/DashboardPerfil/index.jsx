@@ -14,7 +14,6 @@ function DashboardPerfil({ id, username, perfil, selectedFrame }) {
   const [isHovered, setIsHovered] = useState(false);
   const [showIgm, setShowImg] = useState(false);
   const handleShowImg = () => setShowImg(true);
-  console.log('selectedFrame :>> ', selectedFrame);
 
   // Função para deletar a imagem de perfil
   const handleDeleteImage = async () => {

@@ -13,7 +13,6 @@ function PerfilEdit() {
     const imgPerfil = stats?.imagemPerfil;
     const userName = stats?.linkUserName;
     const selectedFrame = stats?.moldura;
-    console.log('selectedFrame :>> ', selectedFrame);
 
     // eslint-disable-next-line
     const [molduraImageUrl, setMolduraImageUrl] = useState("");

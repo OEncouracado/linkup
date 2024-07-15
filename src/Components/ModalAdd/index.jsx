@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { fb } from "../../shared/service";
+import { logEvent } from './../../hook/analytics';
 
 function ModalAdd({ show, setShow, userId, setLinks }) {
   const [nomeLink, setNomeLink] = useState("");
@@ -88,7 +89,11 @@ function ModalAdd({ show, setShow, userId, setLinks }) {
           });
           setCompletedObjectives(newCompletedObjectives);
         }
-
+        logEvent('add_link', {
+          userId: userId,
+          linkName: nomeLink,
+          linkUrl: formattedUrl
+        });
         setLinks(updatedLinksArray);
         handleClose();
         console.log("Novo link adicionado com sucesso!");
