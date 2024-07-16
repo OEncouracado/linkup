@@ -9,6 +9,8 @@ import Configuracoes from "../../Components/Configuracoes";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Conquistas from "../../Components/Conquistas";
 import Colecionaveis from "../../Components/Colecionaveis";
+import DashboardProfile from './../../Components/Dashboard/DashBoardProfile/index';
+import MiniProfile from "../../Components/Dashboard/DashBoardProfile/MiniProfile";
 
 function Dashboard() {
   const { authUser } = useAuth();
@@ -33,7 +35,12 @@ function Dashboard() {
       <Conquistas id={id} />
       <Container className="dashboardFundo d-flex justify-content-center me-0">
         <Row className="w-100">
-          <Col md={8} className="dashboardprincipal">
+          <Col md={2} className="profileFundo">
+            <MiniProfile photo={avatar} />
+            <DashboardProfile />
+
+          </Col>
+          <Col md={6} className="dashboardprincipal">
             {aba === "dashboard" && <DashboardLeft />}
             {aba === "personalizar" && <Personalizar />}
             {aba === "colecionaveis" && <Colecionaveis />}

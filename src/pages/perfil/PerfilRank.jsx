@@ -9,10 +9,9 @@ function PerfilRank({ rank }) {
     // Função para obter a URL da imagem de rank do Firebase Storage
     const getRankImageUrl = async () => {
       try {
-        // Substitua "NOME_DO_BUCKET" pelo nome do seu bucket no Firebase Storage
         const rankImageRef = fb?.storage
           .ref()
-          .child(`decoracao_rank/${rankDetails.nome}.png`);
+          .child(`decoracao_rank/${determinarFaixaRank(rank).nome}.png`);
         const url = await rankImageRef.getDownloadURL();
         setRankImageUrl(url);
       } catch (error) {
@@ -20,17 +19,17 @@ function PerfilRank({ rank }) {
       }
     };
 
-    getRankImageUrl(); // eslint-disable-next-line
-  }, [rank]); // Executa sempre que o valor de "rank" mudar
+    getRankImageUrl();
+  }, [rank]);
 
   const determinarFaixaRank = (rank) => {
     const ranks = [
-      { nome: "Bronze", min: 0, max: 199 },
-      { nome: "Prata", min: 200, max: 399 },
-      { nome: "Ouro", min: 400, max: 599 },
-      { nome: "Platina", min: 600, max: 799 },
-      { nome: "Diamante", min: 800, max: 999 },
-      { nome: "Mestre", min: 1000, max: rank }
+      { nome: "Bronze", min: 0, max: 99 },
+      { nome: "Prata", min: 100, max: 399 },
+      { nome: "Ouro", min: 400, max: 999 },
+      { nome: "Platina", min: 1000, max: 1999 },
+      { nome: "Diamante", min: 2000, max: 3999 },
+      { nome: "Mestre", min: 4000, max: rank }
     ];
 
     for (let i = 0; i < ranks.length; i++) {
@@ -48,7 +47,7 @@ function PerfilRank({ rank }) {
   }
 
   return (
-    <div className="d-flex flex-column align-items-center w-50 my-3">
+    <div className="d-flex flex-column align-items-center w-100 my-3">
       <h6 className="nivelLabel">
         Rank <span className="text-success">{rankDetails.nome}</span>
       </h6>
@@ -58,15 +57,14 @@ function PerfilRank({ rank }) {
         striped
         animated
         variant="success"
-        now={rank}
-        min={rankDetails.min}
-        max={rankDetails.max}
+        now={rank - rankDetails.min}
+        min={0}
+        max={rankDetails.max - rankDetails.min}
       />
       <img
         className="faixaRank w-100 mb-2 mt-4"
         src={rankImageUrl}
-        alt=""
-        srcSet=""
+        alt={rankDetails.nome}
         title={rankDetails.nome}
       />
     </div>

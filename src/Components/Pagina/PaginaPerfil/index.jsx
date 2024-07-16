@@ -45,15 +45,15 @@ function PaginaPerfil({ username, perfil, selectedFrame, rank, userStyle }) {
 
   // Função para determinar a faixa de rank com base no valor de rank
   const determinarFaixaRank = (rank) => {
-    if (rank >= 1000) {
+    if (rank >= 4000) {
       return "Mestre";
-    } else if (rank >= 800) {
+    } else if (rank >= 2000) {
       return "Diamante";
-    } else if (rank >= 600) {
+    } else if (rank >= 1000) {
       return "Platina";
     } else if (rank >= 400) {
       return "Ouro";
-    } else if (rank >= 200) {
+    } else if (rank >= 100) {
       return "Prata";
     } else if (rank >= 0) {
       return "Bronze";

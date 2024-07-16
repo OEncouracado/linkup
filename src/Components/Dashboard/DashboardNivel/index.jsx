@@ -20,7 +20,7 @@ function DashboardNivel({ xp }) {
     const { nivel, maxxp } = calculateLevelAndMaxXP(xp);
 
     return (
-        <div className='d-flex flex-column align-items-center w-50 my-3'>
+        <div className='d-flex flex-column align-items-center w-100 my-3'>
             <h6 className='nivelLabel'>
                 Nível <span className='text-success'>{nivel}</span>
             </h6>

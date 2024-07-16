@@ -99,7 +99,7 @@ a {
 /* Dashboard */
 .dashboardFundo {
   max-width: 100dvw !important;
-  margin-top: 1rem;
+  padding-top: 1rem;
   height: 100%;
 }
 
@@ -220,10 +220,9 @@ a {
   overflow: hidden;
   position: -webkit-sticky; /* para compatibilidade com navegadores antigos */
   position: sticky;
-  top: 0;
-  z-index: 10; 
-  height: 100dvh;
-}
+  z-index: 10;
+    height: 100dvh;
+  }
 
 .previewFrame {
   /* margin: auto; */
@@ -236,7 +235,7 @@ a {
   position: -webkit-sticky; /* para compatibilidade com navegadores antigos */
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 11;
 }
 
 .linkENome{
@@ -310,6 +309,16 @@ a {
 
 }
 
+.profileFundo {
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
+  position: -webkit-sticky;
+  /* para compatibilidade com navegadores antigos */
+  position: sticky;
+  z-index: 10;
+  height: 100dvh !important;
+}
 
 .paginaLinksList{
   width: 100vw;
@@ -589,6 +598,12 @@ a {
   background-color: white;
   box-shadow: #000 10px 10px 15px;
 }
+.profileContainers {
+  margin-bottom: 5%;
+  margin-right: 2rem;
+  background-color: white;
+  box-shadow: #000 10px 10px 15px;
+}
 .colecionaveisContainers {
   width: 100% !important;
   margin-bottom: 5%;
@@ -620,7 +635,16 @@ a {
   top: 0;
   z-index: 10;  
 }
-
+.profileFundo {
+  transition: max-height 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: -webkit-sticky;
+  /* para compatibilidade com navegadores antigos */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 
 
 .expand-btn {
@@ -717,6 +741,7 @@ a {
 .personalizarContainers {
   width: 100% !important;
 }
+
 .previewFundo {
   
   opacity: 0;
@@ -724,13 +749,14 @@ a {
   overflow: hidden;
 }
 
+.profileFundo {
+  height: auto !important;
+}
 .previewFundo.expanded {
   max-height: 100dvh;
   opacity: 1;
-  max-height: 100%;
   /* Or any height you prefer when expanded */
 }
-
 .expand-btn {
   opacity: 1;
   display: block;
