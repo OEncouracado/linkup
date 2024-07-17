@@ -9,10 +9,12 @@ import Configuracoes from "../../Components/Configuracoes";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Conquistas from "../../Components/Conquistas";
 import Colecionaveis from "../../Components/Colecionaveis";
-import DashboardProfile from './../../Components/Dashboard/DashBoardProfile/index';
+import DashboardProfile from "./../../Components/Dashboard/DashBoardProfile/index";
 import MiniProfile from "../../Components/Dashboard/DashBoardProfile/MiniProfile";
+import { useLightMode } from "./../../Components/Dashboard/LightModeContext";
 
 function Dashboard() {
+  const { isLightMode } = useLightMode();
   const { authUser } = useAuth();
   const id = authUser?.uid;
   const infoArray = UserInfo(id);
@@ -29,16 +31,24 @@ function Dashboard() {
     setIsPreviewExpanded(!isPreviewExpanded); // Toggle expansion state
   };
 
+  console.log("isLightMode :>> ", isLightMode);
+
   return (
     <>
       <DashboardTopBar handleSetAba={handleSetAba} photo={avatar} id={id} />
       <Conquistas id={id} />
-      <Container className="dashboardFundo d-flex justify-content-center me-0">
+      <Container
+        className="dashboardFundo d-flex justify-content-center me-0"
+        style={
+          isLightMode
+            ? { backgroundColor: "white" }
+            : { backgroundColor: "#6C757D" }
+        }
+      >
         <Row className="w-100">
           <Col md={2} className="profileFundo">
             <MiniProfile photo={avatar} />
             <DashboardProfile />
-
           </Col>
           <Col md={6} className="dashboardprincipal">
             {aba === "dashboard" && <DashboardLeft />}

@@ -5,6 +5,7 @@ import ModalAdd from "../../ModalAdd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { fb } from "../../../shared/service";
 import "./style.css";
+import { useLightMode } from "../LightModeContext";
 
 function DashboardLinkList({ pages, userId }) {
   const [links, setLinks] = useState([]);
@@ -43,7 +44,11 @@ function DashboardLinkList({ pages, userId }) {
 
     // Verifica se o ID do Droppable é válido
     if (source.droppableId !== destination.droppableId) {
-      console.error("IDs de Droppable não coincidem:", source.droppableId, destination.droppableId);
+      console.error(
+        "IDs de Droppable não coincidem:",
+        source.droppableId,
+        destination.droppableId
+      );
       return;
     }
 
@@ -62,9 +67,20 @@ function DashboardLinkList({ pages, userId }) {
     }
   };
 
+  const { isLightMode } = useLightMode();
+
   return (
     <div className="linksList pt-4">
-      <p className="dashboardtituloLinks bg-light">Links</p>
+      <p
+        className="dashboardtituloLinks"
+        style={
+          isLightMode
+            ? { backgroundColor: "#F8F9FA", color: "black" }
+            : { backgroundColor: "#212529", color: "white" }
+        }
+      >
+        Links
+      </p>
       <OverlayTrigger
         placement="right"
         delay={{ show: 250, hide: 400 }}
@@ -86,7 +102,11 @@ function DashboardLinkList({ pages, userId }) {
             >
               {links.length > 0 ? (
                 links.map((link, index) => (
-                  <Draggable key={link.id} draggableId={link.id.toString()} index={index}>
+                  <Draggable
+                    key={link.id}
+                    draggableId={link.id.toString()}
+                    index={index}
+                  >
                     {(provided) => (
                       <div
                         ref={provided.innerRef}
@@ -115,7 +135,12 @@ function DashboardLinkList({ pages, userId }) {
           )}
         </Droppable>
       </DragDropContext>
-      <ModalAdd show={show} setShow={setShow} userId={userId} setLinks={setLinks} />
+      <ModalAdd
+        show={show}
+        setShow={setShow}
+        userId={userId}
+        setLinks={setLinks}
+      />
     </div>
   );
 }

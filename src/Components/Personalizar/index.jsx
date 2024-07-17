@@ -22,6 +22,7 @@ import TrocaCorFundo2 from "./TrocaCorFundo2";
 import PerfilEdit from "./TrocarImagemNome";
 import Trocarfonte from "./TrocarFonte";
 import TrocarMoldura from "./TrocarMoldura";
+import { useLightMode } from "../Dashboard/LightModeContext";
 
 function Personalizar() {
   const { authUser } = useAuth();
@@ -42,12 +43,16 @@ function Personalizar() {
   );
 
   // eslint-disable-next-line
-  const [frames, setFrames] = useState([]);// eslint-disable-next-line
+  const [frames, setFrames] = useState([]); // eslint-disable-next-line
   const [selectedFrame, setSelectedFrame] = useState(userMoldura);
 
   useEffect(() => {
     setSelectedFrame(userMoldura);
   }, [userMoldura]);
+
+  // eslint-disable-next-line
+  const { isLightMode } = useLightMode();
+
   return (
     <>
       {authUser && (
@@ -59,9 +64,18 @@ function Personalizar() {
             </Link>
             .
           </Alert>
-          <Accordion alwaysOpen defaultActiveKey={["0", "1", "2", "3", "4"]} className="personalizarContainers">
-            <Accordion.Item eventKey="0" className="editFundo d-flex flex-column align-items-center">
-              <Accordion.Header className="w-100">Imagem de Perfil e Alterar Nome</Accordion.Header>
+          <Accordion
+            alwaysOpen
+            defaultActiveKey={["0", "1", "2", "3", "4"]}
+            className="personalizarContainers"
+          >
+            <Accordion.Item
+              eventKey="0"
+              className="editFundo d-flex flex-column align-items-center"
+            >
+              <Accordion.Header className="w-100">
+                Imagem de Perfil e Alterar Nome
+              </Accordion.Header>
               <Accordion.Body className="AccBody">
                 <Row className="w-100 h-100 m-0 p-0">
                   <Col md={5} className="d-flex justify-content-center h-100">
@@ -74,23 +88,46 @@ function Personalizar() {
                 </Row>
               </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="1" className=" editFundo d-flex flex-column align-items-center ">
+            <Accordion.Item
+              eventKey="1"
+              className=" editFundo d-flex flex-column align-items-center "
+            >
               <Accordion.Header className="w-100">Fundo</Accordion.Header>
               <Accordion.Body className="">
                 <TrocarbgTipo userId={id} />
-                {css?.bgTipo === "corsolida" ? <><TrocaCorFundo userId={id} /></> : null}
-                {css?.bgTipo === "gradiente" ? <><TrocaCorFundo userId={id} /> <TrocaCorFundo2 userId={id} /></> : null}
-                {css?.bgTipo === "imagem" ? <><TrocaruserBackGround userId={id} /></> : null}
+                {css?.bgTipo === "corsolida" ? (
+                  <>
+                    <TrocaCorFundo userId={id} />
+                  </>
+                ) : null}
+                {css?.bgTipo === "gradiente" ? (
+                  <>
+                    <TrocaCorFundo userId={id} /> <TrocaCorFundo2 userId={id} />
+                  </>
+                ) : null}
+                {css?.bgTipo === "imagem" ? (
+                  <>
+                    <TrocaruserBackGround userId={id} />
+                  </>
+                ) : null}
               </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="4" className=" editFundo d-flex flex-column align-items-center ">
+            <Accordion.Item
+              eventKey="4"
+              className=" editFundo d-flex flex-column align-items-center "
+            >
               <Accordion.Header className="w-100">Fonte</Accordion.Header>
               <Accordion.Body className="">
                 <Trocarfonte userId={id} />
               </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="2" className="editFundo d-flex flex-column align-items-center ">
-              <Accordion.Header className="w-100">Botões de Link</Accordion.Header>
+            <Accordion.Item
+              eventKey="2"
+              className="editFundo d-flex flex-column align-items-center "
+            >
+              <Accordion.Header className="w-100">
+                Botões de Link
+              </Accordion.Header>
               <Accordion.Body className="">
                 <TrocarRaiodaBorda userId={id} />
                 <TrocaCorLink userId={id} />
@@ -103,8 +140,13 @@ function Personalizar() {
               </Accordion.Body>
             </Accordion.Item>
 
-            <Accordion.Item eventKey="3" className="editFundo d-flex flex-column align-items-center ">
-              <Accordion.Header className="w-100">Nome do Usuário e Nível</Accordion.Header>
+            <Accordion.Item
+              eventKey="3"
+              className="editFundo d-flex flex-column align-items-center "
+            >
+              <Accordion.Header className="w-100">
+                Nome do Usuário e Nível
+              </Accordion.Header>
               <Accordion.Body className="">
                 <TrocaFundoUserName userId={id} />
                 <TrocaCorSombraUserName userId={id} />

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { fb } from "../../../shared/service";
+import { useLightMode } from "../LightModeContext";
 
 function DashboardLink({
   url: initialUrl,
@@ -9,7 +10,7 @@ function DashboardLink({
   iduser,
   setLinks,
   id,
-  index
+  index,
 }) {
   const [nomeLink, setNomeLink] = useState(initialNomeLink);
   const [url, setUrl] = useState(initialUrl);
@@ -82,9 +83,16 @@ function DashboardLink({
     }
   };
 
+  const { isLightMode } = useLightMode();
+
   return (
     <Container
-      className="dashboardFundoLink bg-light d-flex justify-content-between align-items-center my-2 p-3 rounded"
+      className="dashboardFundoLink d-flex justify-content-between align-items-center my-2 p-3 rounded"
+      style={
+        isLightMode
+          ? { backgroundColor: "#F8F9FA", color: "black" }
+          : { backgroundColor: "#212529", color: "white" }
+      }
     >
       <div className="drag-handle">
         <i className="fa fa-ellipsis-v" aria-hidden="true"></i>

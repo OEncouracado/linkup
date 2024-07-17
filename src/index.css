@@ -310,15 +310,20 @@ a {
 }
 
 .profileFundo {
+  transition: max-height 0.3s ease;
   display: flex;
   align-items: flex-start;
   overflow: hidden;
   position: -webkit-sticky;
   /* para compatibilidade com navegadores antigos */
   position: sticky;
+  flex-direction: column;
   z-index: 10;
+  top: 0;
   height: 100dvh !important;
 }
+
+
 
 .paginaLinksList{
   width: 100vw;
@@ -593,12 +598,12 @@ a {
   
 }
 .personalizarContainers {
-  width: 75% !important;
+  width: 90% !important;
   margin-bottom: 5%;
-  background-color: white;
   box-shadow: #000 10px 10px 15px;
 }
 .profileContainers {
+  margin-top: 2rem;
   margin-bottom: 5%;
   margin-right: 2rem;
   background-color: white;
@@ -635,17 +640,11 @@ a {
   top: 0;
   z-index: 10;  
 }
-.profileFundo {
-  transition: max-height 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  position: -webkit-sticky;
-  /* para compatibilidade com navegadores antigos */
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
 
+.miniContainer{
+  opacity: 0;
+  height: 0px;
+}
 
 .expand-btn {
   opacity: 0;
@@ -750,13 +749,25 @@ a {
 }
 
 .profileFundo {
+  top:auto;
   height: auto !important;
+}
+.profileContainers {
+  margin-top: 0%;
+  opacity: 0;
+  height: 0;
 }
 .previewFundo.expanded {
   max-height: 100dvh;
   opacity: 1;
   /* Or any height you prefer when expanded */
 }
+
+.miniContainer{
+  opacity: 1;
+  height: auto;
+}
+
 .expand-btn {
   opacity: 1;
   display: block;

@@ -22,11 +22,12 @@ import UsuarioBloqueado from "./Components/Telas Extras/usuarioBloqueado";
 import Despedida from "./Components/Telas Extras/despedida";
 import VerificacaoEmail from "./Components/Telas Extras/verificacaoEmail";
 import Termos from "./Components/TermoseCondições";
+import { LightModeProvider } from "./Components/Dashboard/LightModeContext";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
   return (
-    <div>
+    <LightModeProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -80,10 +81,10 @@ function App() {
           <Route path="/bloqueado" element={<UsuarioBloqueado />} />
           <Route path="/despedida" element={<Despedida />} />
           <Route path="/verificacaoEmail" element={<VerificacaoEmail />} />
-          <Route path="/s/TermoseCondicoes" element={<Termos/>}/>
+          <Route path="/s/TermoseCondicoes" element={<Termos />} />
         </Routes>
       </Router>
-    </div>
+    </LightModeProvider>
   );
 }
 
