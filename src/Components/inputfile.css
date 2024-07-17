@@ -1,0 +1,9 @@
+input[type=file]::file-selector-button {
+    background-color: transparent;
+    color: inherit;
+}
+
+input[type=file]:hover::file-selector-button {
+    background-color: transparent;
+    color: black;
+}

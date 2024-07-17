@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { fb } from "../../../shared/service/firebase";
 import { UserInfo } from "../../../hook";
+import "../../inputfile.css"
+import { useLightMode } from "../../Dashboard/LightModeContext";
 
 function TrocarfundoImgBotao({ userId }) {
+  const { isLightMode } = useLightMode();
   const id = userId;
   const statsArray = UserInfo(id);
   const stats = statsArray && statsArray[0];
@@ -83,6 +86,8 @@ function TrocarfundoImgBotao({ userId }) {
       {VIP ? (
         <div className="w-100 d-flex align-items-center">
           <Form.Control
+            style={{ backgroundColor: "transparent" }}
+            className={`formInput ${isLightMode ? "text-dark" : "text-light"}`}
             type="file"
             onChange={handleFileChange}
             onBlur={uploadFile}

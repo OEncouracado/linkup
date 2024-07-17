@@ -4,6 +4,7 @@ import { Container, Image, Row, Col, ProgressBar } from "react-bootstrap";
 import photoNull from "../../../Images/perfil/perfil.jpg";
 import { useAuth, UserInfo } from "../../../hook";
 import { fb } from "../../../shared/service";
+import { useLightMode } from "../LightModeContext";
 
 function MiniProfile({ photo }) {
   const { authUser } = useAuth();
@@ -12,6 +13,7 @@ function MiniProfile({ photo }) {
   const stats = infoArray && infoArray[0];
   // eslint-disable-next-line
   const [rankImageUrl, setRankImageUrl] = useState("");
+  const { isLightMode } = useLightMode();
 
   useEffect(() => {
     // Função para obter a URL da imagem de rank do Firebase Storage
@@ -72,7 +74,12 @@ function MiniProfile({ photo }) {
   const { nivel, maxxp } = calculateLevelAndMaxXP(stats?.xp);
 
   return (
-    <Container className="miniContainer bg-dark-subtle rounded">
+    <Container className="miniContainer rounded"
+      style={
+        isLightMode
+          ? { backgroundColor: "#F8F9FA", color: "black", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }
+          : { backgroundColor: "#212529", color: "white", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }
+      }>
       <Row className="d-flex align-items-center">
         <Col xs={3} className="d-flex justify-content-center">
           <Image

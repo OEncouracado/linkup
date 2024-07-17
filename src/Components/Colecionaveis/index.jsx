@@ -1,8 +1,9 @@
 import React from "react";
-import { Accordion, Alert } from "react-bootstrap";
+import { Alert, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { UserCss, UserInfo, useAuth, usePages } from "../../hook";
 import ArquivodeConquistas from "./arquivodeConquistas";
+import { useLightMode } from "../Dashboard/LightModeContext";
 
 function Colecionaveis() {
   const { authUser } = useAuth();
@@ -14,6 +15,7 @@ function Colecionaveis() {
   const pages = pageInfo?.Links; // eslint-disable-next-line
   const stats = userArray && userArray[0];
   const username = stats?.linkUserName;
+  const { isLightMode } = useLightMode();
   return (
     <div className="dashboardLinks pb-5 d-flex flex-column align-items-center">
       <Alert variant="info" className="mb-5">
@@ -23,22 +25,12 @@ function Colecionaveis() {
         </Link>
         .
       </Alert>
-
-      <Accordion
-        alwaysOpen
-        defaultActiveKey={"0"}
-        className="colecionaveisContainers"
-      >
-        <Accordion.Item
-          eventKey="0"
-          className="editFundo d-flex flex-column align-items-center"
-        >
-          <Accordion.Header className="w-100">Objetivos</Accordion.Header>
-          <Accordion.Body>
-            <ArquivodeConquistas id={id} />
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
+      <Card bg={isLightMode ? "light" : "dark"} text={isLightMode ? "dark" : "light"} className="mb-3">
+        <Card.Header style={isLightMode ? {} : { backgroundColor: "#272B2F" }}>Objetivos</Card.Header>
+        <Card.Body>
+          <ArquivodeConquistas id={id} />
+        </Card.Body>
+      </Card>
     </div>
   );
 }

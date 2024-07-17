@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Container, Form } from 'react-bootstrap';
 import { UserInfo, useAuth } from '../../../hook';
 import { fb } from '../../../shared/service';
+import { useLightMode } from '../../Dashboard/LightModeContext';
 
 function TrocalinkUserName() {
+    const { isLightMode } = useLightMode();
     const { authUser } = useAuth();
     const userArray = UserInfo(authUser?.uid);
     const stats = userArray && userArray[0];
@@ -73,8 +75,10 @@ function TrocalinkUserName() {
     return (
         <Container className='mt-1'>
             <Form onSubmit={handleSubmit} className='d-flex flex-row align-items-center'>
-                <Form.Group className="w-100">
+                <Form.Group className="w-100" style={{ backgroundColor: "transparent" }}>
                     <Form.Control
+                        style={{ backgroundColor: "transparent" }}
+                        className={isLightMode ? "text-dark" : "text-light"}
                         type="text"
                         value={linkUserName}
                         onChange={(e) => { setlinkUserName(e.target.value.toLowerCase()); verificarUsername(e.target.value.toLowerCase()); }}

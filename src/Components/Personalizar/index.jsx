@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import "react-device-emulator/lib/styles/style.css";
-import { Accordion, Alert, Col, Row } from "react-bootstrap";
+import { Card, Alert, Col, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { UserCss, UserInfo, useAuth } from "../../hook";
 import TrocaCorFundo from "./TrocaCorFundo/index";
@@ -56,105 +56,75 @@ function Personalizar() {
   return (
     <>
       {authUser && (
-        <div className="dashboardLinks pb-5 d-flex flex-column align-items-center">
-          <Alert variant="info" className="mb-5">
+        <div className="dashboardLinks d-flex flex-column align-items-center">
+          <Alert variant="info" className="mb-2">
             Sua página já está disponível aqui:{" "}
             <Link to={`/${userName}`} target="_blank" rel="noreferrer">
               {userName}
             </Link>
             .
           </Alert>
-          <Accordion
-            alwaysOpen
-            defaultActiveKey={["0", "1", "2", "3", "4"]}
-            className="personalizarContainers"
-          >
-            <Accordion.Item
-              eventKey="0"
-              className="editFundo d-flex flex-column align-items-center"
-            >
-              <Accordion.Header className="w-100">
-                Imagem de Perfil e Alterar Nome
-              </Accordion.Header>
-              <Accordion.Body className="AccBody">
-                <Row className="w-100 h-100 m-0 p-0">
-                  <Col md={5} className="d-flex justify-content-center h-100">
+          <Container>
+            <Card bg={isLightMode ? "light" : "dark"} text={isLightMode ? "dark" : "light"} className="mb-3">
+              <Card.Header style={isLightMode ? {} : { backgroundColor: "#272B2F" }}>Imagem de Perfil e Alterar Nome</Card.Header>
+              <Card.Body className="AccBody">
+                <Row className="w-100 h-100 m-0 p-0 align-items-start">
+                  <Col md={5} className="text-dark mb-3 d-flex justify-content-center align-items-start">
                     <PerfilEdit />
                   </Col>
-                  {/* <Col md={1} className="bg-primary h-100" /> */}
                   <Col md={7} className="p-0 pb-1 h-100">
                     <TrocarMoldura />
                   </Col>
                 </Row>
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item
-              eventKey="1"
-              className=" editFundo d-flex flex-column align-items-center "
-            >
-              <Accordion.Header className="w-100">Fundo</Accordion.Header>
-              <Accordion.Body className="">
+              </Card.Body>
+            </Card>
+
+            <Card bg={isLightMode ? "light" : "dark"} text={isLightMode ? "dark" : "light"} className="mb-3">
+              <Card.Header style={isLightMode ? {} : { backgroundColor: "#272B2F" }}>Fundo</Card.Header>
+              <Card.Body>
                 <TrocarbgTipo userId={id} />
-                {css?.bgTipo === "corsolida" ? (
+                {css?.bgTipo === "corsolida" && <TrocaCorFundo userId={id} />}
+                {css?.bgTipo === "gradiente" && (
                   <>
                     <TrocaCorFundo userId={id} />
+                    <TrocaCorFundo2 userId={id} />
                   </>
-                ) : null}
-                {css?.bgTipo === "gradiente" ? (
-                  <>
-                    <TrocaCorFundo userId={id} /> <TrocaCorFundo2 userId={id} />
-                  </>
-                ) : null}
-                {css?.bgTipo === "imagem" ? (
-                  <>
-                    <TrocaruserBackGround userId={id} />
-                  </>
-                ) : null}
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item
-              eventKey="4"
-              className=" editFundo d-flex flex-column align-items-center "
-            >
-              <Accordion.Header className="w-100">Fonte</Accordion.Header>
-              <Accordion.Body className="">
+                )}
+                {css?.bgTipo === "imagem" && <TrocaruserBackGround userId={id} />}
+              </Card.Body>
+            </Card>
+
+            <Card bg={isLightMode ? "light" : "dark"} text={isLightMode ? "dark" : "light"} className="mb-3">
+              <Card.Header style={isLightMode ? {} : { backgroundColor: "#272B2F" }}>Fonte</Card.Header>
+              <Card.Body>
                 <Trocarfonte userId={id} />
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item
-              eventKey="2"
-              className="editFundo d-flex flex-column align-items-center "
-            >
-              <Accordion.Header className="w-100">
-                Botões de Link
-              </Accordion.Header>
-              <Accordion.Body className="">
+              </Card.Body>
+            </Card>
+
+            <Card bg={isLightMode ? "light" : "dark"} text={isLightMode ? "dark" : "light"} className="mb-3">
+              <Card.Header style={isLightMode ? {} : { backgroundColor: "#272B2F" }}>Botões de Link</Card.Header>
+              <Card.Body>
                 <TrocarRaiodaBorda userId={id} />
                 <TrocaCorLink userId={id} />
                 <TrocaCorSombraLink userId={id} />
                 <TrocaCorTextoBotao userId={id} />
-                {stats?.VIP ? <TrocarfundoImgBotao userId={id} /> : null}
+                {stats?.VIP && <TrocarfundoImgBotao userId={id} />}
                 <TrocarborderStyle userId={id} />
                 <TrocaborderColor userId={id} />
                 <TrocarborderWith userId={id} />
-              </Accordion.Body>
-            </Accordion.Item>
+              </Card.Body>
+            </Card>
 
-            <Accordion.Item
-              eventKey="3"
-              className="editFundo d-flex flex-column align-items-center "
-            >
-              <Accordion.Header className="w-100">
-                Nome do Usuário e Nível
-              </Accordion.Header>
-              <Accordion.Body className="">
+            <Card bg={isLightMode ? "light" : "dark"} text={isLightMode ? "dark" : "light"} className="mb-3">
+              <Card.Header style={isLightMode ? {} : { backgroundColor: "#272B2F" }}>Nome do Usuário e Nível</Card.Header>
+              <Card.Body>
                 <TrocaFundoUserName userId={id} />
                 <TrocaCorSombraUserName userId={id} />
                 <TrocaCorTextoUserName userId={id} />
                 {/* <TrocaCorTextoNivel userId={id} /> */}
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
+              </Card.Body>
+            </Card>
+          </Container>
         </div>
       )}
     </>

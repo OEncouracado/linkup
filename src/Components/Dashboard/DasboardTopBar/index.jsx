@@ -43,10 +43,10 @@ function DashboardTopBar({ handleSetAba, photo, id }) {
   };
 
   return (
-    <Navbar variant="dark" bg="dark" expand="md" className="DashboardTopBar">
-      <Container>
-        <Row className="w-100">
-          <Col sm={8} xs={3}>
+    <Navbar variant={isLightMode ? "light" : "dark"} bg={isLightMode ? "light" : "dark"} expand="md" className="DashboardTopBar">
+      <>
+        <Row className="w-100 mx-1">
+          <Col sm={8} xs={2} className="d-flex align-items-center">
             <Navbar.Toggle
               aria-controls="offcanvasNavbar-expand-md"
               onClick={handleShowStart}
@@ -89,8 +89,7 @@ function DashboardTopBar({ handleSetAba, photo, id }) {
           <Col sm={2} xs={4} className="d-flex align-items-center">
             <DarkModeToggle
               mode={isLightMode ? "light" : "dark"}
-              dark={isLightMode ? "" : "Dark"}
-              light={isLightMode ? "Light" : ""}
+              dark={isLightMode ? "Light" : "Dark"}
               size="sm"
               inactiveTrackColor="#e2e8f0"
               inactiveTrackColorOnHover="#f8fafc"
@@ -103,14 +102,14 @@ function DashboardTopBar({ handleSetAba, photo, id }) {
               onChange={() => setIsLightMode(!isLightMode)}
             />
           </Col>
-          <Col sm={2} xs={5}>
+          <Col sm={2} xs={6} className="">
             <Container
               onClick={handleShowEnd}
-              className="my-1 p-0 PerfilDashboardTopbar rounded-pill text-light"
+              className={`my-1 p-0 rounded-pill ${isLightMode ? "PerfilDashboardTopbar" : "PerfilDashboardTopbarDark text-light"}`}
               style={{ cursor: "pointer" }}
             >
               <Image
-                className="ImgPerfilDashboardTopbar"
+                className={isLightMode ? "ImgPerfilDashboardTopbar" : "ImgPerfilDashboardTopbarDark"}
                 src={photo ? photo : photoNull}
                 roundedCircle
               />
@@ -154,7 +153,7 @@ function DashboardTopBar({ handleSetAba, photo, id }) {
             </Offcanvas>
           </Col>
         </Row>
-      </Container>
+      </>
     </Navbar>
   );
 }

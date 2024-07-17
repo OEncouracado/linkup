@@ -6,7 +6,6 @@ import { fb } from "../../../shared/service";
 function TrocarborderWith({ userId }) {
   const cssArray = UserCss(userId);
   const css = cssArray && cssArray[0];
-
   const borderWithAtual = css?.borderWith;
   const [newborderWith, setNewborderWith] = useState("");
   const handleTrocaborderWith = async (e) => {
@@ -31,7 +30,7 @@ function TrocarborderWith({ userId }) {
           style={{
             margin: "auto",
             padding: ".6rem",
-            backgroundColor: "#f8f8ff",
+            backgroundColor: "transparent",
             border: "0.1rem solid #DEE2E6", 
             borderRadius: "0.4rem"
           }}

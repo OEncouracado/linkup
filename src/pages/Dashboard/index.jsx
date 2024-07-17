@@ -65,7 +65,7 @@ function Dashboard() {
           </Col>
           <Col
             md={4}
-            className={`previewFundo py-3 ${
+            className={`previewFundo pt-3 ${
               isPreviewExpanded ? "expanded" : ""
             }`}
           >

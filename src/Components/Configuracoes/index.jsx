@@ -1,11 +1,13 @@
 import React from 'react'
-import { Accordion, Alert } from 'react-bootstrap'
+import { Alert, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { UserCss, UserInfo, useAuth, usePages } from '../../hook';// eslint-disable-next-line
 import TrocalinkUserName from './TrocalinkUserName';
+import { useLightMode } from '../Dashboard/LightModeContext';
 
 function Configuracoes() {
-    const { authUser } = useAuth();
+
+  const { authUser } = useAuth();
   const id = authUser?.uid;
   const userArray = UserInfo(id);
   const pageInfo = usePages(id);
@@ -14,6 +16,7 @@ function Configuracoes() {
   const pages = pageInfo?.Links;// eslint-disable-next-line
   const stats = userArray && userArray[0];
   const username = stats?.linkUserName;
+  const { isLightMode } = useLightMode();
 
   return (
     <div className="dashboardLinks pb-5 d-flex flex-column align-items-center">
@@ -23,16 +26,12 @@ function Configuracoes() {
         {username}
         </Link>.
       </Alert>
-
-      <Accordion alwaysOpen defaultActiveKey={"0"} className="personalizarContainers">
-        <Accordion.Item eventKey="0" className="editFundo d-flex flex-column align-items-center">
-          <Accordion.Header className="w-100">Link Personalizado</Accordion.Header>
-          <Accordion.Body>
-            <TrocalinkUserName />
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
-
+      <Card bg={isLightMode ? "light" : "dark"} text={isLightMode ? "dark" : "light"} className="personalizarContainers mb-3">
+        <Card.Header style={isLightMode ? {} : { backgroundColor: "#272B2F" }}>Link Personalizado</Card.Header>
+        <Card.Body>
+          <TrocalinkUserName />
+        </Card.Body>
+      </Card>
     </div>
   )
 }

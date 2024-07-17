@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { fb } from "../../../shared/service/firebase";
 import { UserInfo } from "../../../hook";
+import { useLightMode } from "../../Dashboard/LightModeContext";
+import "../../inputfile.css"
 
 function TrocaruserBackGround({ userId }) {
   const id = userId;
   const statsArray = UserInfo(id);
   const stats = statsArray && statsArray[0];
   const VIP = stats?.VIP;
-  console.log("VIP? :>> ", VIP);
+  const { isLightMode } = useLightMode();
   const [userBackGroundNovo, setuserBackGroundNovo] = useState(""); // eslint-disable-next-line
   const [uploadProgress, setUploadProgress] = useState(0); // Para mostrar o progresso do upload
 
@@ -78,11 +80,14 @@ function TrocaruserBackGround({ userId }) {
     }
   };
 
+
   return (
     <>
       {VIP ? (
         <div className="w-100 d-flex align-items-center">
           <Form.Control
+            style={{ backgroundColor: "transparent" }}
+            className={`formInput ${isLightMode ? "text-dark" : "text-light"}`}
             type="file"
             onChange={handleFileChange}
             onBlur={uploadFile}

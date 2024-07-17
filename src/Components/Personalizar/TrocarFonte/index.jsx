@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { UserCss } from "../../../hook";
 import { fb } from "../../../shared/service";
+import { useLightMode } from "../../Dashboard/LightModeContext";
 
 function Trocarfonte({ userId }) {
+  const { isLightMode } = useLightMode();
   const cssArray = UserCss(userId);
   const css = cssArray && cssArray[0];
 
@@ -46,10 +48,10 @@ function Trocarfonte({ userId }) {
     <div className="w-100 my-1">
       <Form className="">
         <InputGroup style={{ margin: "auto" }}>
-          <InputGroup.Text className="w-25">Fonte:</InputGroup.Text>
-          <Form.Select value={newfonte} onChange={handleTrocafonte}>
+          <InputGroup.Text style={{ backgroundColor: "transparent" }} className={`w-25 ${isLightMode ? "text-dark" : "text-light"}`}>Fonte:</InputGroup.Text>
+          <Form.Select style={{ backgroundColor: "transparent" }} className={`w-25 ${isLightMode ? "text-dark" : "text-light"}`} value={newfonte} onChange={handleTrocafonte}>
             {Object.keys(fonteOptions).map((label) => (
-              <option key={fonteOptions[label]} value={fonteOptions[label]}>
+              <option className={isLightMode ? "bg-light text-dark" : "bg-dark text-light"} key={fonteOptions[label]} value={fonteOptions[label]}>
                 {label}
               </option>
             ))}

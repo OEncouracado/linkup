@@ -87,16 +87,16 @@ function DashboardLink({
 
   return (
     <Container
-      className="dashboardFundoLink d-flex justify-content-between align-items-center my-2 p-3 rounded"
+      className="dashboardFundoLink d-flex justify-content-between align-items-center my-2 p-3"
       style={
         isLightMode
           ? { backgroundColor: "#F8F9FA", color: "black" }
           : { backgroundColor: "#212529", color: "white" }
       }
     >
-      <div className="drag-handle">
-        <i className="fa fa-ellipsis-v" aria-hidden="true"></i>
-      </div>
+      {/* <div className="drag-handle me-3">
+        <i className="fas fa-grip-vertical" aria-hidden="true" style={{ fontSize: "1.2rem" }} />
+      </div> */}
       <div className="linkENome d-flex flex-column align-items-start">
         <Container className="link-content flex-grow-1 d-flex flex-column align-items-start">
           {isEdit ? (

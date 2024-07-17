@@ -2,12 +2,6 @@
     padding-top: 1rem;
   }
   
-  .dashboardtituloLinks {
-    background-color: #f8f9fa;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-  }
-  
   .addLink {
     font-size: 1.5rem;
     cursor: pointer;
@@ -33,4 +27,7 @@
     display: flex;
     gap: 0.5rem;
   }
+.AddBtn {
+  border-radius: 1.6rem;
+}
   

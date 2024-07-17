@@ -26,10 +26,7 @@ function TrocarRaiodaBorda({ userId }) {
     return (
         <div className="w-100 my-1">
             <Form className="">
-                <Form.Group className="d-flex" style={{ margin: "auto", padding: ".6rem", backgroundColor: "#f8f8ff",border: "0.1rem solid #DEE2E6", borderRadius: "0.4rem"}}>
-                    {/* <InputGroup.Text className="w-50">
-                        Cor do TextoUserName:{" "}
-                    </InputGroup.Text> */}
+                <Form.Group className="d-flex" style={{ margin: "auto", padding: ".6rem", backgroundColor: "transparent", border: "0.1rem solid #DEE2E6", borderRadius: "0.4rem" }}>
                     <Form.Label className='perfilImgZoomRangeLabel m-0 w-25'>Raio da Borda ({raiodaBordaAtual}):</Form.Label>
 
                     <Form.Range

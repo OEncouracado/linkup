@@ -31,7 +31,7 @@ function DashboardLeft() {
     <>
       {authUser && (
         <div className="dashboardLinks pb-5 d-flex flex-column align-items-center">
-          <Alert variant="info" className="mb-5">
+          <Alert variant="info" className="mb-1">
             Sua página já está disponível aqui:{" "}
             <Link to={`/${userName}`} target="_blank" rel="noreferrer">
               {userName}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DashboardLink from "../DashboardLink";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import ModalAdd from "../../ModalAdd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { fb } from "../../../shared/service";
@@ -31,11 +31,6 @@ function DashboardLinkList({ pages, userId }) {
 
   const handleShow = () => setShow(true);
 
-  const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      Adicionar novo Link
-    </Tooltip>
-  );
 
   const handleOnDragEnd = async (result) => {
     if (!result.destination) return;
@@ -71,7 +66,7 @@ function DashboardLinkList({ pages, userId }) {
 
   return (
     <div className="linksList pt-4">
-      <p
+      {/* <p
         className="dashboardtituloLinks"
         style={
           isLightMode
@@ -80,18 +75,19 @@ function DashboardLinkList({ pages, userId }) {
         }
       >
         Links
-      </p>
-      <OverlayTrigger
-        placement="right"
-        delay={{ show: 250, hide: 400 }}
-        overlay={renderTooltip()}
-      >
-        <i
-          className="addLink fa fa-plus-circle ms-3"
-          onClick={handleShow}
-          aria-hidden="true"
-        ></i>
-      </OverlayTrigger>
+      </p> */}
+      <div className="dashboardtituloLinks d-grid gap-2 mb-2">
+        <Button className="AddBtn" variant={
+          isLightMode
+            ? "primary"
+            : "dark"
+        }
+          size="lg"
+          onClick={handleShow}>
+          + Adicionar Link
+        </Button>
+      </div>
+
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId={`droppable-${userId}`} type="LINK">
           {(provided) => (
