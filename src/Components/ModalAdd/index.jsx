@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { fb } from "../../shared/service";
-import { logEvent } from './../../hook/analytics';
+import { logEvent } from "./../../hook/analytics";
+import { useLightMode } from "../Dashboard/LightModeContext";
+import { Form } from "react-bootstrap";
 
 function ModalAdd({ show, setShow, userId, setLinks }) {
   const [nomeLink, setNomeLink] = useState("");
   const [urlLink, setUrlLink] = useState("");
   const [completedObjectives, setCompletedObjectives] = useState([]);
+  const { isLightMode } = useLightMode();
 
   useEffect(() => {
     const fetchObjectives = async () => {
@@ -41,14 +44,16 @@ function ModalAdd({ show, setShow, userId, setLinks }) {
         }
 
         // Verificar e adicionar prefixo ao URL, se necessário
-        const formattedUrl = urlLink.startsWith('http://') || urlLink.startsWith('https://')
-          ? urlLink
-          : `http://${urlLink}`;
+        const formattedUrl =
+          urlLink.startsWith("http://") || urlLink.startsWith("https://")
+            ? urlLink
+            : `http://${urlLink}`;
 
         // Gerar um novo ID único para o link
-        const newLinkId = linksArray.length > 0
-          ? Math.max(...linksArray.map(link => Number(link.id) || 0)) + 1
-          : 1;
+        const newLinkId =
+          linksArray.length > 0
+            ? Math.max(...linksArray.map((link) => Number(link.id) || 0)) + 1
+            : 1;
 
         const newLink = { id: newLinkId, nome: nomeLink, url: formattedUrl };
         const updatedLinksArray = [...linksArray, newLink];
@@ -89,16 +94,18 @@ function ModalAdd({ show, setShow, userId, setLinks }) {
           });
           setCompletedObjectives(newCompletedObjectives);
         }
-        logEvent('add_link', {
+        logEvent("add_link", {
           userId: userId,
           linkName: nomeLink,
-          linkUrl: formattedUrl
+          linkUrl: formattedUrl,
         });
         setLinks(updatedLinksArray);
         handleClose();
         console.log("Novo link adicionado com sucesso!");
       } else {
-        console.error("Usuário não autenticado. Não é possível adicionar link.");
+        console.error(
+          "Usuário não autenticado. Não é possível adicionar link."
+        );
       }
     } catch (error) {
       console.error("Erro ao adicionar novo link:", error);
@@ -113,28 +120,35 @@ function ModalAdd({ show, setShow, userId, setLinks }) {
         backdrop="static"
         keyboard={false}
         centered
+        className={isLightMode ? "text-dark" : "text-white"}
       >
-        <Modal.Header closeButton>
+        <Modal.Header
+          style={isLightMode ? {} : { backgroundColor: "#272B2F" }}
+          closeButton
+        >
           <Modal.Title>Adicionar Novo Link</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <div className="my-1 d-flex flex-column">
-            <input
-              className="mb-2"
+        <Modal.Body className={isLightMode ? "" : "bg-dark"}>
+          <Form className="my-1 d-flex flex-column">
+            <Form.Control
+              style={isLightMode ? {} : { backgroundColor: "gray" }}
+              className={`mb-2 ${isLightMode ? "text-dark" : "text-light"}`}
               type="text"
               value={nomeLink}
               onChange={(e) => setNomeLink(e.target.value)}
               placeholder="Nome do Link"
             />
-            <input
+            <Form.Control
+              style={isLightMode ? {} : { backgroundColor: "gray" }}
+              className={`mb-2 ${isLightMode ? "text-dark" : "text-light"}`}
               type="url"
               value={urlLink}
               onChange={(e) => setUrlLink(e.target.value)}
               placeholder="URL do Link"
             />
-          </div>
+          </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className={isLightMode ? "" : "bg-dark"}>
           <Button onClick={handleAddLink}>Adicionar Link</Button>
           <Button variant="secondary" onClick={handleClose}>
             Fechar
