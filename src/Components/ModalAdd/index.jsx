@@ -4,7 +4,8 @@ import Modal from "react-bootstrap/Modal";
 import { fb } from "../../shared/service";
 import { logEvent } from "./../../hook/analytics";
 import { useLightMode } from "../Dashboard/LightModeContext";
-import { Form } from "react-bootstrap";
+import { Card, Col, Form, Row } from "react-bootstrap";
+import "./modaladd.css"
 
 function ModalAdd({ show, setShow, userId, setLinks }) {
   const [nomeLink, setNomeLink] = useState("");
@@ -122,38 +123,63 @@ function ModalAdd({ show, setShow, userId, setLinks }) {
         centered
         className={isLightMode ? "text-dark" : "text-white"}
       >
-        <Modal.Header
+        {/* <Modal.Header
           style={isLightMode ? {} : { backgroundColor: "#272B2F" }}
           closeButton
         >
           <Modal.Title>Adicionar Novo Link</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className={isLightMode ? "" : "bg-dark"}>
-          <Form className="my-1 d-flex flex-column">
-            <Form.Control
-              style={isLightMode ? {} : { backgroundColor: "gray" }}
-              className={`mb-2 ${isLightMode ? "text-dark" : "text-light"}`}
-              type="text"
-              value={nomeLink}
-              onChange={(e) => setNomeLink(e.target.value)}
-              placeholder="Nome do Link"
-            />
-            <Form.Control
-              style={isLightMode ? {} : { backgroundColor: "gray" }}
-              className={`mb-2 ${isLightMode ? "text-dark" : "text-light"}`}
-              type="url"
-              value={urlLink}
-              onChange={(e) => setUrlLink(e.target.value)}
-              placeholder="URL do Link"
-            />
-          </Form>
+        </Modal.Header> */}
+        <Modal.Body style={{ backgroundColor: "transparent" }} className="">
+          <Card bg={isLightMode ? "light" : "dark"} text={isLightMode ? "dark" : "light"}>
+            <Card.Header
+              style={isLightMode ? {} : { backgroundColor: "#272B2F" }}
+            >
+              <Card.Title className="">
+                <Row className="me-2 align-items-center">
+                  <Col xs={11}>
+                    <h3 className="m-0">Adicionar Novo Link</h3>
+                  </Col>
+                  <Col className="" xs={1}>
+                    <Button variant="outline-danger" onClick={handleClose}>X</Button>
+                  </Col>
+                </Row>
+              </Card.Title>
+
+            </Card.Header>
+            <Card.Body>
+              <Form className="my-1 d-flex flex-column">
+                <Form.Control
+                  style={isLightMode ? {} : { backgroundColor: "gray" }}
+                  className={`mb-2 ${isLightMode ? "text-dark" : "text-light"}`}
+                  type="text"
+                  value={nomeLink}
+                  onChange={(e) => setNomeLink(e.target.value)}
+                  placeholder="Nome do Link"
+                />
+                <Form.Control
+                  style={isLightMode ? {} : { backgroundColor: "gray" }}
+                  className={`mb-2 ${isLightMode ? "text-dark" : "text-light"}`}
+                  type="url"
+                  value={urlLink}
+                  onChange={(e) => setUrlLink(e.target.value)}
+                  placeholder="URL do Link"
+                />
+              </Form>
+            </Card.Body>
+            <Card.Footer className="">
+              <Row className="me-1 align-items-center">
+                <Col className="">
+                  <Button variant="outline-success" className="" onClick={handleAddLink}>Adicionar Link</Button>
+                </Col>
+                <Col className="d-flex justify-content-end pe-0 me-0">
+                  <Button variant="outline-danger" onClick={handleClose}>
+                    Fechar
+                  </Button>
+                </Col>
+              </Row>
+            </Card.Footer>
+          </Card>
         </Modal.Body>
-        <Modal.Footer className={isLightMode ? "" : "bg-dark"}>
-          <Button onClick={handleAddLink}>Adicionar Link</Button>
-          <Button variant="secondary" onClick={handleClose}>
-            Fechar
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

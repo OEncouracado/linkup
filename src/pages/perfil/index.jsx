@@ -166,6 +166,7 @@ function UserProfile() {
                     <Form.Group className="mb-3">
                       <Form.Label>Número</Form.Label>
                       <PhoneInput
+                        className=""
                         labels={br}
                         defaultCountry="BR"
                         placeholder={
@@ -257,8 +258,8 @@ function UserProfile() {
                 <div id="recaptcha-container"></div>
                 <div className="mt-5 text-center">
                   <Button
+                    variant="void"
                     type="submit"
-                    className="btn btn-primary profile-button"
                   >
                     {isCodeSent ? "Verificar Código" : "Salvar"}
                   </Button>

@@ -235,10 +235,11 @@ function Login() {
           </a>
           <Form.Group className="d-grid gap-2 my-4">
             <Button
+              variant="void"
               onClick={handleLogin}
               disabled={!confirBotao}
               size="lg"
-              className="botaoCriar rounded-pill"
+              className=" rounded-pill"
             >
               Entrar
             </Button>

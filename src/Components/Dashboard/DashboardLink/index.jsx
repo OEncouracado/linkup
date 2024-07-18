@@ -137,7 +137,7 @@ function DashboardLink({
               <i className="fa fa-check"></i>
             </Button>
             <Button
-              variant="danger"
+              variant="outline-danger"
               className="mx-1"
               onClick={() => setIsEdit(false)}
             >
@@ -146,14 +146,14 @@ function DashboardLink({
           </>
         ) : (
           <Button
-            variant="primary"
+              variant="outline-primary"
             className="mx-1"
             onClick={() => setIsEdit(true)}
           >
             <i className="fa fa-pencil"></i>
           </Button>
         )}
-        <Button variant="danger" className="mx-1" onClick={delPage}>
+        <Button variant="outline-danger" className="mx-1" onClick={delPage}>
           <i className="fa fa-trash"></i>
         </Button>
       </div>

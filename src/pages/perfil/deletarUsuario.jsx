@@ -5,9 +5,12 @@ import { fb } from '../../shared/service';
 import { UserInfo, useAuth } from '../../hook';
 import { Eye, EyeSlash } from 'react-bootstrap-icons';
 import { EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
+import "./style.css"
+import { useLightMode } from './../../Components/Dashboard/LightModeContext';
 
 function DeletarUsuario() {
     const { authUser } = useAuth();
+    const { isLightMode } = useLightMode();
     const userArray = UserInfo(authUser?.uid);
     const stats = userArray && userArray[0];
     const linkUserNameAtual = stats?.linkUserName;
@@ -90,7 +93,7 @@ function DeletarUsuario() {
                 Deletar Conta
             </Button>
 
-            <Modal show={showModal} onHide={handleClose}>
+            <Modal className={isLightMode ? "modaldeletelight" : "modaldeletedark"} show={showModal} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Confirmação de exclusão de Conta</Modal.Title>
                 </Modal.Header>

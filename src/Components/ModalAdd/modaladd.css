@@ -1,0 +1,19 @@
+.modal-content {
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+}
+
+.closebutton {
+    text-align: justify;
+    vertical-align: middle;
+    padding: auto;
+    width: 1.8rem;
+    background: red;
+    cursor: pointer;
+}
+
+.closebutton:hover {
+    background: rgb(175, 0, 0);
+}

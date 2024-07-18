@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { UserCss } from "../../../hook";
 import { fb } from "../../../shared/service";
@@ -10,7 +10,13 @@ function Trocarfonte({ userId }) {
   const css = cssArray && cssArray[0];
 
   const fonteAtual = css?.fonte;
-  const [newfonte, setNewfonte] = useState(fonteAtual);
+  const [newfonte, setNewfonte] = useState(fonteAtual || "");
+
+  useEffect(() => {
+    if (fonteAtual) {
+      setNewfonte(fonteAtual);
+    }
+  }, [fonteAtual]);
 
   const handleTrocafonte = async (e) => {
     const selectedfonte = e.target.value;
@@ -28,7 +34,6 @@ function Trocarfonte({ userId }) {
     }
   };
 
-  // Objeto com opções de fontes
   const fonteOptions = {
     "Arial": "Arial, sans-serif",
     "Roboto": "'Roboto', sans-serif",
@@ -48,8 +53,15 @@ function Trocarfonte({ userId }) {
     <div className="w-100 my-1">
       <Form className="">
         <InputGroup style={{ margin: "auto" }}>
-          <InputGroup.Text style={{ backgroundColor: "transparent" }} className={`w-25 ${isLightMode ? "text-dark" : "text-light"}`}>Fonte:</InputGroup.Text>
-          <Form.Select style={{ backgroundColor: "transparent" }} className={`w-25 ${isLightMode ? "text-dark" : "text-light"}`} value={newfonte} onChange={handleTrocafonte}>
+          <InputGroup.Text style={{ backgroundColor: "transparent" }} className={`w-25 ${isLightMode ? "text-dark" : "text-light"}`}>
+            Fonte:
+          </InputGroup.Text>
+          <Form.Select
+            style={{ backgroundColor: "transparent" }}
+            className={`w-75 ${isLightMode ? "text-dark" : "text-light"}`}
+            value={newfonte}
+            onChange={handleTrocafonte}
+          >
             {Object.keys(fonteOptions).map((label) => (
               <option className={isLightMode ? "bg-light text-dark" : "bg-dark text-light"} key={fonteOptions[label]} value={fonteOptions[label]}>
                 {label}

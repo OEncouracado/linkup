@@ -79,7 +79,7 @@ function DashboardLinkList({ pages, userId }) {
       <div className="dashboardtituloLinks d-grid gap-2 mb-2">
         <Button className="AddBtn" variant={
           isLightMode
-            ? "primary"
+            ? "outline-void"
             : "dark"
         }
           size="lg"

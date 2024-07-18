@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, Card } from "react-bootstrap";
+import { Alert, Card, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { UserCss, UserInfo, useAuth, usePages } from "../../hook";
 import ArquivodeConquistas from "./arquivodeConquistas";
@@ -17,7 +17,7 @@ function Colecionaveis() {
   const username = stats?.linkUserName;
   const { isLightMode } = useLightMode();
   return (
-    <div className="dashboardLinks pb-5 d-flex flex-column align-items-center">
+    <Container className="dashboardLinks d-flex flex-column align-items-center">
       <Alert variant="info" className="mb-5">
         Sua página já está disponível aqui:{" "}
         <Link to={`/${username}`} target="_blank" rel="noreferrer">
@@ -31,7 +31,7 @@ function Colecionaveis() {
           <ArquivodeConquistas id={id} />
         </Card.Body>
       </Card>
-    </div>
+    </Container>
   );
 }
 

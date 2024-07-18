@@ -24,7 +24,7 @@ function DashboardProfile() {
     >
       <div className="d-flex flex-column align-items-center text-center px-3">
         <img
-          className="rounded-circle mt-2"
+          className="rounded-circle mt-4"
           width="150px"
           alt=""
           src={authUser?.photoURL}

@@ -737,6 +737,9 @@ a {
 
 @media only screen and (max-width: 768px) {
   /* Estilos específicos para dispositivos móveis */
+.conquista {
+    width: 100% !important;
+  }
   .paginaFundo{
       background-position-x: 65%;
       background-size: cover;

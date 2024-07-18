@@ -52,3 +52,17 @@
 .deleteIconPerfil:hover {
   color: white;
 }
+.modaldeletelight {
+    .modal-content {
+        background-color: white;
+        border-radius: .6rem;
+    }
+}
+
+.modaldeletedark {
+    .modal-content {
+        background-color: #212529;
+        color: azure;
+        border-radius: .6rem;
+    }
+}

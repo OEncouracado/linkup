@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardBody, CardHeader, Container } from 'react-bootstrap';
 import { fb } from '../../../shared/service'; // Certifique-se de que o caminho esteja correto
-import { useAuth } from '../../../hook';
-import './customScrollbar.css'
+import { useAuth, UserInfo } from '../../../hook';
+import './customScrollbar.css';
 
 function TrocarMoldura() {
     const [molduras, setMolduras] = useState([]);
+    const [userMolduras, setUserMolduras] = useState([]);
     const { authUser } = useAuth();
+    const statsArray = UserInfo(authUser?.uid);
+    const stats = statsArray && statsArray[0];
+    // eslint-disable-next-line
+    const VIP = stats?.VIP;
 
     useEffect(() => {
         const fetchMolduras = async () => {
@@ -27,7 +32,18 @@ function TrocarMoldura() {
         fetchMolduras();
     }, []);
 
+    useEffect(() => {
+        if (stats) {
+            setUserMolduras(stats.userMolduras || []);
+        }
+    }, [stats]);
+
     const handleSelectMoldura = async (moldura) => {
+        if (moldura !== 'sem moldura' && !userMolduras.includes(moldura)) {
+            alert('Você ainda não desbloqueou esta moldura.');
+            return;
+        }
+
         try {
             await fb.firestore.collection("UserStats").doc(authUser.uid).update({ moldura: moldura === 'sem moldura' ? '' : moldura });
         } catch (error) {
@@ -36,7 +52,7 @@ function TrocarMoldura() {
         }
     };
 
-    // Preenche a lista de molduras com quadrados fantasmas até atingir 10 quadrados
+    // Preenche a lista de molduras com quadrados fantasmas até atingir 52 quadrados
     const filledMolduras = [...molduras];
     while (filledMolduras.length < 52) {
         filledMolduras.push({ name: '', url: '' });
@@ -49,8 +65,8 @@ function TrocarMoldura() {
             </CardHeader>
             <CardBody
                 style={{ overflowY: "scroll" }}
-                className='molduraBody h-100 p-0 d-flex flex-wrap justify-content-center'>
-
+                className='molduraBody h-100 p-0 d-flex flex-wrap justify-content-center'
+            >
                 {filledMolduras.map((moldura, index) => (
                     <Container
                         key={index}
@@ -59,15 +75,53 @@ function TrocarMoldura() {
                         onClick={() => moldura.name && handleSelectMoldura(moldura.name)}
                     >
                         {moldura.name ? (
-                            <img title={moldura.name} src={moldura.url} alt={moldura.name} className="img-thumbnail" style={{ width: "100%", height: "100%", cursor: 'pointer' }} />
+                            moldura.name === 'sem moldura' || userMolduras.includes(moldura.name) ? (
+                                <img
+                                    title={moldura.name}
+                                    src={moldura.url}
+                                    alt={moldura.name}
+                                    className="img-thumbnail"
+                                    style={{ width: "100%", height: "100%", cursor: 'pointer' }}
+                                />
+                            ) : (
+                                <div
+                                        title={moldura.name}
+                                        className="img-thumbnail d-flex align-items-center justify-content-center"
+                                    style={{ cursor: 'pointer', width: "100%", height: "100%", position: 'relative' }}
+                                >
+                                    <img
+                                        src={moldura.url}
+                                        alt={moldura.name}
+                                        style={{ width: "100%", height: "100%", opacity: 0.5 }}
+                                    />
+                                    <i
+                                        className="fas fa-lock"
+                                        style={{
+                                            position: 'absolute',
+                                            fontSize: '1.5rem',
+                                            color: 'white',
+                                            pointerEvents: 'none',
+                                        }}
+                                    />
+                                </div>
+                            )
                         ) : (
                             <div
-                                title='bloqueado'
-                                className="img-thumbnail d-flex align-items-center justify-content-center"
-                                style={{ cursor: 'pointer', width: "100%", height: "100%", backgroundColor: 'gray' }}>
-                                    {moldura.name && <span>{moldura.name}</span>}<i className="fas fa-lock    "></i>
+                                className="img-thumbnail"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    backgroundColor: 'gray',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                {/* Opcional: Adicionar um ícone ou texto para placeholders */}
                             </div>
                         )}
+
+
                     </Container>
                 ))}
             </CardBody>
