@@ -103,15 +103,15 @@ function UserProfile() {
   return (
     <>
       <i
-        className="iconShowEditUsername fa fa-arrow-left m-2"
+        className="iconShowEditUsername fa fa-arrow-left mx-2"
         aria-hidden="true"
         title="Voltar"
         onClick={() => navigate(-1)}
       ></i>
-      <Container className="rounded bg-dark text-light mt-5 mb-5">
+      <Container className="rounded bg-dark text-light">
         <Row>
           <Col md={3} className="">
-            <div className="d-flex flex-column align-items-center text-center px-3 py-5">
+            <div className="d-flex flex-column align-items-center text-center px-3 pt-5">
               <img
                 className="rounded-circle mt-5"
                 width="150px"
@@ -257,10 +257,7 @@ function UserProfile() {
                 </Row>
                 <div id="recaptcha-container"></div>
                 <div className="mt-5 text-center">
-                  <Button
-                    variant="void"
-                    type="submit"
-                  >
+                  <Button variant="void" type="submit">
                     {isCodeSent ? "Verificar Código" : "Salvar"}
                   </Button>
                 </div>
