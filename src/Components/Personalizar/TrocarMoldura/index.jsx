@@ -53,18 +53,24 @@ function TrocarMoldura() {
       }
 
       if (newMolduras.length !== userMolduras.length) {
-        await fb.firestore.collection("UserStats").doc(authUser.uid).update({ userMolduras: newMolduras });
+        await fb.firestore.collection("UserStats").doc(authUser?.uid).update({ userMolduras: newMolduras });
       }
     };
 
     if (rank !== undefined) {
       updateMoldurasBasedOnRank();
     }
-  }, [rank, authUser.uid, userMolduras]);
+  }, [rank, authUser?.uid, userMolduras]);
+
 
   const handleSelectMoldura = async (moldura) => {
     try {
-      await fb.firestore.collection("UserStats").doc(authUser.uid).update({ moldura: moldura === 'sem moldura' ? '' : moldura });
+      // Verifica se a moldura está desbloqueada ou se é a moldura "sem moldura"
+      if (moldura === 'sem moldura' || userMolduras.includes(moldura)) {
+        await fb.firestore.collection("UserStats").doc(authUser?.uid).update({ moldura: moldura === 'sem moldura' ? '' : moldura });
+      } else {
+        alert('Você ainda não desbloqueou essa  moldura ainda!');
+      }
     } catch (error) {
       console.error("Erro ao atualizar a moldura do usuário:", error);
       alert('Erro ao selecionar a moldura.');
