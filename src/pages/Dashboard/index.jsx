@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-device-emulator/lib/styles/style.css";
 import { UserInfo, useAuth } from "../../hook";
 import Preview from "../../Components/preview";
@@ -12,6 +12,7 @@ import Colecionaveis from "../../Components/Colecionaveis";
 import DashboardProfile from "./../../Components/Dashboard/DashBoardProfile/index";
 import MiniProfile from "../../Components/Dashboard/DashBoardProfile/MiniProfile";
 import { useLightMode } from "./../../Components/Dashboard/LightModeContext";
+import { fb } from "../../shared/service";
 
 function Dashboard() {
   const { isLightMode } = useLightMode();
@@ -23,10 +24,45 @@ function Dashboard() {
   const avatar = authUser?.photoURL;
   const [aba, setAba] = useState("dashboard");
   const [isPreviewExpanded, setIsPreviewExpanded] = useState(false); // State for controlling expansion
+  const [completedObjectives, setCompletedObjectives] = useState([]);
+
+  useEffect(() => {
+    const fetchObjectives = async () => {
+      const userStatsRef = fb.firestore.collection("UserStats").doc(id);
+      const doc = await userStatsRef.get();
+      if (doc.exists) {
+        setCompletedObjectives(doc.data().completedObjectives || []);
+      }
+    };
+
+    fetchObjectives();
+  }, [id]);
+
+  useEffect(() => {
+    const checkAndAddObjective4 = async () => {
+      if (completedObjectives.length === 4 && !completedObjectives.includes(4)) {
+        const updatedObjectives = [...completedObjectives, 4];
+
+        // Adiciona XP ao completar o objetivo 4
+        const xpToAdd = 200; // Valor de XP a ser adicionado
+        const userStatsRef = fb.firestore.collection("UserStats").doc(id);
+        await userStatsRef.update({
+          completedObjectives: updatedObjectives,
+          xp: fb.firestore.FieldValue.increment(xpToAdd), // Incrementa o XP
+        });
+
+        // Atualize o estado local
+        setCompletedObjectives(updatedObjectives);
+      }
+    };
+
+    checkAndAddObjective4();
+  }, [completedObjectives, id]);
 
   const handleSetAba = (valorAba) => {
     setAba(valorAba);
   };
+
   const togglePreview = () => {
     setIsPreviewExpanded(!isPreviewExpanded); // Toggle expansion state
   };

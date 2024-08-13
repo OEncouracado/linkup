@@ -142,7 +142,7 @@ function TrocarMoldura() {
                     justifyContent: 'center'
                   }}
                 >
-                  {/* Opcional: Adicionar um ícone ou texto para placeholders */}
+                  <p className='p-0 m-0'>Em breve</p>
                 </div>
               )}
             </Container>
