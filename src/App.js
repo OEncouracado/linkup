@@ -82,6 +82,7 @@ function App() {
           <Route path="/despedida" element={<Despedida />} />
           <Route path="/verificacaoEmail" element={<VerificacaoEmail />} />
           <Route path="/s/TermoseCondicoes" element={<Termos />} />
+          
         </Routes>
       </Router>
     </LightModeProvider>

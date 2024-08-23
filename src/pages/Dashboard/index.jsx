@@ -13,6 +13,7 @@ import DashboardProfile from "./../../Components/Dashboard/DashBoardProfile/inde
 import MiniProfile from "../../Components/Dashboard/DashBoardProfile/MiniProfile";
 import { useLightMode } from "./../../Components/Dashboard/LightModeContext";
 import { fb } from "../../shared/service";
+import Lojasublink from "../../Components/Loja";
 
 function Dashboard() {
   const { isLightMode } = useLightMode();
@@ -91,6 +92,7 @@ function Dashboard() {
             {aba === "personalizar" && <Personalizar />}
             {aba === "colecionaveis" && <Colecionaveis />}
             {aba === "configuracoes" && <Configuracoes />}
+            {aba === "loja" && <Lojasublink />}
             <Button
               className="expand-btn"
               onClick={togglePreview}

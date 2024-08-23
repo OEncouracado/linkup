@@ -82,6 +82,9 @@ function DashboardTopBar({ handleSetAba, photo, id }) {
                   <Nav.Link onClick={() => handleSetAba("configuracoes")}>
                     Configurações
                   </Nav.Link>
+                  <Nav.Link onClick={() => handleSetAba("loja")}>
+                    <i class="fas fa-shopping-basket    " /> Loja
+                  </Nav.Link>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
