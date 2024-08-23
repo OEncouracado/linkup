@@ -1,12 +1,7 @@
-import React from 'react'
-import TestPaymentComponent from '../../Components/Pagamento/TestPaymentComponent'
+import React from "react";
 
-function LojaSublinks() {
-  return (
-    <div>
-      <TestPaymentComponent /> 
-    </div>
-  )
+function Lojasublink() {
+  return <>teste loja</>;
 }
 
-export default LojaSublinks
+export default Lojasublink;

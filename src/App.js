@@ -23,7 +23,6 @@ import Despedida from "./Components/Telas Extras/despedida";
 import VerificacaoEmail from "./Components/Telas Extras/verificacaoEmail";
 import Termos from "./Components/TermoseCondições";
 import { LightModeProvider } from "./Components/Dashboard/LightModeContext";
-import LojaSublinks from "./pages/Loja";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
@@ -83,7 +82,6 @@ function App() {
           <Route path="/despedida" element={<Despedida />} />
           <Route path="/verificacaoEmail" element={<VerificacaoEmail />} />
           <Route path="/s/TermoseCondicoes" element={<Termos />} />
-          <Route path="/s/loja" element={<LojaSublinks />}/>
         </Routes>
       </Router>
     </LightModeProvider>
