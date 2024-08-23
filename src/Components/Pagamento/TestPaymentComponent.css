@@ -1,0 +1,34 @@
+.test-payment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.test-payment-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.result-card, .error-card {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-card {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error-card {
+    background-color: #f8d7da;
+    color: #721c24;
+}
