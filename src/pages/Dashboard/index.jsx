@@ -14,6 +14,7 @@ import MiniProfile from "../../Components/Dashboard/DashBoardProfile/MiniProfile
 import { useLightMode } from "./../../Components/Dashboard/LightModeContext";
 import { fb } from "../../shared/service";
 import Lojasublink from "../../Components/Loja";
+import { Helmet } from 'react-helmet';
 
 function Dashboard() {
   const { isLightMode } = useLightMode();
@@ -70,8 +71,28 @@ function Dashboard() {
 
   console.log("isLightMode :>> ", isLightMode);
 
+  const getTitle = () => {
+    switch (aba) {
+      case "dashboard":
+        return "Links";
+      case "personalizar":
+        return "Personalizar";
+      case "colecionaveis":
+        return "Colecionáveis";
+      case "configuracoes":
+        return "Configurações";
+      case "loja":
+        return "Loja";
+      default:
+        return ""; // Ou um valor padrão, como "Página não encontrada"
+    }
+  };
+
   return (
     <>
+      <Helmet>
+        <title>{`SubLinks - ${getTitle()}`}</title>
+      </Helmet>
       <DashboardTopBar handleSetAba={handleSetAba} photo={avatar} id={id} />
       <Conquistas id={id} />
       <Container

@@ -149,7 +149,7 @@ function Pagina() {
               rank={stats?.rank}
               userStyle={css}
             />
-            <PaginaLinkList pages={pages} userStyle={css} />
+            <PaginaLinkList pages={pages} userStyle={css} usuario={usuario} />
           </div>
           <div className="botaoCrieSeuLink text-center pb-3">
             <Button href="/Singup" className="mt-4">

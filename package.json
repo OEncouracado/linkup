@@ -6,6 +6,9 @@
     "@anatoliygatt/dark-mode-toggle": "^1.0.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@google-pay/button-react": "^3.1.0",
+    "@stripe/react-stripe-js": "^2.8.0",
+    "@stripe/stripe-js": "^4.4.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
@@ -34,6 +37,7 @@
     "react-scroll-parallax": "^3.4.5",
     "sdk-typescript-apis-efi": "^1.0.2",
     "stream-http": "^3.2.0",
+    "stripe": "^16.11.0",
     "url": "^0.11.4",
     "web-vitals": "^4.2.3",
     "yarn": "^1.22.22"
