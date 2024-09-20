@@ -23,6 +23,8 @@ import Despedida from "./Components/Telas Extras/despedida";
 import VerificacaoEmail from "./Components/Telas Extras/verificacaoEmail";
 import Termos from "./Components/TermoseCondições";
 import { LightModeProvider } from "./Components/Dashboard/LightModeContext";
+import SuccessPage from "./pages/Sucesso";
+import CancelPage from "./pages/Cancelar";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
@@ -82,6 +84,9 @@ function App() {
           <Route path="/despedida" element={<Despedida />} />
           <Route path="/verificacaoEmail" element={<VerificacaoEmail />} />
           <Route path="/s/TermoseCondicoes" element={<Termos />} />
+          <Route path="/s/Sucesso" element={<SuccessPage />} />
+          <Route path="/s/Cancelado" element={<CancelPage />} />
+          
           
         </Routes>
       </Router>
