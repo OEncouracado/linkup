@@ -1,0 +1,41 @@
+.page-404 {
+    background-color: #000;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+    /* Fonte estilo retrô/pixelada */
+}
+
+.bricks-top,
+.bricks-bottom {
+    width: 100dvw;
+    height: 2rem;
+    background: url('https://art.pixilart.com/f57d1fdc581efcf.png') repeat-x;
+    background-size: contain;
+    /* URL da imagem de tijolos */
+}
+
+.bricks-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.bricks-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+
+.container {
+    z-index: 10;
+    color: #fff;
+}
+
+body {
+    background-color: #000;
+}

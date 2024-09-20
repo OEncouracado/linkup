@@ -12,7 +12,7 @@ import {
   Route,
   Routes,
   Navigate,
-} from "react-router-dom";
+} from "react-router-dom";// eslint-disable-next-line
 import Pagina from "./pages/Pagina";
 import UserProfile from "./pages/perfil";
 import ContatoPage from "./pages/contato";
@@ -25,6 +25,8 @@ import Termos from "./Components/TermoseCondições";
 import { LightModeProvider } from "./Components/Dashboard/LightModeContext";
 import SuccessPage from "./pages/Sucesso";
 import CancelPage from "./pages/Cancelar";
+import NotFound from "./pages/404";
+import CheckUserExists from "./Components/CheckUserExists";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
@@ -78,7 +80,7 @@ function App() {
             path="/Singup"
             element={isAuthed ? <Navigate to="/dashboard" /> : <Signup />}
           />
-          <Route path="/:usuario" element={<Pagina />} />
+          <Route path="/:usuario" element={<CheckUserExists />} />
 
           <Route path="/bloqueado" element={<UsuarioBloqueado />} />
           <Route path="/despedida" element={<Despedida />} />
@@ -86,6 +88,10 @@ function App() {
           <Route path="/s/TermoseCondicoes" element={<Termos />} />
           <Route path="/s/Sucesso" element={<SuccessPage />} />
           <Route path="/s/Cancelado" element={<CancelPage />} />
+          <Route path="/s/404" element={<NotFound />} />
+          <Route path="/s/*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
+
           
           
         </Routes>

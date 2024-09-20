@@ -1,12 +1,12 @@
 import React from "react";
 import { Container, Card, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SuccessPage() {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleBackToHome = () => {
-        history.push("/");  // Redireciona para a página inicial
+        navigate(-1);  // Redireciona para a página inicial
     };
 
     return (

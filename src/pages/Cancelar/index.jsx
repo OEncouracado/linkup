@@ -1,12 +1,12 @@
 import React from "react";
 import { Container, Card, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CancelPage() {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleRetry = () => {
-        history.push("/shop");  // Redireciona para a página da loja ou onde quer que o usuário tente novamente
+        navigate(-1);
     };
 
     return (
