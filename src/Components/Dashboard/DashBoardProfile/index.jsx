@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { useAuth, UserInfo } from "../../../hook";
 import DashboardNivel from "../DashboardNivel";
 import PerfilRank from "../../../pages/perfil/PerfilRank";
+import gema from "../../../Images/gemas/gema.png"
 import { useLightMode } from "../LightModeContext";
 
 function DashboardProfile() {
@@ -39,6 +40,17 @@ function DashboardProfile() {
         </span>
         <DashboardNivel xp={stats?.xp} />
         <PerfilRank rank={stats?.rank} />
+        <div title={`Gemas do Usuário: ${stats.gemas}`} className="userGemas bg-dark rounded mb-2 py-1 px-2" >
+          <div className="d-flex justify-content-center align-items-center">
+            <img
+              className="me-1"
+              src={gema}
+              alt="gema"
+              style={{ width: "1rem" }}
+            />{" : "}
+            {stats?.gemas}
+          </div>
+        </div>
       </div>
     </Container>
   );

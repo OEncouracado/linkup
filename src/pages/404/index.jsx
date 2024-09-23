@@ -5,7 +5,7 @@ import "./NotFound.css"; // Arquivo CSS para customizar os tijolos e visual pixe
 
 function NotFound() {
     return (
-        <Container className="page-404">
+        <Container className="page-404 p-0 m-0">
             <div className="bricks-top"></div>
             <div className="container text-center">
                 <p className="mb-5">404 - Página não encontrada</p>

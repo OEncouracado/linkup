@@ -690,6 +690,7 @@ a {
   padding: 0 !important;
 }
 
+
 /* custom-toast.css */
 @keyframes slideIn {
   from {
@@ -724,7 +725,13 @@ a {
 }
 
 
+.userGemas {
+  border-color: #595959;
+  border-width: 0.3rem;
+  border-style: solid;
 
+  cursor: default;
+  }
 
 
 

@@ -47,7 +47,7 @@ function PerfilRank({ rank }) {
   }
 
   return (
-    <div className="d-flex flex-column align-items-center w-100 my-3">
+    <div className="d-flex flex-column align-items-center w-100 mt-3">
       <h6 className="nivelLabel">
         Rank <span className="text-success">{rankDetails.nome}</span>
       </h6>
