@@ -27,6 +27,7 @@ import SuccessPage from "./pages/Sucesso";
 import CancelPage from "./pages/Cancelar";
 import NotFound from "./pages/404";
 import CheckUserExists from "./Components/CheckUserExists";
+import AdminPage from "./pages/Admin";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
@@ -91,6 +92,8 @@ function App() {
           <Route path="/s/404" element={<NotFound />} />
           <Route path="/s/*" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="admin" element={<AdminPage />} />
+          <Route path="not-authorized" element={<NotFound />} />
 
           
           

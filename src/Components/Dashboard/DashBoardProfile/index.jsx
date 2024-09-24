@@ -11,7 +11,8 @@ function DashboardProfile() {
   const id = authUser?.uid;
   const infoArray = UserInfo(id);
   const stats = infoArray && infoArray[0];
-
+  const gemas = stats?.gemas;
+  console.log(gemas);
   const { isLightMode } = useLightMode(); // Usar o contexto
 
   return (
@@ -40,7 +41,7 @@ function DashboardProfile() {
         </span>
         <DashboardNivel xp={stats?.xp} />
         <PerfilRank rank={stats?.rank} />
-        <div title={`Gemas do Usuário: ${stats.gemas}`} className="userGemas bg-dark rounded mb-2 py-1 px-2" >
+        <div title={`Gemas do Usuário: ${gemas}`} className="userGemas bg-dark rounded mb-2 py-1 px-2" >
           <div className="d-flex justify-content-center align-items-center">
             <img
               className="me-1"
@@ -48,7 +49,7 @@ function DashboardProfile() {
               alt="gema"
               style={{ width: "1rem" }}
             />{" : "}
-            {stats?.gemas}
+            {gemas}
           </div>
         </div>
       </div>

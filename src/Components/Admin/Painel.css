@@ -1,0 +1,30 @@
+.adminPainelbg {
+    max-width: 100dvw;
+    height: 100dvh;
+    background-color: darkblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.adminPainel {
+    border-radius: 1rem;
+    color: black;
+    background-color: #fff;
+    text-align: center;
+    height: 95%;
+    overflow-y: scroll;
+}
+
+.navLinkAdminPainel {
+    color: white;
+    text-align: start;
+    padding-right: 0%;
+    padding-left: 4%;
+}
+
+.navLinkAdminPainel:hover,
+.navLinkAdminPainel:active {
+    color: rgb(53, 53, 53);
+    background-color: #d3d3d3;
+}
