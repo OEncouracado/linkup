@@ -24,7 +24,7 @@ const ContactComponent = () => {
                             <Form.Label className='mb-0'>Mensagem</Form.Label>
                             <Form.Control as="textarea" name="Mensagem" rows={5} placeholder="Digite sua mensagem" />
                         </Form.Group>
-                        <Button variant="outline-light" type="submit">
+                        <Button variant="outline-light" type="submit" title='Enviar Mensagem'>
                             Enviar
                         </Button>
                     </Form>
