@@ -29,6 +29,7 @@ import NotFound from "./pages/404";
 import CheckUserExists from "./Components/CheckUserExists";
 import AdminPage from "./pages/Admin";
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import NotAuthorized from "./pages/Admin/notAuthorized";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
@@ -94,8 +95,8 @@ function App() {
           <Route path="/s/404" element={<NotFound />} />
           <Route path="/s/*" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="admin" element={<AdminPage />} />
-          <Route path="not-authorized" element={<NotFound />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/not-authorized" element={<NotAuthorized />} />
 
           
           
