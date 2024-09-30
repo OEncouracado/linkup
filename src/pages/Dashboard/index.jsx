@@ -15,6 +15,7 @@ import { useLightMode } from "./../../Components/Dashboard/LightModeContext";
 import { fb } from "../../shared/service";
 import Lojasublink from "../../Components/Loja";
 import { Helmet } from 'react-helmet';
+import Gemas from "../../Components/Gemas";
 
 function Dashboard() {
   const { isLightMode } = useLightMode();
@@ -83,6 +84,8 @@ function Dashboard() {
         return "Configurações";
       case "loja":
         return "Loja";
+      case "gemas":
+        return "Gemas";
       default:
         return ""; // Ou um valor padrão, como "Página não encontrada"
     }
@@ -113,7 +116,8 @@ function Dashboard() {
             {aba === "personalizar" && <Personalizar />}
             {aba === "colecionaveis" && <Colecionaveis />}
             {aba === "configuracoes" && <Configuracoes />}
-            {aba === "loja" && <Lojasublink />}
+            {aba === "loja" && <Lojasublink setAba={setAba} />}
+            {aba === "gemas" && <Gemas />}
             <Button
               className="expand-btn"
               onClick={togglePreview}

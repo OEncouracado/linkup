@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom"; // useHistory para redirec
 import gema from "../../Images/gemas/gema.png";
 import { fb } from "../../shared/service";
 
-function Lojasublink() {
+function Lojasublink({ setAba }) {
     const { authUser } = useAuth();
     const id = authUser?.uid;
     const userArray = UserInfo(id);
@@ -78,7 +78,7 @@ function Lojasublink() {
                 body: "Você não tem gemas suficientes para comprar este item. Deseja comprar mais gemas?",
                 onConfirm: () => {
                     setShowModal(false); // Fecha o modal e redireciona
-                    navigate("/comprar-gemas"); // Redireciona para a página de compra de gemas
+                    setAba("gemas"); // Redireciona para a página de compra de gemas
                 },
             });
             setShowModal(true);
