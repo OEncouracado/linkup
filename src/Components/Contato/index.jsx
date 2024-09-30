@@ -7,7 +7,7 @@ const ContactComponent = () => {
             <Row className="px-5 pb-5" style={{ paddingTop: "9rem" }}>
                 <Col md={7}>
                     <h2>Envie-nos um E-mail</h2>
-                    <Form action="https://formsubmit.co/contato@mavsleo.com.br">
+                    <Form action="https://formsubmit.co/contato@mavsleo.com.br" method="POST">
                         <Form.Group className="mb-3" controlId="formBasicName">
                             <Form.Label className='mb-0'>Nome</Form.Label>
                             <Form.Control type="text" name="Nome" placeholder="Digite seu nome" />
