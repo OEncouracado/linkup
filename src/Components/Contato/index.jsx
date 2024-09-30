@@ -7,22 +7,22 @@ const ContactComponent = () => {
             <Row className="px-5 pb-5" style={{ paddingTop: "9rem" }}>
                 <Col md={7}>
                     <h2>Envie-nos um E-mail</h2>
-                    <Form>
+                    <Form action="https://formsubmit.co/contato@mavsleo.com.br">
                         <Form.Group className="mb-3" controlId="formBasicName">
                             <Form.Label className='mb-0'>Nome</Form.Label>
-                            <Form.Control type="text" placeholder="Digite seu nome" />
+                            <Form.Control type="text" name="Nome" placeholder="Digite seu nome" />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className='mb-0'>Email</Form.Label>
-                            <Form.Control type="email" placeholder="Digite seu email" />
+                            <Form.Control type="email" name="email" placeholder="Digite seu email" />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicSubject">
                             <Form.Label className='mb-0'>Assunto</Form.Label>
-                            <Form.Control type="text" placeholder="Assunto do email" />
+                            <Form.Control type="text" name="Assunto" placeholder="Assunto do email" />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicMessage">
                             <Form.Label className='mb-0'>Mensagem</Form.Label>
-                            <Form.Control as="textarea" rows={5} placeholder="Digite sua mensagem" />
+                            <Form.Control as="textarea" name="Mensagem" rows={5} placeholder="Digite sua mensagem" />
                         </Form.Group>
                         <Button variant="outline-light" type="submit">
                             Enviar

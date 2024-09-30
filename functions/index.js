@@ -1,29 +1,33 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
 admin.initializeApp();
 
-exports.createCheckoutSession = functions.https.onRequest(async (req, res) => {
-  const {priceId} = req.body;
+exports.listUsers = functions.https.onRequest((req, res) => {
+  const usersList = [];
+  const listAllUsers = (nextPageToken) => {
+    admin.auth().listUsers(1000, nextPageToken).then((listUsersResult) => {
+      listUsersResult.users.forEach((userRecord) => {
+        usersList.push({
+          uid: userRecord.uid,
+          email: userRecord.email,
+          displayName: userRecord.displayName,
+          disabled: userRecord.disabled,
+          createdAt: userRecord.metadata.creationTime,
+        });
+      });
+      if (listUsersResult.pageToken) {
+        // Se houver mais usuários, lista a próxima página
+        listAllUsers(listUsersResult.pageToken);
+      } else {
+        res.status(200).send(usersList);
+      }
+    })
+        .catch((error) => {
+          console.error("Erro ao listar usuários:", error);
+          res.status(500).send("Erro ao listar usuários");
+        });
+  };
 
-  try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      line_items: [
-        {
-          price: priceId,
-          quantity: 1,
-        },
-      ],
-      mode: "payment",
-      success_url: "http://localhost:3000/s/Sucesso",
-      cancel_url: "http://localhost:3000/s/Cancelado",
-    });
-
-    res.json({id: session.id});
-  } catch (error) {
-    console.error("Error creating checkout session:", error);
-    res.status(500).json({error: "Failed to create checkout session"});
-  }
+  // Chama a função para listar os usuários
+  listAllUsers();
 });
