@@ -8,6 +8,7 @@ const ContactComponent = () => {
                 <Col md={7}>
                     <h2>Envie-nos um E-mail</h2>
                     <Form action="https://formsubmit.co/contato@mavsleo.com.br" method="POST">
+                        <input type="hidden" name="_captcha" value="false" />
                         <Form.Group className="mb-3" controlId="formBasicName">
                             <Form.Label className='mb-0'>Nome</Form.Label>
                             <Form.Control type="text" name="Nome" placeholder="Digite seu nome" />
