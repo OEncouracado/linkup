@@ -30,6 +30,7 @@ import CheckUserExists from "./Components/CheckUserExists";
 import AdminPage from "./pages/Admin";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import NotAuthorized from "./pages/Admin/notAuthorized";
+import Gemas from "./Components/Gemas";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
@@ -97,6 +98,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/not-authorized" element={<NotAuthorized />} />
+          <Route path="/comprar-gemas" element={<Gemas />} />
 
           
           

@@ -21,9 +21,9 @@ function NotAuthorized() {
                     <Card bg="dark" text="light" className="p-3">
                         <Card.Img variant="top" src={gameOverImg} style={{ width: '15rem', margin: 'auto' }} />
                         <Card.Body>
-                            <Card.Title>Access Denied!</Card.Title>
+                            <Card.Title>Acesso Negado!</Card.Title>
                             <Card.Text>You Shall Not Pass! 🚫</Card.Text>
-                            <Card.Text>Redirecting you to the main page...</Card.Text>
+                            <Card.Text>Redirecionando...</Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
