@@ -28,11 +28,13 @@ import CancelPage from "./pages/Cancelar";
 import NotFound from "./pages/404";
 import CheckUserExists from "./Components/CheckUserExists";
 import AdminPage from "./pages/Admin";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 function App() {
   const { isAuthed, authUser } = useAuth();
   return (
     <LightModeProvider>
+      <SpeedInsights/>
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
