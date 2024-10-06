@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Container, Offcanvas } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
-import logo from "../../../Images/sublinkslogo.png";
+import logo from "../../../Images/logos/linkiimelogo.png";
 import "./style.css";
 
 function HomeTopbar() {
