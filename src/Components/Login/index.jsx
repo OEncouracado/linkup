@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Container, Form, InputGroup } from "react-bootstrap";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
-import logo from "../../Images/sublinkslogo.png";
+import logo from "../../Images/logos/linkiimelogo.png";
 import { emailRegex } from "../Constants";
 import { fb } from "../../shared/service";
 import { Link, useNavigate } from "react-router-dom";
@@ -193,7 +193,9 @@ function Login() {
 
   return (
     <Container style={{ maxWidth: "100dvw" }} className="d-flex m-0 p-0">
-      <a href="/"><img src={logo} alt="logo linkup" className="logologinup p-3 m-0" /></a>
+      <a href="/">
+        <img src={logo} alt="logo linkup" className="logologinup p-3 m-0" />
+      </a>
       <Container className="backFormupin d-flex flex-column align-items-center justify-content-center">
         <Form className="mx-auto pt-3 text-dark">
           <h1>Bem Vindo de Volta!</h1>
@@ -252,7 +254,7 @@ function Login() {
             <p>{erro}</p>
           </Alert>
         </Form>
-        <p>OU</p>
+        <p className="text-dark">OU</p>
         <Button
           variant="light"
           size="md"
@@ -270,9 +272,14 @@ function Login() {
             <span>Entrar com o Google</span>
           </div>
         </Button>
-        <small className="mb-3">
+        <small className="text-dark mb-3">
           Não tem uma conta? Sem problemas{" "}
-          <Link to={"/Singup"}>clique aqui</Link>
+          <Link
+            to={"/Singup"}
+            className="!text-concrete text-sm text-primary inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 underline"
+          >
+            clique aqui
+          </Link>
         </small>
       </Container>
       <Container className="fundoImgSingUp d-none d-md-block" />

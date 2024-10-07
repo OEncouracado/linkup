@@ -13,7 +13,7 @@ function Footer() {
       <img src={footer} alt="" srcset="" className="footermid w-100" />
       <div className="footerbot text-white">
         <p className="copyright mb-0 text-center">
-          <i class="fas fa-registered" /> SubLinks - Criado por{" "}
+          <i class="fas fa-registered" /> Linkii.me - Criado por{" "}
           <a
             href="https://mavsleo.com.br"
             target="_blank"

@@ -14,7 +14,7 @@ import MiniProfile from "../../Components/Dashboard/DashBoardProfile/MiniProfile
 import { useLightMode } from "./../../Components/Dashboard/LightModeContext";
 import { fb } from "../../shared/service";
 import Lojasublink from "../../Components/Loja";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 import Gemas from "../../Components/Gemas";
 
 function Dashboard() {
@@ -43,7 +43,10 @@ function Dashboard() {
 
   useEffect(() => {
     const checkAndAddObjective4 = async () => {
-      if (completedObjectives.length === 4 && !completedObjectives.includes(4)) {
+      if (
+        completedObjectives.length === 4 &&
+        !completedObjectives.includes(4)
+      ) {
         const updatedObjectives = [...completedObjectives, 4];
 
         // Adiciona XP ao completar o objetivo 4
@@ -94,7 +97,7 @@ function Dashboard() {
   return (
     <>
       <Helmet>
-        <title>{`SubLinks - ${getTitle()}`}</title>
+        <title>{`Linkii.me - ${getTitle()}`}</title>
       </Helmet>
       <DashboardTopBar handleSetAba={handleSetAba} photo={avatar} id={id} />
       <Conquistas id={id} />

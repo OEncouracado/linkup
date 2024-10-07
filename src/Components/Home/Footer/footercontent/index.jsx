@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import logo from "../../../../Images/sublinkslogo.png";
+import logo from "../../../../Images/logos/linkiimelogo.png";
 
 function FooterContent() {
   return (
@@ -43,12 +43,20 @@ function FooterContent() {
                   </a>
                 </p>
                 <p className="mb-4">
-                  <a href="https://x.com/sublinks_me" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://x.com/sublinks_me"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     X / Twitter
                   </a>
                 </p>
                 <p className="mb-4">
-                  <a href="https://www.facebook.com/sublinks.me" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.facebook.com/sublinks.me"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Facebook
                   </a>
                 </p>
@@ -75,9 +83,7 @@ function FooterContent() {
                   <a href="contato">Contato</a>
                 </p>
                 <p className="mb-4" title="Objection!">
-                  <a href="s/TermoseCondicoes">
-                    Termos e Condições
-                  </a>
+                  <a href="s/TermoseCondicoes">Termos e Condições</a>
                 </p>
               </Container>
             </div>

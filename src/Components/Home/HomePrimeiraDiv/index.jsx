@@ -42,7 +42,7 @@ function PrimeiraDiv() {
               style={{ height: "5rem" }}
             >
               <InputGroup>
-                <InputGroup.Text>linkup.app.br/</InputGroup.Text>
+                <InputGroup.Text>linkii.me/</InputGroup.Text>
                 <Form.Control
                   type="text"
                   placeholder="username"
