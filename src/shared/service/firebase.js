@@ -25,5 +25,6 @@ export const fb = {
   auth: firebase.auth(),
   googleProvider: new firebase.auth.GoogleAuthProvider(),
   arrayUnion: firebase.firestore.FieldValue.arrayUnion,
+  increment: firebase.firestore.FieldValue.increment,
   storage: firebase.storage(),
 };

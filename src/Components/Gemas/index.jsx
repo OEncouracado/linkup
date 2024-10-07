@@ -27,7 +27,7 @@ function Gemas() {
   const updateUserGemas = async (gemCount) => {
     const userRef = fb?.firestore.collection("UserStats").doc(id);
     await userRef.update({
-      gemas: fb?.firestore.FieldValue.increment(gemCount), // Adiciona a quantidade de gemas
+      gemas: fb.increment(gemCount), // Adiciona a quantidade de gemas
     });
   };
 
