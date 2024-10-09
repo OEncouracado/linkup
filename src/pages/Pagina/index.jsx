@@ -164,7 +164,7 @@ function Pagina() {
                 href="/Singup"
                 className="paginaFooterBnt bn632-hover bn22 text-white paginaFooterItem"
               >
-                Linkgame.app/voce
+                Linkii.me/voce
               </button>
               <div className="d-flex">
                 <p className="text-white paginaFooterItem">
