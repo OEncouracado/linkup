@@ -37,8 +37,8 @@ function Gemas() {
           },
         ],
         mode: "payment",
-        successUrl: `http://localhost:3000/s/Sucesso?package=${gemPackage.id}`, // URL de sucesso
-        cancelUrl: "http://localhost:3000/s/Cancelado", // URL de falha
+        successUrl: `https://linkii.me/s/Sucesso?package=${gemPackage.id}`, // URL de sucesso
+        cancelUrl: "https://linkii.me/s/Cancelado", // URL de falha
       });
   
       if (error) {
