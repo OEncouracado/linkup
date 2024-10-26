@@ -17,7 +17,7 @@ function Gemas() {
   const css = cssArray && cssArray[0];
   const userName = stats?.linkUserName;
   const { isLightMode } = useLightMode();
-
+// eslint-disable-next-line
   const [activePackage, setActivePackage] = useState(null);
 
   const handleCheckout = async (gemPackage) => {

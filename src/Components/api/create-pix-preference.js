@@ -1,7 +1,7 @@
 // src/api/create-pix-preference.js
 import mercadopago from 'mercadopago';
 
-mercadopago.configurations.setAccessToken(process.env.MERCADO_PAGO_ACCESS_TOKEN);
+mercadopago.configurations.setAccessToken("APP_USR-6401240289490759-101313-6cfd47928d448af4be509a829dedccd1-2031844957");
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
