@@ -19,7 +19,7 @@ function Lojasublink({ setAba }) {
 
     const [allItens, setAllItens] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [modalContent, setModalContent] = useState({ title: "", body: "", onConfirm: null });
+    const [modalContent, setModalContent] = useState({ title: "", body: "",greenButton:"",redButton:"", onConfirm: null });
 
     useEffect(() => {
         fb?.firestore
@@ -44,6 +44,7 @@ function Lojasublink({ setAba }) {
             setModalContent({
                 title: "Item já adquirido",
                 body: `Você já possui ${item.nome}.`,
+                greenButton:"Ok",
                 onConfirm: () => setShowModal(false), // Apenas fecha o modal
             });
             setShowModal(true);
@@ -55,6 +56,7 @@ function Lojasublink({ setAba }) {
             setModalContent({
                 title: "Confirmação de Compra",
                 body: `Você quer realmente comprar ${item.nome} por ${item.preco} gemas?`,
+                greenButton:"Confirmar",
                 onConfirm: async () => {
                     try {
                         const newGemas = stats.gemas - item.preco;
@@ -76,6 +78,7 @@ function Lojasublink({ setAba }) {
             setModalContent({
                 title: "Gemas Insuficientes",
                 body: "Você não tem gemas suficientes para comprar este item. Deseja comprar mais gemas?",
+                greenButton:"Comprar",
                 onConfirm: () => {
                     setShowModal(false); // Fecha o modal e redireciona
                     setAba("gemas"); // Redireciona para a página de compra de gemas
@@ -178,7 +181,7 @@ function Lojasublink({ setAba }) {
                                         className=""
                                         onClick={modalContent.onConfirm}
                                     >
-                                        Adicionar Link
+                                        {modalContent.greenButton}
                                     </Button>
                                 </Col>
                                 <Col className="d-flex justify-content-end pe-0 me-0">

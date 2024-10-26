@@ -3,12 +3,11 @@ import { Alert, Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useAuth, UserCss, UserInfo } from "../../hook";
 import { useLightMode } from "../Dashboard/LightModeContext";
 import { Link } from "react-router-dom";
-import gemas from "../../Images/gemas/gemas.png";
-import gemas2 from "../../Images/gemas/gemas2.png";
-import gemas3 from "../../Images/gemas/gemas3.png";
-import gemas4 from "../../Images/gemas/gemas4.png";
-import gemas5 from "../../Images/gemas/gemas5.png";
+import { gemPackages } from "../../shared/service/gemasServices";
+import { loadStripe } from "@stripe/stripe-js";
 import { fb } from "../../shared/service";
+
+const stripePromise = loadStripe("pk_live_51PTnf8CfAppK3pBhKjDqL8Q7tTOLxWX2XkAFBoZS2hi0TiCUWvPDFzmRrZgXHU9w31Kb2vUGX49BJooNkhZ8llfK00nbxk1XoW");
 
 function Gemas() {
   const { authUser } = useAuth();
@@ -23,104 +22,35 @@ function Gemas() {
   // Estado para controlar o pacote de gemas atualmente em compra
   const [activePackage, setActivePackage] = useState(null);
 
-  // Função para atualizar gemas no Firebase
-  const updateUserGemas = async (gemCount) => {
-    const userRef = fb?.firestore.collection("UserStats").doc(id);
-    await userRef.update({
-      gemas: fb?.increment(gemCount), // Adiciona a quantidade de gemas
-    });
-  };
-
+  // Função de checkout com o Stripe
   const handleCheckout = async (gemPackage) => {
-    // Limpa todos os contêineres de botão do PayPal
-    const allButtonContainers = document.querySelectorAll(
-      "[id^='paypal-button-container-']"
-    );
-    allButtonContainers.forEach((container) => {
-      container.innerHTML = ""; // Limpa o conteúdo de todos os contêineres
-    });
-
-    // Define o pacote ativo
     setActivePackage(gemPackage.id);
-
-    // Renderiza o botão do PayPal
-    window.paypal
-      .Buttons({
-        createOrder: function (data, actions) {
-          return actions.order.create({
-            purchase_units: [
-              {
-                amount: {
-                  currency_code: "BRL", // Define a moeda como BRL (Reais)
-                  value: gemPackage.price, // Valor em reais
-                },
-                description: gemPackage.gemCount,
-              },
-            ],
-          });
-        },
-        onApprove: async function (data, actions) {
-          return actions.order.capture().then(async function (details) {
-            alert(
-              "Transação completada com sucesso por " +
-                details.payer.name.given_name
-            );
-
-            // Aqui você pode adicionar lógica para adicionar gemas ao perfil do usuário
-            const gemCount = gemPackage.gemCount; // Acessa a quantidade de gemas do novo campo
-            await updateUserGemas(gemCount); // Atualiza as gemas no banco de dados
-          });
-        },
-        onError: function (err) {
-          console.error("Erro ao processar o pagamento", err);
-          alert("Ocorreu um erro durante a transação.");
-        },
-      })
-      .render(`#paypal-button-container-${gemPackage.id}`);
+  
+    const stripe = await stripePromise;
+  
+    try {
+      const { error } = await stripe.redirectToCheckout({
+        lineItems: [
+          {
+            price: gemPackage.priceId, // Insira o price ID configurado no Stripe
+            quantity: 1,
+          },
+        ],
+        mode: "payment",
+        successUrl: `http://localhost:3000/s/Sucesso?package=${gemPackage.id}`, // URL de sucesso
+        cancelUrl: "http://localhost:3000/s/Cancelado", // URL de falha
+      });
+  
+      if (error) {
+        console.error("Erro no Stripe:", error.message);
+        alert("Erro ao processar pagamento.");
+      }
+    } catch (error) {
+      console.error("Erro ao redirecionar para o Stripe Checkout:", error);
+      alert("Ocorreu um erro ao redirecionar para o pagamento.");
+    }
   };
-
-  const gemPackages = [
-    {
-      id: "bundle100",
-      image: gemas,
-      title: "Punhado de LinkGems",
-      description: "Bundle com 100 LinkGems",
-      price: "3.90",
-      gemCount: 100, // Novo campo
-    },
-    {
-      id: "bundle200",
-      image: gemas2,
-      title: "Monte pequeno de LinkGems",
-      description: "Bundle com 200 LinkGems",
-      price: "7.90",
-      gemCount: 200, // Novo campo
-    },
-    {
-      id: "bundle300",
-      image: gemas3,
-      title: "Monte maior de LinkGems",
-      description: "Bundle com 300 LinkGems",
-      price: "11.90",
-      gemCount: 300, // Novo campo
-    },
-    {
-      id: "bundle500",
-      image: gemas4,
-      title: "Bolsa de LinkGems",
-      description: "Bundle com 500 LinkGems",
-      price: "14.90",
-      gemCount: 500, // Novo campo
-    },
-    {
-      id: "bundle1000",
-      image: gemas5,
-      title: "Baú de LinkGems",
-      description: "Bundle com 1000 LinkGems",
-      price: "29.90",
-      gemCount: 1000, // Novo campo
-    },
-  ];
+  
 
   return (
     <>
@@ -163,10 +93,6 @@ function Gemas() {
                           >
                             Comprar R$ {gemPackage.price}
                           </Button>
-                          <div
-                            id={`paypal-button-container-${gemPackage.id}`}
-                            className="mt-2"
-                          ></div>
                         </Card.Body>
                       </Card>
                     </Col>
