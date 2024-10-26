@@ -5,7 +5,6 @@ import { useLightMode } from "../Dashboard/LightModeContext";
 import { Link } from "react-router-dom";
 import { gemPackages } from "../../shared/service/gemasServices";
 import { loadStripe } from "@stripe/stripe-js";
-import { fb } from "../../shared/service";
 
 const stripePromise = loadStripe("pk_live_51PTnf8CfAppK3pBhKjDqL8Q7tTOLxWX2XkAFBoZS2hi0TiCUWvPDFzmRrZgXHU9w31Kb2vUGX49BJooNkhZ8llfK00nbxk1XoW");
 
@@ -19,28 +18,26 @@ function Gemas() {
   const userName = stats?.linkUserName;
   const { isLightMode } = useLightMode();
 
-  // Estado para controlar o pacote de gemas atualmente em compra
   const [activePackage, setActivePackage] = useState(null);
 
-  // Função de checkout com o Stripe
   const handleCheckout = async (gemPackage) => {
     setActivePackage(gemPackage.id);
-  
+
     const stripe = await stripePromise;
-  
+
     try {
       const { error } = await stripe.redirectToCheckout({
         lineItems: [
           {
-            price: gemPackage.priceId, // Insira o price ID configurado no Stripe
+            price: gemPackage.priceId,
             quantity: 1,
           },
         ],
         mode: "payment",
-        successUrl: `https://linkii.me/s/Sucesso?package=${gemPackage.id}`, // URL de sucesso
-        cancelUrl: "https://linkii.me/s/Cancelado", // URL de falha
+        successUrl: `https://linkii.me/s/Sucesso?package=${gemPackage.id}`,
+        cancelUrl: "https://linkii.me/s/Cancelado",
       });
-  
+
       if (error) {
         console.error("Erro no Stripe:", error.message);
         alert("Erro ao processar pagamento.");
@@ -48,6 +45,31 @@ function Gemas() {
     } catch (error) {
       console.error("Erro ao redirecionar para o Stripe Checkout:", error);
       alert("Ocorreu um erro ao redirecionar para o pagamento.");
+    }
+  };
+
+  const handlePixCheckout = async (gemPackage) => {
+    try {
+      const response = await fetch('/api/create-pix-preference', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: gemPackage.title,
+          price: gemPackage.price,
+        }),
+      });
+  
+      const data = await response.json();
+      if (data.init_point) {
+        window.location.href = data.init_point; // Redireciona para o link de pagamento Pix
+      } else {
+        alert('Erro ao obter link de pagamento.');
+      }
+    } catch (error) {
+      console.error('Erro ao redirecionar para o pagamento via Pix:', error);
+      alert('Erro ao processar pagamento via Pix.');
     }
   };
   
@@ -88,10 +110,18 @@ function Gemas() {
                           <Card.Title>{gemPackage.title}</Card.Title>
                           <p>{gemPackage.description}</p>
                           <Button
+                            className="w-100"
                             variant="void"
                             onClick={() => handleCheckout(gemPackage)}
                           >
-                            Comprar R$ {gemPackage.price}
+                            Cartão R$ {gemPackage.price}
+                          </Button>
+                          <Button
+                            className="mt-2 w-100"
+                            variant="void"
+                            onClick={() => handlePixCheckout(gemPackage)}
+                          >
+                            Pix R$ {gemPackage.price}
                           </Button>
                         </Card.Body>
                       </Card>
