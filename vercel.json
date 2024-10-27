@@ -5,12 +5,9 @@
         "dest": "/api/create-pix-preference",
         "methods": ["POST"]
       }
-    ]
-  }
-  {
+    ],
     "rewrites": [
       { "source": "/api/(.*)", "destination": "/api/$1" },
       { "source": "/(.*)", "destination": "/" }
     ]
   }
-    
