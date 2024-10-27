@@ -36,7 +36,7 @@ export default async function handler(req, res) {
       res.status(500).json({ error: 'Erro ao criar preferência de pagamento' });
     }
   } else {
-    res.setHeader('Allow', ['POST']);
+    res.setHeader('Allow', ['POST','GET']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
