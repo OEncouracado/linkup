@@ -4,8 +4,8 @@ import mercadopago from 'mercadopago';
 
 // Inicializar o Redis
 const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_URL,
-  token: process.env.UPSTASH_REDIS_TOKEN,
+  url: process.env.pix_KV_REST_API_URL,
+  token: process.env.pix_KV_REST_API_TOKEN,
 });
 
 // Configurar o Mercado Pago com o token do ambiente
