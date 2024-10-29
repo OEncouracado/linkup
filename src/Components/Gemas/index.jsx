@@ -87,7 +87,7 @@ function Gemas() {
           userId: authUser.uid, // ou outra forma de obter o ID do usuário
         }),
       });
-  
+      console.log('resposta :>> ', response.json());
       const data = await response.json();
       console.log('data :>> ', data);
   
