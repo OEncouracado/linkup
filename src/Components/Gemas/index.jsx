@@ -48,30 +48,61 @@ function Gemas() {
     }
   };
 
+  // const handlePixCheckout = async (gemPackage) => {
+  //   try {
+  //     const response = await fetch('https://sublinksme.vercel.app/api/create-pix-preference', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         title: gemPackage.title,
+  //         price: gemPackage.price,
+  //       }),
+  //     });
+  
+  //     const data = await response.json();
+  //     if (data.init_point) {
+  //       window.location.href = data.init_point; // Redireciona para o link de pagamento Pix
+  //     } else {
+  //       alert('Erro ao obter link de pagamento.');
+  //     }
+  //   } catch (error) {
+  //     console.error('Erro ao redirecionar para o pagamento via Pix:', error);
+  //     alert('Erro ao processar pagamento via Pix.');
+  //   }
+  // };
+
   const handlePixCheckout = async (gemPackage) => {
     try {
-      const response = await fetch('https://sublinksme.vercel.app/api/create-pix-preference', {
+      const response = await fetch('/api/create-pix-preference', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           title: gemPackage.title,
+          quantity: 1,
           price: gemPackage.price,
+          userId: authUser.uid, // ou outra forma de obter o ID do usuário
         }),
       });
   
       const data = await response.json();
+  
       if (data.init_point) {
-        window.location.href = data.init_point; // Redireciona para o link de pagamento Pix
+        // Redirecionar o usuário para a página de pagamento Pix do Mercado Pago
+        window.location.href = data.init_point;
       } else {
-        alert('Erro ao obter link de pagamento.');
+        console.error('Erro ao obter URL do pagamento:', data.message);
+        alert('Erro ao processar pagamento via Pix.');
       }
     } catch (error) {
       console.error('Erro ao redirecionar para o pagamento via Pix:', error);
       alert('Erro ao processar pagamento via Pix.');
     }
   };
+  
   
 
   return (
