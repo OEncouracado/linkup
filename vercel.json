@@ -5,5 +5,5 @@
         "dest": "/api/create-pix-preference.js",
         "methods": ["POST"]
       }
-    ],
+    ]
   }
