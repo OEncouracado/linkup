@@ -12,16 +12,19 @@ const redis = new Redis({
 mercadopago.configurations.setAccessToken(process.env.MERCADO_PAGO_ACCESS_TOKEN);
 
 export default async function handler(req, res) {
-  // Define o cabeçalho CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end(); // Responde às requisições OPTIONS antes de continuar
+    return;
+  }
+
   if (req.method === 'POST') {
+    // Código para o método POST permanece o mesmo
     try {
       const { title, quantity, price, userId } = req.body;
-
-      // Criar preferência de pagamento no Mercado Pago
       const preference = {
         items: [
           {
@@ -43,21 +46,18 @@ export default async function handler(req, res) {
         auto_return: 'approved',
       };
 
-      // Criar preferência e obter link de pagamento
       const response = await mercadopago.preferences.create(preference);
       const { init_point } = response.body;
 
-      // Armazenar informações temporárias no Redis
       await redis.set(`transaction:${userId}`, JSON.stringify({ title, quantity, price, status: 'pending' }));
 
-      // Retornar a URL de pagamento ao cliente
       res.status(200).json({ init_point });
     } catch (error) {
       console.error('Erro ao criar preferência PIX:', error);
       res.status(500).json({ message: 'Erro ao criar pagamento PIX' });
     }
   } else {
-    res.setHeader('Allow', ['POST']);
+    res.setHeader('Allow', ['POST', 'OPTIONS']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
