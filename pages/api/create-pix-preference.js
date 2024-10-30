@@ -10,6 +10,7 @@ const redis = new Redis({
 
 // Configurar o Mercado Pago com o token do ambiente
 mercadopago.configurations.setAccessToken(process.env.MERCADO_PAGO_ACCESS_TOKEN);
+console.log("Token do Mercado Pago:", process.env.MERCADO_PAGO_ACCESS_TOKEN);
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
