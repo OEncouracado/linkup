@@ -1,39 +1,26 @@
 // pages/api/create-pix-preference.js
+import { MercadoPagoConfig, Preference } from 'mercadopago';
 import { Redis } from '@upstash/redis';
-import mercadopago from 'mercadopago';
 
 // Inicializar o Redis
-
 const redis = new Redis({
   url: process.env.pix_KV_REST_API_URL,
   token: process.env.pix_KV_REST_API_TOKEN,
 });
 
-const mercadoPagoToken = process.env.MERCADO_PAGO_ACCESS_TOKEN;
-
-if (!mercadoPagoToken) {
-  console.error('O token do Mercado Pago não foi definido. Verifique as configurações de ambiente.');
-  // Opcional: Lançar um erro personalizado ou utilizar um valor padrão
-  throw new Error('Token do Mercado Pago não configurado');
-} else {
-  mercadopago.configurations.setAccessToken(mercadoPagoToken);
-}
+// Configurar o Mercado Pago com o token do ambiente
+const client = new MercadoPagoConfig({ accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN });
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') {
-    res.status(200).end(); // Responde às requisições OPTIONS antes de continuar
-    return;
-  }
-
   if (req.method === 'POST') {
-    // Código para o método POST permanece o mesmo
     try {
       const { title, quantity, price, userId } = req.body;
-      const preference = {
+
+      // Criar preferência de pagamento no Mercado Pago
+      const preference = new Preference(client);
+
+      // Configuração da preferência
+      const preferenceBody = {
         items: [
           {
             title,
@@ -49,23 +36,26 @@ export default async function handler(req, res) {
         back_urls: {
           success: 'https://linkii.me/s/Sucesso',
           failure: 'https://linkii.me/s/Cancelado',
-          pending: 'https://linkii.me/s/Cancelado',
+          pending: 'https://linkii.me/s/Pendente', // Adicione uma URL para o status pendente, se necessário
         },
         auto_return: 'approved',
       };
 
-      const response = await mercadopago.preferences.create(preference);
+      // Criar preferência e obter link de pagamento
+      const response = await preference.create({ body: preferenceBody });
       const { init_point } = response.body;
 
+      // Armazenar informações temporárias no Redis
       await redis.set(`transaction:${userId}`, JSON.stringify({ title, quantity, price, status: 'pending' }));
 
+      // Retornar a URL de pagamento ao cliente
       res.status(200).json({ init_point });
     } catch (error) {
       console.error('Erro ao criar preferência PIX:', error);
       res.status(500).json({ message: 'Erro ao criar pagamento PIX' });
     }
   } else {
-    res.setHeader('Allow', ['POST', 'OPTIONS']);
+    res.setHeader('Allow', ['POST']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
