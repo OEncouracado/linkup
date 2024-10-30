@@ -9,7 +9,15 @@ const redis = new Redis({
 });
 
 // Configurar o Mercado Pago com o token do ambiente
-mercadopago.configurations.setAccessToken(process.env.MERCADO_PAGO_ACCESS_TOKEN);
+const mercadoPagoToken = process.env.MERCADO_PAGO_ACCESS_TOKEN;
+
+if (!mercadoPagoToken) {
+  console.error('O token do Mercado Pago não foi definido. Verifique as configurações de ambiente.');
+  // Opcional: Lançar um erro personalizado ou utilizar um valor padrão
+  throw new Error('Token do Mercado Pago não configurado');
+} else {
+  mercadopago.configurations.setAccessToken(mercadoPagoToken);
+}
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
