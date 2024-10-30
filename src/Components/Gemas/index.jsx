@@ -75,16 +75,16 @@ function Gemas() {
 
   const handlePixCheckout = async (gemPackage) => {
     try {
-      const response = await fetch('https://sublinksme.vercel.app/api/create-pix-preference', {
-        method: 'POST',
+      const response = await fetch("/api/create-pix-preference", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           title: gemPackage.title,
           quantity: 1,
           price: gemPackage.price,
-          userId: authUser.uid, // ou outra forma de obter o ID do usuário
+          userId: id, // ou outra forma de obter o ID do usuário
         }),
       });
       
