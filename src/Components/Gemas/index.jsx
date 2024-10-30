@@ -89,7 +89,7 @@ function Gemas() {
       });
       
       const data = await response.json();
-      console.log('data :>> ', data);
+      console.log('Resposta completa da API Mercado Pago:', data);
   
       if (data.init_point) {
         // Redirecionar o usuário para a página de pagamento Pix do Mercado Pago
@@ -103,6 +103,7 @@ function Gemas() {
       alert('Erro ao processar pagamento via Pix.');
     }
   };
+  
   
   
 
