@@ -5,8 +5,5 @@
         "dest": "/api/create-pix-preference.js",
         "methods": ["POST"]
       }
-    ],
-    "rewrites": [
-    { "source": "/api/create-pix-preference", "destination": "/api/create-pix-preference.js" }
-  ]
+    ]
   }
