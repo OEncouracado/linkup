@@ -36,20 +36,29 @@ export default async function handler(req, res) {
         back_urls: {
           success: 'https://linkii.me/s/Sucesso',
           failure: 'https://linkii.me/s/Cancelado',
-          pending: 'https://linkii.me/s/Pendente', // Adicione uma URL para o status pendente, se necessário
+          pending: 'https://linkii.me/s/Pendente',
         },
         auto_return: 'approved',
       };
 
       // Criar preferência e obter link de pagamento
       const response = await preference.create({ body: preferenceBody });
-      const { init_point } = response.body;
+      
+      // Log da resposta completa para verificar problemas
+      console.log('Response:', response);
 
-      // Armazenar informações temporárias no Redis
-      await redis.set(`transaction:${userId}`, JSON.stringify({ title, quantity, price, status: 'pending' }));
+      if (response && response.body && response.body.init_point) {
+        const { init_point } = response.body;
 
-      // Retornar a URL de pagamento ao cliente
-      res.status(200).json({ init_point });
+        // Armazenar informações temporárias no Redis
+        await redis.set(`transaction:${userId}`, JSON.stringify({ title, quantity, price, status: 'pending' }));
+
+        // Retornar a URL de pagamento ao cliente
+        res.status(200).json({ init_point });
+      } else {
+        console.error('Erro: init_point não encontrado na resposta');
+        res.status(500).json({ message: 'Erro ao criar pagamento PIX: init_point não encontrado' });
+      }
     } catch (error) {
       console.error('Erro ao criar preferência PIX:', error);
       res.status(500).json({ message: 'Erro ao criar pagamento PIX' });
