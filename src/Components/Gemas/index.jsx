@@ -48,31 +48,6 @@ function Gemas() {
     }
   };
 
-  // const handlePixCheckout = async (gemPackage) => {
-  //   try {
-  //     const response = await fetch('https://sublinksme.vercel.app/api/create-pix-preference', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         title: gemPackage.title,
-  //         price: gemPackage.price,
-  //       }),
-  //     });
-  
-  //     const data = await response.json();
-  //     if (data.init_point) {
-  //       window.location.href = data.init_point; // Redireciona para o link de pagamento Pix
-  //     } else {
-  //       alert('Erro ao obter link de pagamento.');
-  //     }
-  //   } catch (error) {
-  //     console.error('Erro ao redirecionar para o pagamento via Pix:', error);
-  //     alert('Erro ao processar pagamento via Pix.');
-  //   }
-  // };
-
   const handlePixCheckout = async (gemPackage) => {
     try {
       const response = await fetch("/api/create-pix-preference", {
