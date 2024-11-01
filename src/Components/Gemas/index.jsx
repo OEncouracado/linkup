@@ -75,7 +75,7 @@ function Gemas() {
 
   const handlePixCheckout = async (gemPackage) => {
     try {
-      const response = await fetch("/api/create-pix-preference", {
+      const response = await fetch("https://sublinksme.vercel.app/api/create-pix-preference", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +88,9 @@ function Gemas() {
         }),
       });
       
-      const data = await response.json();
+      const responseText = await response.text();
+      console.log('Texto da resposta:', responseText);
+      const data = JSON.parse(responseText);
       console.log('Resposta completa da API Mercado Pago:', data);
   
       if (data.init_point) {
