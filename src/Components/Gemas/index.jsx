@@ -75,7 +75,7 @@ function Gemas() {
 
   const handlePixCheckout = async (gemPackage) => {
     try {
-      const response = await fetch("https://sublinksme.vercel.app/api/create-pix-preference", {
+      const response = await fetch("/api/create-pix-preference", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
