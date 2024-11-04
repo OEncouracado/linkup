@@ -59,7 +59,6 @@ function Gemas() {
           title: gemPackage.title,
           quantity: 1,
           price: gemPackage.price,
-          userId: id, // ou outra forma de obter o ID do usuário
         }),
       });
       
