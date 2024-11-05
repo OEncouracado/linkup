@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       const response = await preference.create({ body: preferenceBody });
 
       // Retornar a resposta completa para o front-end
-      res.status(200).json(response.body);
+      res.status(200).json(response);
       console.info("Mensagem a ser Enviada: ",response)
     } catch (error) {
       console.error("Erro ao criar preferência PIX:", error);
