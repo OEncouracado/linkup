@@ -48,7 +48,7 @@ function Gemas() {
     }
   };
 
-  const handlePixCheckout = async (gemPackage) => {
+  const handlePixCheckout = async (gemPackage, userId) => {
     try {
       const response = await fetch("/api/create-pix-preference", {
         method: "POST",
@@ -59,6 +59,8 @@ function Gemas() {
           title: gemPackage.title,
           quantity: 1,
           price: gemPackage.price,
+          userId:userId,
+          gemCount:gemPackage.gemCount,
         }),
       });
       
@@ -128,7 +130,7 @@ function Gemas() {
                           <Button
                             className="mt-2 w-100"
                             variant="void"
-                            onClick={() => handlePixCheckout(gemPackage)}
+                            onClick={() => handlePixCheckout(gemPackage,id)}
                           >
                             Pix R$ {gemPackage.price}
                           </Button>

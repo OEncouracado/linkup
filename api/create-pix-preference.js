@@ -6,7 +6,7 @@ const client = new MercadoPagoConfig({ accessToken: process.env.MERCADO_PAGO_ACC
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { title, quantity, price } = req.body;
+      const { title, quantity, price, userId, gemCount } = req.body;
 
       const preference = new Preference(client);
 
@@ -30,6 +30,7 @@ export default async function handler(req, res) {
           pending: "https://linkii.me/s/Pendente",
         },
         auto_return: "approved",
+        external_reference: `${userId}-${gemCount}`, // Concatena userId e gemCount com um delimitador
       };
 
       const response = await preference.create({ body: preferenceBody });
