@@ -31,7 +31,7 @@ import AdminPage from "./pages/Admin";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import NotAuthorized from "./pages/Admin/notAuthorized";
 import Gemas from "./Components/Gemas";
-import Leaderboard from "./Components/Leaderboard/Leaderboard";
+import Leaderboard from "./Components/Leaderboard/Leaderboard.js";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
