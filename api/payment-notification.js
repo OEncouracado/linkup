@@ -1,5 +1,5 @@
 // /api/payment-notification.js
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import 'firebase/database';
 
 // Inicialize o Firebase (adapte com as suas credenciais)
