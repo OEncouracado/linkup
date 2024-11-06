@@ -21,6 +21,7 @@ if (!firebase.apps.length) {
 }
 
 const database = firebase.database();
+const firestore = firebase.firestore();
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -36,11 +37,12 @@ export default async function handler(req, res) {
       }
 
       try {
-        const userRef = database.ref(`userStats/${userId}/gemas`);
+        // Referência ao documento do usuário no Firestore
+        const userDocRef = firestore.collection("userStats").doc(userId);
 
-        // Atualiza o campo "gemas" no Realtime Database somando a quantidade de gemas do pacote adquirido
-        await userRef.transaction((currentGemas) => {
-          return (currentGemas || 0) + gemCount;
+        // Atualiza o campo "gemas" incrementando a quantidade adquirida
+        await userDocRef.update({
+          gemas: firebase.firestore.FieldValue.increment(gemCount),
         });
 
         console.log("Gemas atualizadas com sucesso para o usuário:", userId);
