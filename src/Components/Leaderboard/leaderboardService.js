@@ -2,7 +2,7 @@
 import { fb } from './../../shared/service/firebase';
 
 // Função para obter o leaderboard
-async function getLeaderboard(topN = 10) {
+export async function getLeaderboard(topN = 10) {
 
   try {
     const leaderboard = [];
