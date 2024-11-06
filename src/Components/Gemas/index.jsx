@@ -70,9 +70,21 @@ function Gemas() {
       console.log('Resposta completa da API Mercado Pago:', data);
   
       if (data.init_point) {
-        // Redirecionar o usuário para a página de pagamento Pix do Mercado Pago
-        window.location.href = data.init_point;
-      } else {
+        // Abrir a página de pagamento Pix do Mercado Pago em uma nova janela/popup
+        const popupWindow = window.open(
+          data.init_point,   // URL para a página de pagamento
+          'Pagamento Pix', // Nome da janela (opcional)
+          'width=800,height=600' // Dimensões da janela
+        );
+      
+        // Focar a janela, caso o navegador a tenha criado
+        if (popupWindow) {
+          popupWindow.focus();
+        } else {
+          alert('Permita popups para abrir a página de pagamento.');
+        }
+      }
+       else {
         console.error('Erro ao obter URL do pagamento:', data.message);
         alert('Erro ao processar pagamento via Pix.');
       }
