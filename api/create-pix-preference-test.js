@@ -20,8 +20,6 @@ export default async function handler(req, res) {
           },
         ],
         payment_methods: {
-          default_payment_method_id: "pix",
-          excluded_payment_types: [{ id: "credit_card" }],
           installments: 1,
         },
         back_urls: {
