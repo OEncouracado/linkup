@@ -17,7 +17,7 @@ function Leaderboard() {
       <ul>
         {leaderboard.map((user, index) => (
           <li key={user.uid}>
-            {index + 1}. {user.uid} - XP: {user.xp} - Rank: {user.rank}
+            {index + 1}. {user.username} - XP: {user.xp} - Rank: {user.rank}
           </li>
         ))}
       </ul>
