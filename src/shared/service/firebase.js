@@ -20,7 +20,6 @@ try {
   console.error("Erro ao inicializar o Firebase:", error);
 }
 export const fb = {
-  database: firebase.database(),
   firestore: firebase.firestore(),
   auth: firebase.auth(),
   googleProvider: new firebase.auth.GoogleAuthProvider(),

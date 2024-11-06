@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       }
       // Atualize as gemas do cliente no Firestore
       try {
-        const userRef = fb.firestore.collection('userStats').doc(userId);
+        const userRef = fb.firestore().collection('userStats').doc(userId);
 
         // Atualiza o campo "gemas" somando a quantidade de gemas do pacote adquirido
         await userRef.update({
