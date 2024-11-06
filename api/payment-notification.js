@@ -38,7 +38,7 @@ export default async function handler(req, res) {
 
       try {
         // Referência ao documento do usuário no Firestore
-        const userDocRef = firestore.collection("userStats").doc(userId);
+        const userDocRef = firestore.collection("UserStats").doc(userId);
 
         // Atualiza o campo "gemas" incrementando a quantidade adquirida
         await userDocRef.update({
