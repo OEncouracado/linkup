@@ -1,25 +1,43 @@
 // /api/payment-notification.js
-import { fb } from "../src/shared/service"; // Certifique-se de que este caminho esteja correto
+import firebase from 'firebase/app';
+import 'firebase/database';
+
+// Inicialize o Firebase (adapte com as suas credenciais)
+if (!firebase.apps.length) {
+  firebase.initializeApp({
+    apiKey: process.env.FIREBASE_API_KEY, // Defina essas variáveis no ambiente
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+  });
+} else {
+  firebase.app(); // Use o Firebase App já inicializado
+}
+
+const database = firebase.database();
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const { status, external_reference } = req.body; // Ajuste conforme a estrutura da notificação
+    const { status, external_reference } = req.body;
 
     if (status === "approved") {
-      const [userId, gemCountStr] =  external_reference.split("-");
+      const [userId, gemCountStr] = external_reference.split("-");
       const gemCount = parseInt(gemCountStr, 10); // Converte para número
       
       if (isNaN(gemCount)) {
         console.error("gemCount inválido:", gemCountStr);
         return res.status(400).json({ message: "Erro: gemCount inválido" });
       }
-      // Atualize as gemas do cliente no Firestore
-      try {
-        const userRef = fb.firestore().collection('userStats').doc(userId);
 
-        // Atualiza o campo "gemas" somando a quantidade de gemas do pacote adquirido
-        await userRef.update({
-          gemas: fb.increment(gemCount),
+      try {
+        const userRef = database.ref(`userStats/${userId}/gemas`);
+
+        // Atualiza o campo "gemas" no Realtime Database somando a quantidade de gemas do pacote adquirido
+        await userRef.transaction((currentGemas) => {
+          return (currentGemas || 0) + gemCount;
         });
 
         console.log("Gemas atualizadas com sucesso para o usuário:", userId);
