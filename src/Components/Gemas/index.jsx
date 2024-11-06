@@ -191,6 +191,13 @@ function Gemas() {
                           >
                             Pix R$ {gemPackage.price}
                           </Button>
+                          <Button
+                            className="mt-2 w-100"
+                            variant="void"
+                            onClick={() => handlePixCheckoutTest(gemPackage,id)}
+                          >
+                            Pix(teste) R$ {gemPackage.price}
+                          </Button>
                         </Card.Body>
                       </Card>
                     </Col>
