@@ -2,14 +2,14 @@
 import { fb } from './../../shared/service/firebase';
 
 // Função para obter o leaderboard
-export async function getLeaderboard(topN = 10) {
+export async function getLeaderboard(topN = 10, orderByField = "xp") {
 
   try {
     const leaderboard = [];
     // Query para obter os topN usuários ordenados por 'xp' em ordem decrescente
     const snapshot = await fb.firestore
       .collection("UserStats")
-      .orderBy("xp", "desc") // Altere para "rank" para ordenar por rank
+      .orderBy(orderByField, "desc") // Altere para "rank" para ordenar por rank
       .limit(topN)
       .get();
 
