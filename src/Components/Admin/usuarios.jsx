@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
-import axios from "axios";  // Para fazer requisições HTTP
+import { axios } from 'axios';
+  // Para fazer requisições HTTP
 
 function UsuariosAdminPainel() {
     const [usuarios, setUsuarios] = useState([]);
