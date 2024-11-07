@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
-import { fb } from "../../shared/service";
+import axios from "axios";  // Para fazer requisições HTTP
 
 function UsuariosAdminPainel() {
     const [usuarios, setUsuarios] = useState([]);
@@ -8,36 +8,17 @@ function UsuariosAdminPainel() {
     const [statusFilter, setStatusFilter] = useState("");
 
     useEffect(() => {
-        // Função para buscar a lista de usuários da Auth do Firebase
-        const fetchUsersFromAuth = async () => {
+        const fetchUsers = async () => {
             try {
-                // Busca os usuários autenticados
-                const usersList = [];
-                const listUsers = async (nextPageToken) => {
-                    // Lista até 1000 usuários de cada vez
-                    const result = await fb?.auth.listUsers(1000, nextPageToken);
-                    result.users.forEach((userRecord) => {
-                        usersList.push({
-                            id: userRecord.uid,
-                            name: userRecord.displayName,
-                            email: userRecord.email,
-                            status: userRecord.disabled ? "inativo" : "ativo",
-                            createdAt: userRecord.metadata.creationTime,
-                        });
-                    });
-                    if (result.pageToken) {
-                        // Recursivamente busca mais usuários se houver mais páginas
-                        await listUsers(result.pageToken);
-                    }
-                };
-                await listUsers();
-                setUsuarios(usersList);
+                // Fazendo requisição para a função serverless no Vercel
+                const response = await axios.get("/api/list-users");  // No Vercel, a URL será algo como /api/list-users
+                setUsuarios(response.data);
             } catch (error) {
                 console.error("Erro ao buscar usuários:", error);
             }
         };
-
-        fetchUsersFromAuth();
+        
+        fetchUsers();
     }, []);
 
     // Filtros de busca e status
