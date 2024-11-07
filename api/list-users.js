@@ -14,6 +14,10 @@ if (!admin.apps.length) {
   admin.app();
 }
 
+console.log("Firebase Private Key (first and last 5 characters):", 
+    process.env.FIREBASE_PRIVATE_KEY.slice(0, 5) + "..." + process.env.FIREBASE_PRIVATE_KEY.slice(-5)
+);
+
 export default async function handler(req, res) {
   try {
     if (req.method !== "GET") {

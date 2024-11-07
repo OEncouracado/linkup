@@ -17,6 +17,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.linkup-4b9cf-firebase-adminsdk-2l0cy-d6bc0ccd50.json
 
 npm-debug.log*
 yarn-debug.log*
