@@ -66,6 +66,7 @@ function UsuariosAdminPainel() {
       <Table striped bordered hover responsive>
         <thead>
           <tr>
+            <th>UserUid</th>
             <th>Nome</th>
             <th>Email</th>
             <th>Status</th>
@@ -77,6 +78,7 @@ function UsuariosAdminPainel() {
           {filteredUsers.length > 0 ? (
             filteredUsers.map((user) => (
               <tr key={user.id}>
+                <td>{user.uid}</td>
                 <td>{user.name || "Sem nome"}</td>
                 <td>{user.email}</td>
                 <td>{user.status}</td>
