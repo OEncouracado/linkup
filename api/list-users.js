@@ -4,7 +4,11 @@ import admin from "firebase-admin";
 
 if (!admin.apps.length) {
   admin.initializeApp({
-    credential: admin.credential.applicationDefault(), // Ou use sua chave de serviço aqui
+    credential: admin.credential.cert({
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    }),
   });
 } else {
   admin.app();
@@ -17,7 +21,7 @@ export default async function handler(req, res) {
     }
 
     const usersList = [];
-    const result = await admin.auth().listUsers(1000); // Listando usuários do Firebase Auth
+    const result = await admin.auth().listUsers(1000);
     result.users.forEach((user) => {
       usersList.push({
         id: user.uid,
@@ -28,7 +32,7 @@ export default async function handler(req, res) {
       });
     });
 
-    return res.status(200).json(usersList); // Retornando a lista de usuários
+    return res.status(200).json(usersList);
   } catch (error) {
     console.error("Erro ao listar usuários:", error);
     return res.status(500).json({ message: "Erro ao listar usuários" });
