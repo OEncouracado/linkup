@@ -78,7 +78,7 @@ function UsuariosAdminPainel() {
           {filteredUsers.length > 0 ? (
             filteredUsers.map((user) => (
               <tr key={user.id}>
-                <td>{user.uid}</td>
+                <td>{user.id}</td>
                 <td>{user.name || "Sem nome"}</td>
                 <td>{user.email}</td>
                 <td>{user.status}</td>

@@ -93,51 +93,6 @@ function Gemas() {
       alert('Erro ao processar pagamento via Pix.');
     }
   };
-  const handlePixCheckoutTest = async (gemPackage, userId) => {
-    try {
-      const response = await fetch("/api/create-pix-preference-test", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: gemPackage.title,
-          quantity: 1,
-          price: gemPackage.price,
-          userId:userId,
-          gemCount:gemPackage.gemCount,
-        }),
-      });
-      
-      const responseText = await response.text();
-      console.log('Texto da resposta:', responseText);
-      const data = JSON.parse(responseText);
-      console.log('Resposta completa da API Mercado Pago:', data);
-  
-      if (data.sandbox_init_point) {
-        // Abrir a página de pagamento Pix do Mercado Pago em uma nova janela/popup
-        const popupWindow = window.open(
-          data.sandbox_init_point,   // URL para a página de pagamento
-          'Pagamento Pix', // Nome da janela (opcional)
-          'width=800,height=600' // Dimensões da janela
-        );
-      
-        // Focar a janela, caso o navegador a tenha criado
-        if (popupWindow) {
-          popupWindow.focus();
-        } else {
-          alert('Permita popups para abrir a página de pagamento.');
-        }
-      }
-       else {
-        console.error('Erro ao obter URL do pagamento:', data.message);
-        alert('Erro ao processar pagamento via Pix.');
-      }
-    } catch (error) {
-      console.error('Erro ao redirecionar para o pagamento via Pix:', error);
-      alert('Erro ao processar pagamento via Pix.');
-    }
-  };
   
   
   
@@ -190,13 +145,6 @@ function Gemas() {
                             onClick={() => handlePixCheckout(gemPackage,id)}
                           >
                             Pix R$ {gemPackage.price}
-                          </Button>
-                          <Button
-                            className="mt-2 w-100"
-                            variant="void"
-                            onClick={() => handlePixCheckoutTest(gemPackage,id)}
-                          >
-                            Pix(teste) R$ {gemPackage.price}
                           </Button>
                         </Card.Body>
                       </Card>
