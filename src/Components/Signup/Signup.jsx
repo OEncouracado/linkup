@@ -112,14 +112,16 @@ function Signup() {
         await fb?.firestore.collection("UserStats").doc(newuser.uid).set({
           VIP: false,
           completedObjectives: [],
-          imagemPerfil: "", // Você pode definir um valor padrão aqui se necessário
+          gemas: 0,
+          imagemPerfil: user.photoURL,
           isBlocked: false,
-          linkUserName: username,
-          moldura: "", // Pode ser definido um valor padrão também
+          linkUserName: user.displayName,
+          moldura: "",
           rank: 0,
-          userBackGround: "", // Valor padrão
-          userId: newuser.uid,
-          username: username, // Usando o nome de usuário fornecido pelo usuário
+          userBackGround: "",
+          userId: user.uid,
+          userMolduras:[],
+          username: user.displayName,
           xp: 0,
         });
 

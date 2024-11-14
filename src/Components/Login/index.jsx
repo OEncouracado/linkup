@@ -120,6 +120,7 @@ function Login() {
         await fb?.firestore.collection("UserStats").doc(user.uid).set({
           VIP: false,
           completedObjectives: [],
+          gemas: 0,
           imagemPerfil: user.photoURL,
           isBlocked: false,
           linkUserName: user.displayName,
@@ -127,6 +128,7 @@ function Login() {
           rank: 0,
           userBackGround: "",
           userId: user.uid,
+          userMolduras:[],
           username: user.displayName,
           xp: 0,
         });
