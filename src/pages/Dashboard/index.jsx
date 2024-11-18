@@ -16,6 +16,7 @@ import { fb } from "../../shared/service";
 import Lojasublink from "../../Components/Loja";
 import { Helmet } from "react-helmet";
 import Gemas from "../../Components/Gemas";
+import VIPSection from "../../Components/CompVIP";
 
 function Dashboard() {
   const { isLightMode } = useLightMode();
@@ -89,6 +90,8 @@ function Dashboard() {
         return "Loja";
       case "gemas":
         return "Gemas";
+      case "vip":
+        return "VIP";
       default:
         return ""; // Ou um valor padrão, como "Página não encontrada"
     }
@@ -119,6 +122,7 @@ function Dashboard() {
             {aba === "personalizar" && <Personalizar />}
             {aba === "colecionaveis" && <Colecionaveis />}
             {aba === "configuracoes" && <Configuracoes />}
+            {aba === "vip" && <VIPSection id={id} />}
             {aba === "loja" && <Lojasublink setAba={setAba} />}
             {aba === "gemas" && <Gemas />}
             <Button

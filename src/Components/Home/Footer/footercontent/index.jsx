@@ -26,7 +26,7 @@ function FooterContent() {
           </Col>
           <Col md className="colCentro">
             <div className="colCentroWarper mt-5">
-              <h3 className="colCentroTitle">Siga-nos</h3>
+              <h3 className="colCentroTitle" style={{fontFamily: "Press Start 2P"}}>Siga-nos</h3>
               <Container className="mt-5">
                 <p className="mb-4">
                   <a href="/" target="_blank" rel="noopener noreferrer">
