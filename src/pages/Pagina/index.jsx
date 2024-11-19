@@ -141,7 +141,7 @@ function Pagina() {
       </Helmet>
       <div className="paginaFundoWarp" style={fontePagina}>
         <div className="paginaFundo pt-0" style={estiloLinearGr}>
-          <div className="paginaWarper mt-4 m-auto pb-5 d-flex flex-column align-items-center">
+          <div className="paginaWarper mt-2 m-auto pb-5 d-flex flex-column align-items-center">
             <PaginaPerfil
               perfil={stats?.imagemPerfil}
               username={stats?.username}
