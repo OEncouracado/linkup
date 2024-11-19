@@ -35,7 +35,7 @@ function FooterContent() {
                 </p>
                 <p className="mb-4">
                   <a
-                    href="https://www.instagram.com/sublinks.me/"
+                    href="https://www.instagram.com/linkii.me/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -44,7 +44,7 @@ function FooterContent() {
                 </p>
                 <p className="mb-4">
                   <a
-                    href="https://x.com/sublinks_me"
+                    href="https://x.com/linkiime"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

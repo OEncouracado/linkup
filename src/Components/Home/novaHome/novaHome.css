@@ -1,0 +1,49 @@
+/* Efeito de hover nos cards */
+.card-hover:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  .bg-img-gamer{
+    background-image: url("../../../Images/gamerbg.jpg");
+  }
+  
+  /* Gradiente de fundo animado */
+  .bg-gradient-animated {
+    background: linear-gradient(45deg, #1e1e2f, #343a40e7, #495057d0);
+    background-size: 400% 400%;
+    animation: gradientBG 5s ease infinite;
+  }
+    
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Melhorias na barra de progresso */
+  .progress {
+    height: 25px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .progress-animated {
+    animation: progressPulse 2s infinite;
+  }
+  
+  @keyframes progressPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  
+  /* Efeito de hover em botões */
+  .btn-hover-effect {
+    transition: all 0.3s ease;
+  }
+  
+  .btn-hover-effect:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+  }

@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-// eslint-disable-next-line
-import { Container, Navbar, Nav, Button } from 'react-bootstrap';
 import { Option1} from './homeNew.jsx';
+import NovaHomeNavBar from './novaHomeNavBar.jsx';
+import Footer from '../Footer/index.jsx';
 
 function HomepageDesignToggler() {
-  return (
+  return (<>
+    <NovaHomeNavBar />
     <Option1 />
-  );
+    <Footer />
+  </>);
 }
 
 export default HomepageDesignToggler;
