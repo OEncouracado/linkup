@@ -5,6 +5,7 @@ import { RiVipCrown2Fill } from 'react-icons/ri';
 import moca from "../../../Images/moca.png";
 import { fb } from '../../../shared/service';
 import "./novaHome.css"
+import NovaHomeNavBar from './novaHomeNavBar';
 
 // Opção 1
 const Option1 = () => {
@@ -37,14 +38,15 @@ const Option1 = () => {
   return (
     <div className="bg-img-gamer" >
       <Container className="bg-gradient-animated text-light m-0 px-5" style={{maxWidth:"100%"}} >
+        <NovaHomeNavBar />
         <Row className="align-items-center flex-column-reverse flex-md-row">
-          <Col md={6}>
+          <Col md={7}>
             <h1 className="display-4 mb-4">Up de Nível com seus Links</h1>
             <p className="lead mb-4">
               Desbloqueie novos recursos e benefícios à medida que progride em nossa plataforma inspirada em jogos.
             </p>
             <Form.Group
-              className="bg-dark p-3 rounded mb-3"
+              className="bg-dark p-3 rounded mb-3 w-75"
               style={{ height: "5rem" }}
             >
               <InputGroup>
@@ -77,7 +79,7 @@ const Option1 = () => {
               </InputGroup>
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col md={5}>
             <img src={moca} alt="Personagem de Jogo" className="img-fluid" />
           </Col>
         </Row>
@@ -212,10 +214,11 @@ const Option1 = () => {
         </Row>
       </Container>
     </div>
-      <Container className="mt-5">
+    <div className="bg-secondary">
+      <Container className="py-4">
         <Row>
           <Col md={6}>
-            <Card bg="dark" text="light" className="mb-4">
+            <Card bg="dark" text="light" className="h-100">
               <Card.Body>
                 <Card.Title>
                   <FaDiscord size={32} className="mr-2" />
@@ -231,7 +234,7 @@ const Option1 = () => {
             </Card>
           </Col>
           <Col md={6}>
-            <Card bg="dark" text="light" className="mb-4">
+            <Card bg="dark" text="light" className="h-100">
               <Card.Body>
                 <Card.Title>Desbloqueie Recompensas</Card.Title>
                 <Card.Text>
@@ -245,6 +248,7 @@ const Option1 = () => {
           </Col>
         </Row>
       </Container>
+    </div>
     </div>
   );
 };

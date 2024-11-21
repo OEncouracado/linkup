@@ -3,6 +3,7 @@ import { Container, Nav, Navbar, Offcanvas, Image } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useAuth , UserInfo } from './../../../hook';
 import { useLightMode } from './../../Dashboard/LightModeContext';
+import "./novaHome.css"
 
 import logo from "../../../Images/logos/linkiimelogo.png";
 import photoNull from "../../../Images/perfil/perfil.jpg";
@@ -57,20 +58,20 @@ const NovaHomeNavBar = () => {
                                     <Container
                                         title='Ir para o Dashboard'
                                         onClick={() => navigate("/dashboard")}
-                                        className={`my-1 mx-0 p-0 rounded-pill w-25 text-dark ${isLightMode ? "PerfilDashboardTopbar" : "PerfilDashboardTopbarDark text-light"}`}
+                                        className={`my-1 mx-0 p-0 rounded-pill w-25 text-dark ${isLightMode ? "PerfilDashboardTopbarDark" : "PerfilDashboardTopbarDark text-light"}`}
                                         style={{ cursor: "pointer" }}
                                     >
                                         <Image
-                                            className={isLightMode ? "ImgPerfilDashboardTopbar" : "ImgPerfilDashboardTopbarDark"}
+                                            className={isLightMode ? "ImgPerfilDashboardTopbarDark" : "ImgPerfilDashboardTopbarDark"}
                                             src={photo ? photo : photoNull}
                                             roundedCircle
                                         />
-                                        <small className="mx-2 my-0">@{stats?.linkUserName}</small>
+                                        <small className="text-white mx-2 my-0">@{stats?.linkUserName}</small>
                                     </Container>
                                 ) : (
                                     <>
-                                        <Nav.Link href="/Singup">Cadastrar-se</Nav.Link>
-                                        <Nav.Link href="/Login">Entrar</Nav.Link>
+                                        <Nav.Link className="singup-login" href="/Singup">Cadastrar-se</Nav.Link>
+                                        <Nav.Link className="singup-login" href="/Login">Entrar</Nav.Link>
                                     </>
                                 )}
                             </Nav>
