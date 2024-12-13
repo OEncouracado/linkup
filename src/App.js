@@ -34,83 +34,84 @@ import Gemas from "./Components/Gemas";
 import Leaderboard from "./Components/Leaderboard/Leaderboard.js";
 import HomepageDesignToggler from "./Components/Home/novaHome";
 import CompraVip from "./Components/Home/novaHome/vippagamento";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const { isAuthed, authUser } = useAuth();
   return (
-    <LightModeProvider>
-      <SpeedInsights/>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="contato" element={<ContatoPage />} />
-          <Route
-            path="/dashboard"
-            element={
-              authUser === undefined ? (
-                <TelaLoading />
-              ) : isAuthed ? (
-                <Dashboard />
-              ) : (
-                <Navigate to="/Login" />
-              )
-            }
-          />
-          <Route
-            path="/perfil"
-            element={
-              authUser === undefined ? (
-                <TelaLoading />
-              ) : isAuthed ? (
-                <UserProfile />
-              ) : (
-                <Navigate to="/Login" />
-              )
-            }
-          />
-          <Route
-            path="/Login"
-            element={isAuthed ? <Navigate to="/dashboard" /> : <Login />}
-          />
-          <Route
-            path="/recuperacao"
-            element={
-              isAuthed ? <Navigate to="/dashboard" /> : <RecuperarSenha />
-            }
-          />
-          <Route
-            path="/recuperacao/concluido"
-            element={
-              isAuthed ? <Navigate to="/dashboard" /> : <RecuperacaoEnviado />
-            }
-          />
-          <Route
-            path="/Singup"
-            element={isAuthed ? <Navigate to="/dashboard" /> : <Signup />}
-          />
-          <Route path="/:usuario" element={<CheckUserExists />} />
+    <>
+      <Analytics />
+      <LightModeProvider>
+        <SpeedInsights />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="contato" element={<ContatoPage />} />
+            <Route
+              path="/dashboard"
+              element={
+                authUser === undefined ? (
+                  <TelaLoading />
+                ) : isAuthed ? (
+                  <Dashboard />
+                ) : (
+                  <Navigate to="/Login" />
+                )
+              }
+            />
+            <Route
+              path="/perfil"
+              element={
+                authUser === undefined ? (
+                  <TelaLoading />
+                ) : isAuthed ? (
+                  <UserProfile />
+                ) : (
+                  <Navigate to="/Login" />
+                )
+              }
+            />
+            <Route
+              path="/Login"
+              element={isAuthed ? <Navigate to="/dashboard" /> : <Login />}
+            />
+            <Route
+              path="/recuperacao"
+              element={
+                isAuthed ? <Navigate to="/dashboard" /> : <RecuperarSenha />
+              }
+            />
+            <Route
+              path="/recuperacao/concluido"
+              element={
+                isAuthed ? <Navigate to="/dashboard" /> : <RecuperacaoEnviado />
+              }
+            />
+            <Route
+              path="/Singup"
+              element={isAuthed ? <Navigate to="/dashboard" /> : <Signup />}
+            />
+            <Route path="/:usuario" element={<CheckUserExists />} />
 
-          <Route path="/bloqueado" element={<UsuarioBloqueado />} />
-          <Route path="/despedida" element={<Despedida />} />
-          <Route path="/verificacaoEmail" element={<VerificacaoEmail />} />
-          <Route path="/s/TermoseCondicoes" element={<Termos />} />
-          <Route path="/s/Sucesso" element={<SuccessPage />} />
-          <Route path="/s/Cancelado" element={<CancelPage />} />
-          <Route path="/s/404" element={<NotFound />} />
-          <Route path="/s/*" element={<NotFound />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/not-authorized" element={<NotAuthorized />} />
-          <Route path="/comprar-gemas" element={<Gemas />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/novaHome" element={<HomepageDesignToggler />} />
-          <Route path="/vippagamento" element={<CompraVip />} />
-
-          
-          
-        </Routes>
-      </Router>
-    </LightModeProvider>
+            <Route path="/bloqueado" element={<UsuarioBloqueado />} />
+            <Route path="/despedida" element={<Despedida />} />
+            <Route path="/verificacaoEmail" element={<VerificacaoEmail />} />
+            <Route path="/s/TermoseCondicoes" element={<Termos />} />
+            <Route path="/s/Sucesso" element={<SuccessPage />} />
+            <Route path="/s/Cancelado" element={<CancelPage />} />
+            <Route path="/s/404" element={<NotFound />} />
+            <Route path="/s/*" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/not-authorized" element={<NotAuthorized />} />
+            <Route path="/comprar-gemas" element={<Gemas />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/novaHome" element={<HomepageDesignToggler />} />
+            <Route path="/vippagamento" element={<CompraVip />} />
+          </Routes>
+        </Router>
+      </LightModeProvider>
+    </>
   );
 }
 
